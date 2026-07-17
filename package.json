@@ -1,0 +1,24 @@
+{
+  "name": "nojquery",
+  "version": "4.0.0",
+  "description": "Modern lightweight DOM and UI helper library",
+  "main": "build/nojquery.full.js",
+  "browser": "build/nojquery.full.js",
+  "license": "MIT",
+  "files": [
+    "build",
+    "src",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "MIGRATION_3_TO_4.md"
+  ],
+  "keywords": [
+    "dom",
+    "javascript",
+    "ajax",
+    "storage",
+    "ui",
+    "jquery-alternative"
+  ]
+}
