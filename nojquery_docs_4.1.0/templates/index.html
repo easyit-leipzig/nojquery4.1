@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Templates in nojquery 4.1.0: nj.template(), nj.render(), sichere Platzhalter, Roh-HTML und Praxisbeispiele.">
+<title>Templates – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8;--radius:18px}@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}.skip-link{position:absolute;left:-9999px}.skip-link:focus{left:1rem;top:1rem;z-index:50;background:var(--surface);padding:.7rem;border-radius:.5rem}header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.3rem}.button{padding:.65rem 1rem;border:1px solid var(--line);border-radius:.7rem;font-weight:700}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;padding:0 1rem;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text);font:inherit}.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}aside{position:sticky;top:90px;align-self:start;max-height:calc(100vh - 110px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}nav{display:grid;gap:.2rem}nav a{padding:.4rem .6rem;color:var(--text);border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}section{scroll-margin-top:90px;margin-bottom:3.4rem}section>h2{font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:-.04em;margin-bottom:.4rem}.intro{color:var(--muted);max-width:850px}.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.25rem;margin:1rem 0}.entry h3,.card h3{margin-top:0}.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style></head><body>
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Templates</span></div></header>
+<section class="hero"><div><div class="eyebrow">Template API</div><h1>Daten sicher<br>in HTML einsetzen.</h1><p class="lead">Der Core bietet eine bewusst kleine Template-Funktion für escaped Platzhalter, optionale Roh-HTML-Ausgabe und direktes Rendern in ein Ziel-Element.</p><div class="actions"><a class="button primary" href="#api">API ansehen</a><a class="button" href="../core/dom.html">DOM-Dokumentation</a></div></div><pre><code>const html = nj.template(
+  "&lt;h2&gt;{{user.name}}&lt;/h2&gt;",
+  { user: { name: "Ada" } }
+);
+
+nj.render("#profile", html);</code></pre></section>
+<div class="search"><input id="api-search" type="search" placeholder="Template-API durchsuchen …"><div id="none">Keine passende Template-Funktion gefunden.</div></div>
+<div class="layout"><aside><h2>Templates</h2><nav><a href="#overview">Überblick</a><a href="#syntax">Syntax</a><a href="#template">nj.template()</a><a href="#render">nj.render()</a><a href="#escape">Escaping</a><a href="#raw">Roh-HTML</a><a href="#nested">Verschachtelte Daten</a><a href="#patterns">Praxisbeispiele</a><a href="#limits">Grenzen</a><a href="#crossrefs">Querverweise</a></nav></aside><main id="content">
+<section id="overview" class="searchable" data-search="template render overview placeholders html"><h2>Überblick</h2><p class="intro">Im aktuellen Core bestehen Templates aus Zeichenketten. <code>nj.template()</code> ersetzt Platzhalter durch Werte aus einem Datenobjekt. <code>nj.render()</code> verbindet diese Ersetzung mit einer DOM-Ausgabe.</p><div class="callout"><strong>Tatsächlicher Funktionsumfang:</strong> Der Core implementiert einfache Platzhalter und Punktpfade. Schleifen, Bedingungen, Partials, Layouts, Kompilierung oder asynchrones Laden sind nicht Bestandteil dieser Version.</div></section>
+<section id="syntax"><h2>Platzhaltersyntax</h2><table><thead><tr><th>Syntax</th><th>Verhalten</th><th>Beispiel</th></tr></thead><tbody><tr class="searchable" data-search="escaped double braces"><td><code>{{name}}</code></td><td>Wert wird mit <code>nj.escapeHTML()</code> maskiert.</td><td><code>&lt;h2&gt;{{name}}&lt;/h2&gt;</code></td></tr><tr class="searchable" data-search="raw triple braces html"><td><code>{{{html}}}</code></td><td>Wert wird unverändert eingesetzt.</td><td><code>&lt;div&gt;{{{html}}}&lt;/div&gt;</code></td></tr><tr class="searchable" data-search="nested path object"><td><code>{{user.name}}</code></td><td>Liest verschachtelte Objekte über einen Punktpfad.</td><td><code>{{account.profile.name}}</code></td></tr></tbody></table></section>
+<section id="api"><h2>API</h2></section>
+<section id="template"><article class="entry searchable" data-search="nj.template template data string return"><h3>nj.template(template, data)</h3><code class="signature">nj.template(template[, data = {}]) → String</code><p>Wandelt den ersten Parameter mit <code>String()</code> in Text um und ersetzt alle unterstützten Platzhalter. Fehlende oder <code>null</code>-artige Werte werden als leere Zeichenkette ausgegeben.</p><pre><code>const card = nj.template(`
+  &lt;article&gt;
+    &lt;h2&gt;{{title}}&lt;/h2&gt;
+    &lt;p&gt;{{description}}&lt;/p&gt;
+  &lt;/article&gt;
+`, {
+  title: "Dokumentation",
+  description: "Sicher gerendert"
+});</code></pre><p><strong>Rückgabewert:</strong> die vollständig ersetzte Zeichenkette.</p></article></section>
+<section id="render"><article class="entry searchable" data-search="nj.render target mode html append"><h3>nj.render(target, template, data, mode)</h3><code class="signature">nj.render(target, template[, data = {}, mode = "html"]) → NJ</code><p>Ruft intern <code>nj.template()</code> auf und schreibt das Ergebnis in das mit <code>nj(target)</code> ausgewählte Ziel. Der Standardmodus ersetzt den vorhandenen Inhalt. Nur der Modus <code>append</code> hängt das Ergebnis an.</p><pre><code>nj.render("#result", "&lt;p&gt;{{message}}&lt;/p&gt;", {
+  message: "Inhalt ersetzt"
+});
+
+nj.render("#log", "&lt;li&gt;{{text}}&lt;/li&gt;", {
+  text: "Neuer Eintrag"
+}, "append");</code></pre><p><strong>Rückgabewert:</strong> das NJ-Objekt des Ziel-Elements, sodass weitere DOM-Methoden verkettet werden können.</p></article></section>
+<section id="escape"><h2>Automatisches Escaping</h2><p>Die doppelte Klammer verwendet <code>nj.escapeHTML()</code>. Dadurch werden mindestens die für HTML kritischen Zeichen maskiert und als Text dargestellt.</p><pre><code>const input = '&lt;img src=x onerror=alert(1)&gt;';
+const html = nj.template('&lt;p&gt;{{value}}&lt;/p&gt;', { value: input });
+
+// Der Wert erscheint als Text, nicht als aktives Element.</code></pre><div class="callout"><strong>Empfehlung:</strong> Für Benutzerangaben, API-Daten und unbekannte Inhalte grundsätzlich <code>{{...}}</code> verwenden.</div></section>
+<section id="raw"><h2>Roh-HTML mit drei Klammern</h2><p><code>{{{...}}}</code> fügt den Wert unverändert ein. Diese Form ist nur für bereits vertrauenswürdiges oder separat bereinigtes HTML geeignet.</p><pre><code>nj.render("#article", "&lt;div&gt;{{{body}}}&lt;/div&gt;", {
+  body: trustedHtml
+});</code></pre><div class="callout"><strong>Sicherheitsrisiko:</strong> Ungeprüfte Eingaben können über Roh-HTML zu Cross-Site-Scripting führen. Der Core führt dabei keine Sanitization durch.</div></section>
+<section id="nested"><h2>Verschachtelte Daten</h2><p>Punktpfade werden schrittweise im Datenobjekt aufgelöst. Optional Chaining verhindert einen Fehler, wenn ein Zwischenschritt fehlt.</p><pre><code>const output = nj.template(
+  "{{customer.address.city}}",
+  { customer: { address: { city: "Leipzig" } } }
+);</code></pre><p>Arrays können über numerische Eigenschaften angesprochen werden, beispielsweise <code>{{items.0.name}}</code>. Eine automatische Schleifenverarbeitung existiert jedoch nicht.</p></section>
+<section id="patterns"><h2>Praxisbeispiele</h2><div class="grid"><article class="card searchable" data-search="list array map join render"><h3>Liste aus einem Array</h3><p>Die Iteration erfolgt außerhalb des Template-Engines mit nativen Array-Methoden.</p><pre><code>const rows = users.map(user =&gt;
+  nj.template("&lt;li&gt;{{name}}&lt;/li&gt;", user)
+).join("");
+
+nj("#users").html(rows);</code></pre></article><article class="card searchable" data-search="ajax request template render"><h3>AJAX-Daten rendern</h3><pre><code>const users = await nj.get("/api/users");
+const html = users.map(user =&gt;
+  nj.template("&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;/tr&gt;", user)
+).join("");
+
+nj("#users tbody").html(html);</code></pre></article><article class="card searchable" data-search="empty missing fallback default"><h3>Standardwerte vorbereiten</h3><p>Da fehlende Werte leer werden, sollten fachliche Standardwerte vor dem Rendern ergänzt werden.</p><pre><code>const view = {
+  name: user.name ?? "Unbekannt",
+  role: user.role ?? "Ohne Rolle"
+};
+nj.render("#profile", tpl, view);</code></pre></article><article class="card searchable" data-search="chaining class render"><h3>Rendern und weiterarbeiten</h3><pre><code>nj.render("#notice", "&lt;strong&gt;{{text}}&lt;/strong&gt;", data)
+  .addClass("is-visible")
+  .attr("aria-live", "polite");</code></pre></article></div></section>
+<section id="limits"><h2>Grenzen des Moduls</h2><ul><li>Keine Bedingungen wie <code>if</code> oder <code>else</code>.</li><li>Keine Template-Schleifen; Listen werden vorher mit JavaScript aufgebaut.</li><li>Keine Partials, Includes oder Layout-Vererbung.</li><li>Kein Template-Cache und keine Vorab-Kompilierung.</li><li>Kein Laden externer Template-Dateien.</li><li>Keine automatische DOM-Datenbindung oder Reaktivität.</li></ul><p>Diese Grenzen entsprechen dem aktuellen Stand von <code>nojquery.core.js</code> und werden hier nicht durch hypothetische APIs ergänzt.</p></section>
+<section id="crossrefs"><h2>Querverweise</h2><div class="grid"><article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>HTML einsetzen, Inhalte anhängen und NJ-Methoden verketten.</p></article><article class="card"><h3><a href="../ajax/index.html">AJAX</a></h3><p>Remote-Daten laden und anschließend mit Templates ausgeben.</p></article><article class="card"><h3><a href="../storage/index.html">Storage</a></h3><p>Darstellungsdaten lokal speichern und später rendern.</p></article><article class="card"><h3><a href="../cache/index.html">Cache</a></h3><p>Geladene Daten mit TTL zwischenspeichern.</p></article></div></section>
+</main></div><footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Templates-Dokumentation</footer>
+<script>const input=document.getElementById('api-search'),items=[...document.querySelectorAll('.searchable')],none=document.getElementById('none');input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+' '+(el.dataset.search||'')).toLowerCase().includes(q);el.classList.toggle('hidden',!hit);if(hit)count++});none.style.display=count?'none':'block'});</script></body></html>
