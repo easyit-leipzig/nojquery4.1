@@ -1,220 +1,27 @@
 <!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Router in nojquery 4.1.0: nj.route(), nj.router.start(), navigate(), replace(), params() und History-API.">
-<title>Router – nojquery 4.1.0</title>
-<style>
-:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8;--radius:18px}
-@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
-.skip-link{position:absolute;left:-9999px}.skip-link:focus{left:1rem;top:1rem;z-index:50;background:var(--surface);padding:.7rem;border-radius:.5rem}
-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
-.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
-.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
-h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
-.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.3rem}.button{padding:.65rem 1rem;border:1px solid var(--line);border-radius:.7rem;font-weight:700}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
-.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
-.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
-aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
-main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
-.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
-.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
-table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
-footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
-@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
-</style>
-</head>
-<body>
-<a class="skip-link" href="#content">Zum Inhalt springen</a>
-<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Router</span></div></header>
-
-<section class="hero">
-<div>
-<div class="eyebrow">History Router</div>
-<h1>Routen ohne<br>Seitenwechsel.</h1>
-<p class="lead">Das Router-Modul verbindet deklarierte Pfadmuster mit Handlern und nutzt die History API für Navigation innerhalb einer clientseitigen Anwendung.</p>
-<div class="actions"><a class="button primary" href="#api">API ansehen</a><a class="button" href="../templates/index.html">Templates</a></div>
-</div>
-<pre><code>nj.route("/users/:id", ({ id }) =&gt; {
-  nj.render("#app", "&lt;h1&gt;User {{id}}&lt;/h1&gt;", { id });
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Router-API von nojquery 4.1.0: nj.route, nj.router.start, navigate, replace und params.">
+<title>Router – nojquery 4.1.0</title><style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#667085;--line:#dfe5ee;--accent:#315bd6;--code:#111827}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,sans-serif}a{color:var(--accent)}header,main,footer{max-width:1120px;margin:auto;padding:1.2rem}header{display:flex;gap:1rem;align-items:center}.brand{font-weight:800;text-decoration:none;color:var(--text)}.badge{border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem;font-size:.8rem}.hero{padding:3rem 0 1rem}h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1;margin:.2rem 0 1rem;letter-spacing:-.05em}.lead{font-size:1.2rem;color:var(--muted);max-width:850px}.toc,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.2rem;margin:1rem 0}.toc{display:flex;flex-wrap:wrap;gap:.8rem}.toc a{text-decoration:none}.sig,pre{background:var(--code);color:#e7eefb;padding:1rem;border-radius:10px;overflow:auto}.api{scroll-margin-top:20px;margin:2.5rem 0}.note{border-left:4px solid var(--accent);background:var(--card);padding:1rem;margin:1rem 0}table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.7rem;text-align:left}footer{color:var(--muted);border-top:1px solid var(--line)}
+</style></head><body>
+<header><a class="brand" href="../index.html">nojquery</a><span class="badge">4.1.0</span><span>Router</span></header>
+<main><section class="hero"><p>History API</p><h1>Router</h1><p class="lead">Deklariert Pfadmuster, extrahiert benannte Segmente und navigiert ohne vollständigen Seitenreload.</p></section>
+<nav class="toc"><a href="#route">nj.route()</a><a href="#start">start()</a><a href="#navigate">navigate()</a><a href="#replace">replace()</a><a href="#params">params()</a><a href="#limits">Grenzen</a></nav>
+<section><h2>Grundablauf</h2><pre><code>nj.route('/users/:id', ({ id }) =&gt; {
+  nj('#app').html(`&lt;h1&gt;Benutzer ${id}&lt;/h1&gt;`);
 });
 
 nj.router.start();
-nj.navigate("/users/42");</code></pre>
-</section>
-
-<div class="search"><input id="api-search" type="search" placeholder="Router-API durchsuchen …"><div id="none">Keine passende Router-Funktion gefunden.</div></div>
-
-<div class="layout">
-<aside><h2>Router</h2><nav>
-<a href="#overview">Überblick</a>
-<a href="#lifecycle">Ablauf</a>
-<a href="#route">nj.route()</a>
-<a href="#start">start()</a>
-<a href="#navigate">navigate()</a>
-<a href="#replace">replace()</a>
-<a href="#params">params()</a>
-<a href="#patterns">Routenparameter</a>
-<a href="#examples">Praxisbeispiele</a>
-<a href="#limits">Grenzen</a>
-<a href="#crossrefs">Querverweise</a>
-</nav></aside>
-
-<main id="content">
-<section id="overview" class="searchable" data-search="router overview history api client side routing">
-<h2>Überblick</h2>
-<p class="intro">Routen werden mit <code>nj.route(pattern, handler)</code> registriert. <code>nj.router.start()</code> wertet den aktuellen <code>location.pathname</code> aus und reagiert anschließend auf <code>popstate</code>. Navigation erfolgt mit <code>history.pushState()</code> oder <code>history.replaceState()</code>.</p>
-<div class="callout"><strong>Wichtig:</strong> Der Router arbeitet mit echten Pfaden wie <code>/users/42</code>, nicht mit Hash-Routen. Der Webserver muss deshalb bei direkten Aufrufen solcher Pfade die Anwendung ausliefern.</div>
-</section>
-
-<section id="lifecycle"><h2>Routing-Ablauf</h2>
-<ol>
-<li>Routen mit <code>nj.route()</code> registrieren.</li>
-<li>Router einmal mit <code>nj.router.start()</code> starten.</li>
-<li>Aktuellen Pfad gegen die registrierten Muster prüfen.</li>
-<li>Parameter aus Segmenten wie <code>:id</code> dekodieren.</li>
-<li>Ersten passenden Handler ausführen.</li>
-<li>Bei <code>popstate</code> erneut auswerten.</li>
-</ol>
-</section>
-
-<section id="api"><h2>API</h2>
-
-<article id="route" class="entry searchable" data-search="nj.route pattern handler register route">
-<h3>nj.route(pattern, handler)</h3>
-<code class="signature">nj.route(pattern, handler) → nj</code>
-<p>Registriert ein Pfadmuster und einen Handler. Die Reihenfolge ist relevant, da die erste passende Route ausgeführt wird.</p>
-<pre><code>nj.route("/", () =&gt; {
-  nj("#app").html("&lt;h1&gt;Startseite&lt;/h1&gt;");
-});
-
-nj.route("/projects/:id", ({ id }, path) =&gt; {
-  console.log(id, path);
-});</code></pre>
-<p>Der Handler erhält zuerst das Parameterobjekt und anschließend den vollständigen Pfad.</p>
-</article>
-
-<article id="start" class="entry searchable" data-search="router start popstate current path">
-<h3>nj.router.start()</h3>
-<code class="signature">nj.router.start() → nj.router</code>
-<p>Registriert den internen <code>popstate</code>-Listener und wertet sofort die aktuelle URL aus.</p>
-<pre><code>nj.ready(() =&gt; {
-  nj.router.start();
-});</code></pre>
-<div class="callout">Da jeder Aufruf einen weiteren Listener registriert, sollte <code>start()</code> im normalen Betrieb nur einmal ausgeführt werden.</div>
-</article>
-
-<article id="navigate" class="entry searchable" data-search="navigate pushstate state history nj.navigate">
-<h3>nj.router.navigate(url, state)</h3>
-<code class="signature">nj.router.navigate(url[, state = {}]) → undefined</code>
-<p>Erzeugt mit <code>history.pushState()</code> einen neuen Verlaufseintrag und löst danach künstlich ein <code>popstate</code>-Ereignis aus.</p>
-<pre><code>nj.router.navigate("/orders/17", {
-  source: "dashboard"
-});
-
-// Alias:
-nj.navigate("/orders/17");</code></pre>
-</article>
-
-<article id="replace" class="entry searchable" data-search="replace replacestate history no new entry">
-<h3>nj.router.replace(url, state)</h3>
-<code class="signature">nj.router.replace(url[, state = {}]) → undefined</code>
-<p>Ersetzt den aktuellen Verlaufseintrag über <code>history.replaceState()</code> und startet anschließend die Routenauswertung.</p>
-<pre><code>nj.router.replace("/login", {
-  reason: "session-expired"
-});</code></pre>
-</article>
-
-<article id="params" class="entry searchable" data-search="params query search parameters object">
-<h3>nj.router.params()</h3>
-<code class="signature">nj.router.params() → Object</code>
-<p>Wandelt den aktuellen Querystring mit <code>URLSearchParams</code> in ein einfaches Objekt um.</p>
-<pre><code>// URL: /search?q=router&page=2
-const params = nj.router.params();
-// { q: "router", page: "2" }</code></pre>
-<div class="callout">Alle Werte bleiben Zeichenketten. Mehrfach vorkommende Parameternamen werden durch <code>Object.fromEntries()</code> auf den letzten Wert reduziert.</div>
-</article>
-</section>
-
-<section id="patterns"><h2>Routenparameter</h2>
-<p>Ein Segment mit vorangestelltem Doppelpunkt wird in eine benannte Capture Group umgewandelt.</p>
-<table>
-<thead><tr><th>Muster</th><th>Passender Pfad</th><th>Parameter</th></tr></thead>
-<tbody>
-<tr class="searchable" data-search="single parameter id"><td><code>/users/:id</code></td><td><code>/users/42</code></td><td><code>{ id: "42" }</code></td></tr>
-<tr class="searchable" data-search="multiple parameters project task"><td><code>/projects/:project/tasks/:task</code></td><td><code>/projects/a/tasks/7</code></td><td><code>{ project: "a", task: "7" }</code></td></tr>
-<tr class="searchable" data-search="decode uri encoded"><td><code>/tags/:name</code></td><td><code>/tags/Web%20API</code></td><td><code>{ name: "Web API" }</code></td></tr>
-</tbody>
-</table>
-<p>Statische Zeichen im Muster werden nicht zusätzlich escaped. Deshalb sollten Muster einfach gehalten und nicht als frei eingegebene reguläre Ausdrücke behandelt werden.</p>
-</section>
-
-<section id="examples"><h2>Praxisbeispiele</h2>
-<div class="grid">
-<article class="card searchable" data-search="navigation links click delegation">
-<h3>Interne Links abfangen</h3>
-<pre><code>nj(document).on("click", "a[data-route]", event =&gt; {
-  event.preventDefault();
-  nj.navigate(event.currentTarget.getAttribute("href"));
-});</code></pre>
-</article>
-<article class="card searchable" data-search="ajax route fetch render">
-<h3>Daten je Route laden</h3>
-<pre><code>nj.route("/users/:id", async ({ id }) =&gt; {
-  const user = await nj.get(`/api/users/${id}`);
-  nj.render("#app", userTemplate, user);
-});</code></pre>
-</article>
-<article class="card searchable" data-search="not found fallback 404">
-<h3>Einfacher Fallback</h3>
-<p>Der Core besitzt keine eigene 404-Route. Eine praktische Lösung ist eine zuletzt registrierte, selbst definierte statische Route oder eine Anwendungsschicht, die vor der Navigation bekannte Pfade prüft.</p>
-</article>
-<article class="card searchable" data-search="query filters search params">
-<h3>Filter über Querystring</h3>
-<pre><code>nj.route("/products", () =&gt; {
-  const { category, page = "1" } = nj.router.params();
-  loadProducts({ category, page: Number(page) });
-});</code></pre>
-</article>
-</div>
-</section>
-
-<section id="limits"><h2>Grenzen des aktuellen Moduls</h2>
-<ul>
-<li>Keine Methode zum Entfernen registrierter Routen.</li>
-<li>Keine benannte Route und keine URL-Generierung aus Routennamen.</li>
-<li>Keine Middleware, Guards oder Hooks vor und nach einer Route.</li>
-<li>Keine Wildcard- oder optionale Parameter-Syntax.</li>
-<li>Keine eingebaute 404-Behandlung.</li>
-<li>Keine Methoden <code>back()</code>, <code>forward()</code> oder <code>reload()</code>.</li>
-<li>Keine automatische Behandlung von Link-Klicks.</li>
-<li>Keine serverseitige Routing-Konfiguration.</li>
-</ul>
-<p>Diese Einschränkungen entsprechen dem tatsächlichen Stand von <code>nojquery.core.js</code>.</p>
-</section>
-
-<section id="crossrefs"><h2>Querverweise</h2>
-<div class="grid">
-<article class="card"><h3><a href="../templates/index.html">Templates</a></h3><p>Routeninhalte sicher als HTML erzeugen.</p></article>
-<article class="card"><h3><a href="../ajax/index.html">AJAX</a></h3><p>Daten beim Wechsel einer Route nachladen.</p></article>
-<article class="card"><h3><a href="../cache/index.html">Cache</a></h3><p>Route-bezogene Daten mit TTL zwischenspeichern.</p></article>
-<article class="card"><h3><a href="../core/events.html">Events</a></h3><p>Navigation aus delegierten Klick-Ereignissen auslösen.</p></article>
-</div>
-</section>
-</main>
-</div>
-
-<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Router-Dokumentation</footer>
-<script>
-const input=document.getElementById('api-search'),items=[...document.querySelectorAll('.searchable')],none=document.getElementById('none');
-input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+' '+(el.dataset.search||'')).toLowerCase().includes(q);el.classList.toggle('hidden',!hit);if(hit)count++});none.style.display=count?'none':'block'});
-</script>
-</body>
-</html>
+nj.navigate('/users/42');</code></pre><div class="note">Der Server muss direkte Aufrufe von Anwendungsrouten wieder an die Hauptseite der Anwendung ausliefern.</div></section>
+<section id="route" class="api card"><h2>nj.route(pattern, handler)</h2><div class="sig">nj.route(pattern, handler) → nj</div><p>Registriert eine Route. Segmente der Form <code>:name</code> werden als benannte Parameter extrahiert und mit <code>decodeURIComponent()</code> dekodiert.</p><pre><code>nj.route('/projects/:project/tasks/:task', (params, path) =&gt; {
+  console.log(params.project, params.task, path);
+});</code></pre></section>
+<section id="start" class="api card"><h2>nj.router.start()</h2><div class="sig">nj.router.start() → nj.router</div><p>Wertet sofort <code>location.pathname</code> aus und registriert einen <code>popstate</code>-Listener. Im üblichen Betrieb genau einmal starten.</p></section>
+<section id="navigate" class="api card"><h2>nj.router.navigate(url, state)</h2><div class="sig">nj.router.navigate(url[, state = {}])</div><p>Erzeugt über <code>history.pushState()</code> einen neuen Verlaufseintrag und löst danach die Routenauswertung aus. <code>nj.navigate()</code> ist ein Alias.</p><pre><code>nj.navigate('/orders/17', { source: 'dashboard' });</code></pre></section>
+<section id="replace" class="api card"><h2>nj.router.replace(url, state)</h2><div class="sig">nj.router.replace(url[, state = {}])</div><p>Ersetzt den aktuellen Verlaufseintrag mit <code>history.replaceState()</code> und wertet die Route neu aus.</p></section>
+<section id="params" class="api card"><h2>nj.router.params()</h2><div class="sig">nj.router.params() → Object</div><p>Konvertiert den aktuellen Querystring über <code>URLSearchParams</code> in ein Objekt. Werte bleiben Strings; doppelte Namen werden auf den letzten Wert reduziert.</p><pre><code>// /search?q=router&amp;page=2
+const { q, page } = nj.router.params();</code></pre></section>
+<section><h2>Pfadmuster</h2><table><tr><th>Muster</th><th>Pfad</th><th>Parameter</th></tr><tr><td>/users/:id</td><td>/users/42</td><td>{ id: '42' }</td></tr><tr><td>/tags/:name</td><td>/tags/Web%20API</td><td>{ name: 'Web API' }</td></tr></table></section>
+<section id="limits"><h2>Grenzen des Core-Moduls</h2><ul><li>Keine Middleware oder Guards.</li><li>Keine Wildcards oder optionalen Parameter.</li><li>Keine integrierte 404-Route.</li><li>Keine Methode zum Entfernen registrierter Routen.</li><li>Keine automatischen Link-Handler.</li><li>Keine eigenen back(), forward() oder reload()-Methoden.</li></ul></section>
+<section><h2>Querverweise</h2><p><a href="../url/index.html">URL</a> · <a href="../templates/index.html">Templates</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../cache/index.html">Cache</a></p></section></main>
+<footer><a href="../index.html">Zur Hauptseite</a> · nojquery 4.1.0</footer></body></html>
