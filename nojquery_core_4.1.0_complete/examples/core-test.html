@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>nojquery 4.1.0 Test</title></head>
+<body>
+  <button id="test">Core testen</button>
+  <pre id="output"></pre>
+  <script src="../assets/js/nojquery.core.js"></script>
+  <script>
+    nj.ready(() => {
+      nj('#test').on('click', () => {
+        nj.storage.session.set('core.test', { ok: true });
+        nj.cache.set('answer', 42, 10000);
+        const checks = {
+          version: nj.version,
+          dom: nj('#test').exists(),
+          storage: nj.storage.session.get('core.test'),
+          cache: nj.cache.get('answer'),
+          email: nj.validate.email('test@example.de'),
+          uuid: nj.uuid(),
+          template: nj.template('Hallo {{name}}', { name: 'Olaf' })
+        };
+        nj('#output').text(JSON.stringify(checks, null, 2));
+      });
+    });
+  </script>
+</body>
+</html>

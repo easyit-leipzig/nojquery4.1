@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="API-Dokumentation für nojquery 4.1.0 – DOM, Events, AJAX, Storage, Cache, Router und weitere Module.">
+  <title>nojquery 4.1.0 – API-Dokumentation</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-2: #edf2f8;
+      --text: #172033;
+      --muted: #647087;
+      --line: #dbe3ee;
+      --accent: #2457d6;
+      --accent-2: #163b9f;
+      --code: #111827;
+      --code-text: #e5edf8;
+      --shadow: 0 16px 40px rgba(27, 45, 79, .10);
+      --radius: 18px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1320;
+        --surface: #131c2b;
+        --surface-2: #1a2638;
+        --text: #edf3fb;
+        --muted: #a7b4c7;
+        --line: #2b3a50;
+        --accent: #7ba2ff;
+        --accent-2: #a9c0ff;
+        --code: #080d16;
+        --code-text: #eaf1fb;
+        --shadow: 0 18px 45px rgba(0, 0, 0, .28);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    .skip-link { position: absolute; left: -9999px; top: 0; }
+    .skip-link:focus { left: 1rem; top: 1rem; z-index: 100; background: var(--surface); padding: .6rem 1rem; border-radius: .5rem; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: color-mix(in srgb, var(--surface) 88%, transparent);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner, .hero, .layout, footer { max-width: 1240px; margin: 0 auto; }
+    .topbar-inner { min-height: 70px; padding: .8rem 1.25rem; display: flex; align-items: center; gap: 1rem; }
+    .brand { display: flex; align-items: baseline; gap: .55rem; font-weight: 850; letter-spacing: -.03em; color: var(--text); }
+    .brand span { color: var(--accent); }
+    .version { font-size: .78rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: .15rem .55rem; }
+    .topnav { margin-left: auto; display: flex; gap: 1rem; font-size: .92rem; }
+    .hero { padding: 5rem 1.25rem 3rem; display: grid; grid-template-columns: 1.2fr .8fr; gap: 2.5rem; align-items: center; }
+    .eyebrow { color: var(--accent); font-weight: 750; text-transform: uppercase; font-size: .78rem; letter-spacing: .12em; }
+    h1 { font-size: clamp(2.5rem, 6vw, 5.6rem); line-height: .98; letter-spacing: -.065em; margin: .6rem 0 1.2rem; }
+    .lead { font-size: clamp(1.05rem, 2vw, 1.35rem); color: var(--muted); max-width: 760px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .65rem 1rem; border-radius: .7rem; border: 1px solid var(--line); font-weight: 700; }
+    .button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+    .hero-code { background: var(--code); color: var(--code-text); border-radius: var(--radius); padding: 1.35rem; box-shadow: var(--shadow); overflow: auto; }
+    .hero-code pre { margin: 0; white-space: pre-wrap; }
+    .search-wrap { max-width: 1240px; margin: 0 auto; padding: 0 1.25rem 2rem; }
+    .search-box { position: relative; }
+    .search-box input { width: 100%; min-height: 58px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--text); padding: 0 1rem 0 3rem; font: inherit; box-shadow: var(--shadow); }
+    .search-box span { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 2rem; padding: 0 1.25rem 4rem; }
+    aside { position: sticky; top: 92px; align-self: start; max-height: calc(100vh - 112px); overflow: auto; padding-right: .5rem; }
+    aside h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    aside nav { display: grid; gap: .3rem; }
+    aside a { color: var(--text); padding: .45rem .65rem; border-radius: .55rem; }
+    aside a:hover { background: var(--surface-2); text-decoration: none; }
+    main { min-width: 0; }
+    .section { scroll-margin-top: 95px; margin-bottom: 3.5rem; }
+    .section h2 { font-size: clamp(1.75rem, 3vw, 2.6rem); letter-spacing: -.04em; margin-bottom: .5rem; }
+    .section-intro { color: var(--muted); max-width: 800px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; margin-top: 1.4rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; box-shadow: 0 8px 24px rgba(30, 50, 80, .05); }
+    .card h3 { margin: 0 0 .5rem; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .card .links { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
+    .pill { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); color: var(--text); border-radius: 999px; padding: .2rem .55rem; font-size: .78rem; }
+    .method-list { margin-top: 1.2rem; display: grid; gap: .65rem; }
+    .method { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; display: grid; grid-template-columns: minmax(180px,.42fr) 1fr; gap: 1rem; }
+    .method code { color: var(--accent); font-weight: 750; }
+    .method span { color: var(--muted); }
+    .callout { border-left: 4px solid var(--accent); background: var(--surface); padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; }
+    .hidden { display: none !important; }
+    .no-results { display: none; padding: 1rem; margin-top: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+    footer { padding: 2rem 1.25rem 4rem; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-top: 3.5rem; }
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; max-height: none; }
+      aside nav { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .topnav { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .method { grid-template-columns: 1fr; gap: .2rem; }
+      aside nav { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-label="nojquery Dokumentation">no<span>jquery</span></a>
+    <span class="version">v4.1.0</span>
+    <nav class="topnav" aria-label="Hauptnavigation">
+      <a href="#start">Start</a>
+      <a href="#module">Module</a>
+      <a href="#api">API</a>
+      <a href="#migration">Migration</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="start">
+  <div>
+    <div class="eyebrow">Complete Core API</div>
+    <h1>Modernes DOM.<br>Ohne jQuery.</h1>
+    <p class="lead">Die zentrale API-Dokumentation für nojquery 4.1.0. Sie führt zu allen Kernbereichen: DOM, Events, AJAX, Storage, Cache, Router, Validierung, Formatierung und weitere Browser-Utilities.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="#api">API entdecken</a>
+      <a class="button" href="#module">Module ansehen</a>
+    </div>
+  </div>
+  <div class="hero-code" aria-label="Codebeispiel">
+<pre><code>nj.ready(() =&gt; {
+  nj("#menu")
+    .addClass("ready")
+    .on("click", "a", event =&gt; {
+      event.preventDefault();
+      nj.navigate(event.currentTarget.href);
+    });
+});</code></pre>
+  </div>
+</section>
+
+<div class="search-wrap">
+  <label class="search-box">
+    <span aria-hidden="true">⌕</span>
+    <input id="api-search" type="search" placeholder="API, Modul oder Funktion durchsuchen …" autocomplete="off">
+  </label>
+  <div id="no-results" class="no-results">Keine passende Funktion oder kein passendes Modul gefunden.</div>
+</div>
+
+<div class="layout">
+  <aside aria-label="Seitennavigation">
+    <h2>Dokumentation</h2>
+    <nav>
+      <a href="#ueberblick">Überblick</a>
+      <a href="#module">Module</a>
+      <a href="#api">Core-API</a>
+      <a href="#global">Globale Funktionen</a>
+      <a href="#konfiguration">Konfiguration</a>
+      <a href="#aliases">Alias-Kompatibilität</a>
+      <a href="#migration">jQuery-Migration</a>
+      <a href="#weiter">Weitere Seiten</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+    <section class="section searchable" id="ueberblick" data-search="überblick installation einbindung start version core">
+      <h2>Überblick</h2>
+      <p class="section-intro">nojquery 4.1.0 stellt eine kompakte, moderne API über nativen Browser-Schnittstellen bereit. Die Bibliothek wird global über <code>nj</code> angesprochen und unterstützt verkettbare DOM-Operationen.</p>
+      <div class="callout"><strong>Einbindung:</strong> <code>&lt;script src="assets/js/nojquery.core.js?v=4.1.0" defer&gt;&lt;/script&gt;</code></div>
+    </section>
+
+    <section class="section" id="module">
+      <h2>Module</h2>
+      <p class="section-intro">Die Hauptseite ordnet alle Funktionsbereiche. Jede Karte ist bereits als Querverweis für eine spätere Detailseite angelegt.</p>
+      <div class="grid" id="module-grid">
+        <article class="card searchable" data-search="dom selektoren traversal attribute css klassen form events animation">
+          <h3>DOM &amp; Events</h3><p>Selektieren, traversieren, verändern, formatieren und Ereignisse verwalten.</p>
+          <div class="links"><a class="pill" href="core/dom.html">DOM</a><a class="pill" href="core/events.html">Events</a><a class="pill" href="core/animation.html">Animation</a></div>
+        </article>
+        <article class="card searchable" data-search="ajax http fetch request get post put patch delete upload timeout abort">
+          <h3>HTTP &amp; AJAX</h3><p>Fetch-basierte Requests, Datei-Uploads, Timeouts und Abbruchsteuerung.</p>
+          <div class="links"><a class="pill" href="ajax/index.html">Übersicht</a><a class="pill" href="ajax/request.html">request()</a></div>
+        </article>
+        <article class="card searchable" data-search="storage local session namespace json speichern cache ttl">
+          <h3>Storage &amp; Cache</h3><p>Lokale und sitzungsbezogene Speicherung sowie Cache mit Ablaufzeit.</p>
+          <div class="links"><a class="pill" href="storage/index.html">Storage</a><a class="pill" href="cache/index.html">Cache</a></div>
+        </article>
+        <article class="card searchable" data-search="router route navigate history url query hash cookie">
+          <h3>Navigation &amp; URL</h3><p>History-Router, Navigation, Query-Parameter, Hashes und Cookies.</p>
+          <div class="links"><a class="pill" href="router/index.html">Router</a><a class="pill" href="url/index.html">URL</a><a class="pill" href="cookies/index.html">Cookies</a></div>
+        </article>
+        <article class="card searchable" data-search="template render escape html validation form validator formatter money date bytes percent">
+          <h3>Daten &amp; Darstellung</h3><p>Templates, sicheres HTML, Validierung und lokalisierte Formatierung.</p>
+          <div class="links"><a class="pill" href="templates/index.html">Templates</a><a class="pill" href="validation/index.html">Validation</a><a class="pill" href="formatter/index.html">Formatter</a></div>
+        </article>
+        <article class="card searchable" data-search="observer mutation intersection resize clipboard keyboard device color date uuid random eventbus logger drag drop sortable">
+          <h3>Browser-Utilities</h3><p>Observer, Zwischenablage, Tastatur, Geräteerkennung, Farben, Datum und mehr.</p>
+          <div class="links"><a class="pill" href="utilities/index.html">Utilities</a><a class="pill" href="observer/index.html">Observer</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="api">
+      <h2>Core-API</h2>
+      <p class="section-intro">Methoden eines mit <code>nj(selector)</code> erzeugten NJ-Objekts.</p>
+      <div class="method-list">
+        <div class="method searchable" data-search="each map iteration"><code>each(callback), map(callback)</code><span>Elemente iterieren oder Ergebniswerte sammeln.</span></div>
+        <div class="method searchable" data-search="get first last eq element"><code>get(), first(), last(), eq()</code><span>Einzelne Elemente oder Teilmengen auswählen.</span></div>
+        <div class="method searchable" data-search="find closest parent children next prev traversal"><code>find(), closest(), parent(), children(), next(), prev()</code><span>Durch die DOM-Struktur navigieren.</span></div>
+        <div class="method searchable" data-search="html text val content"><code>html(), text(), val()</code><span>Inhalt und Formularwerte lesen oder setzen.</span></div>
+        <div class="method searchable" data-search="append prepend before after appendto insert"><code>append(), prepend(), before(), after(), appendTo()</code><span>Inhalte oder Elemente einfügen.</span></div>
+        <div class="method searchable" data-search="empty remove delete"><code>empty(), remove()</code><span>Inhalte leeren oder Elemente entfernen.</span></div>
+        <div class="method searchable" data-search="attr attribute prop property data dataset"><code>attr(), removeAttr(), hasAttr(), prop(), data(), removeData()</code><span>Attribute, Eigenschaften und Data-Attribute verwalten.</span></div>
+        <div class="method searchable" data-search="class add remove toggle has css"><code>addClass(), removeClass(), toggleClass(), hasClass()</code><span>CSS-Klassen bearbeiten und prüfen.</span></div>
+        <div class="method searchable" data-search="css style display show hide toggle"><code>css(), removeCss(), show(), hide(), toggle()</code><span>Styles und Sichtbarkeit steuern.</span></div>
+        <div class="method searchable" data-search="event on off once trigger delegation"><code>on(), off(), once(), trigger()</code><span>Ereignisse registrieren, delegieren, entfernen und auslösen.</span></div>
+        <div class="method searchable" data-search="checked serialize form"><code>checked(), serialize()</code><span>Checkbox-Zustände und Formulardaten verarbeiten.</span></div>
+        <div class="method searchable" data-search="rect scroll animate fadein fadeout"><code>rect(), scrollIntoView(), animate(), fadeIn(), fadeOut()</code><span>Geometrie, Scrollen und Animationen.</span></div>
+        <div class="method searchable" data-search="is exists selector"><code>is(), exists()</code><span>Selektorübereinstimmung und Existenz prüfen.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="global">
+      <h2>Globale Funktionen und Namensräume</h2>
+      <div class="grid">
+        <article class="card searchable" data-search="ready create extend deepEqual isJSON utilities"><h3>Grundfunktionen</h3><p><code>nj.ready</code>, <code>nj.create</code>, <code>nj.extend</code>, <code>nj.deepEqual</code>, <code>nj.isJSON</code></p></article>
+        <article class="card searchable" data-search="request ajax get post put patch delete upload"><h3>HTTP</h3><p><code>nj.request</code>, <code>nj.ajax</code>, HTTP-Kürzel und <code>nj.upload</code></p></article>
+        <article class="card searchable" data-search="storage cache local session"><h3>Persistenz</h3><p><code>nj.storage</code>, <code>nj.cache</code>, <code>nj.CacheManager</code></p></article>
+        <article class="card searchable" data-search="template render escapeHTML"><h3>Templates</h3><p><code>nj.template</code>, <code>nj.render</code>, <code>nj.escapeHTML</code></p></article>
+        <article class="card searchable" data-search="route router navigate url cookie"><h3>Navigation</h3><p><code>nj.route</code>, <code>nj.router</code>, <code>nj.navigate</code>, <code>nj.url</code>, <code>nj.cookie</code></p></article>
+        <article class="card searchable" data-search="validate format date color uuid random"><h3>Datenwerkzeuge</h3><p><code>nj.validate</code>, <code>nj.format</code>, <code>nj.date</code>, <code>nj.color</code>, <code>nj.uuid</code>, <code>nj.random</code></p></article>
+        <article class="card searchable" data-search="observe visible resize mutation intersection"><h3>Observer</h3><p><code>nj.observe</code>, <code>nj.visible</code>, <code>nj.resize</code></p></article>
+        <article class="card searchable" data-search="drag drop sortable clipboard key device"><h3>Interaktion</h3><p><code>nj.drag</code>, <code>nj.drop</code>, <code>nj.sortable</code>, <code>nj.clipboard</code>, <code>nj.key</code>, <code>nj.device</code></p></article>
+        <article class="card searchable" data-search="bus eventbus logger log"><h3>Kommunikation</h3><p><code>nj.bus</code>, <code>nj.logger</code>, <code>nj.log</code></p></article>
+      </div>
+    </section>
+
+    <section class="section searchable" id="konfiguration" data-search="config debug warn aliases ajax timeout animation duration easing">
+      <h2>Konfiguration</h2>
+      <p class="section-intro"><code>nj.config</code> steuert Debug-Ausgaben, Aliasfreigaben, AJAX-Timeouts und Standardwerte für Animationen. Die Detailseite beschreibt alle Optionen und sichere Produktionswerte.</p>
+      <a href="reference/configuration.html">Konfigurationsreferenz öffnen →</a>
+    </section>
+
+    <section class="section searchable" id="aliases" data-search="alias backward compatibility dollar underscore jquery alte namen">
+      <h2>Alias- und Rückwärtskompatibilität</h2>
+      <p class="section-intro">Neben <code>nj</code> können optional <code>_</code> und <code>$</code> freigegeben werden. Zahlreiche ältere Kurzmethoden bleiben als Prototyp- und Utility-Aliasse erhalten.</p>
+      <a href="reference/aliases.html">Alle Aliasse anzeigen →</a>
+    </section>
+
+    <section class="section searchable" id="migration" data-search="jquery migration dollar replacement vergleich">
+      <h2>Migration von jQuery</h2>
+      <div class="hero-code"><pre><code>// jQuery
+$(".item").addClass("active").on("click", handler);
+
+// nojquery
+nj(".item").addClass("active").on("click", handler);</code></pre></div>
+      <p><a href="getting-started/migration-from-jquery.html">Vollständigen Migrationsleitfaden öffnen →</a></p>
+    </section>
+
+    <section class="section" id="weiter">
+      <h2>Geplante Dokumentationsseiten</h2>
+      <p class="section-intro">Die Hauptseite bildet die Navigation für die vollständige Dokumentationsbibliothek. Als nächste Seiten folgen Installation, Selektoren, DOM, Events, AJAX, Storage und die alphabetische API-Referenz.</p>
+      <div class="links">
+        <a class="pill" href="getting-started/installation.html">Installation</a>
+        <a class="pill" href="core/selectors.html">Selektoren</a>
+        <a class="pill" href="api/index.html">API-Index</a>
+        <a class="pill" href="cookbook/index.html">Cookbook</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>nojquery 4.1.0</strong><br>
+  API-Dokumentation · MIT-Lizenz · Hauptseite der Dokumentationsbibliothek
+</footer>
+
+<script src="assets/js/nojquery.core.js?v=4.1.0"></script>
+<script>
+  nj.ready(() => {
+    const input = nj('#api-search');
+    const items = Array.from(document.querySelectorAll('.searchable'));
+    const noResults = nj('#no-results');
+
+    input.on('input', event => {
+      const query = event.target.value.trim().toLocaleLowerCase('de');
+      let visible = 0;
+      items.forEach(item => {
+        const haystack = `${item.textContent} ${item.dataset.search || ''}`.toLocaleLowerCase('de');
+        const match = !query || haystack.includes(query);
+        item.classList.toggle('hidden', !match);
+        if (match) visible += 1;
+      });
+      noResults.toggleClass('hidden', visible > 0 || !query);
+      noResults.css('display', visible === 0 && query ? 'block' : 'none');
+    });
+  });
+</script>
+</body>
+</html>
