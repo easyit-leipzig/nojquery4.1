@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nj.random – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}code,pre{font-family:Consolas,monospace}pre,.signature{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}.note{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}th,td{border-color:#2b3a50}.note{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Namespace <code>nj.random</code></h1>
+<p>Hilfsfunktionen für zufällige Ganzzahlen, Fließkommazahlen, Zeichenketten, Farben und UUIDs.</p>
+</header>
+<section>
+<h2>Überblick</h2>
+<table>
+<tr><th>Methode</th><th>Rückgabe</th><th>Zweck</th></tr>
+<tr><td><code>int(min, max)</code></td><td><code>number</code></td><td>Erzeugt eine ganzzahlige Zufallszahl einschließlich beider Grenzen.</td></tr>
+<tr><td><code>float(min = 0, max = 1)</code></td><td><code>number</code></td><td>Erzeugt eine Fließkommazahl ab <code>min</code> bis unter <code>max</code>.</td></tr>
+<tr><td><code>string(length = 12, chars = "...")</code></td><td><code>string</code></td><td>Erzeugt eine zufällige Zeichenfolge aus einem Zeichenvorrat.</td></tr>
+<tr><td><code>color()</code></td><td><code>string</code></td><td>Erzeugt eine sechsstellige hexadezimale CSS-Farbe.</td></tr>
+<tr><td><code>uuid()</code></td><td><code>string</code></td><td>Verwendet die vorhandene Funktion <code>nj.uuid()</code>.</td></tr>
+</table>
+</section>
+<section id="int">
+<h2><code>int(min, max)</code></h2>
+<div class="signature">nj.random.int(min, max)</div>
+<p>Die Methode erzeugt eine Ganzzahl im geschlossenen Intervall von <code>min</code> bis <code>max</code>. Beide Grenzen können als Ergebnis auftreten.</p>
+<pre><code>const wuerfel = nj.random.int(1, 6);
+const index = nj.random.int(0, 9);</code></pre>
+<p class="note">Der Core vertauscht die Grenzen nicht automatisch. <code>min</code> sollte kleiner oder gleich <code>max</code> sein.</p>
+</section>
+<section id="float">
+<h2><code>float(min = 0, max = 1)</code></h2>
+<div class="signature">nj.random.float(min = 0, max = 1)</div>
+<p>Die Berechnung erfolgt mit <code>Math.random() * (max - min) + min</code>. Der untere Grenzwert ist eingeschlossen; der obere Grenzwert wird normalerweise nicht erreicht.</p>
+<pre><code>const normalisiert = nj.random.float();
+const temperatur = nj.random.float(-10, 35);</code></pre>
+</section>
+<section id="string">
+<h2><code>string(length = 12, chars = "...")</code></h2>
+<div class="signature">nj.random.string(length = 12, chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")</div>
+<p>Für jede Position wird zufällig ein Zeichen aus <code>chars</code> ausgewählt. Ohne Parameter entsteht eine zwölf Zeichen lange alphanumerische Zeichenfolge.</p>
+<pre><code>const token = nj.random.string();
+const pin = nj.random.string(6, "0123456789");
+const code = nj.random.string(8, "ABCDEFGHJKLMNPQRSTUVWXYZ23456789");</code></pre>
+<p class="note">Ein leerer Zeichenvorrat wird vom Core nicht gesondert validiert.</p>
+</section>
+<section id="color">
+<h2><code>color()</code></h2>
+<div class="signature">nj.random.color()</div>
+<p>Die Methode erzeugt eine Hexadezimalzahl, ergänzt links führende Nullen und gibt eine Zeichenfolge im Format <code>#rrggbb</code> zurück.</p>
+<pre><code>const farbe = nj.random.color();
+document.body.style.backgroundColor = farbe;</code></pre>
+<p class="note">Durch die aktuelle Multiplikation mit <code>0xffffff</code> kann der exakte Wert <code>#ffffff</code> nicht entstehen.</p>
+</section>
+<section id="uuid">
+<h2><code>uuid()</code></h2>
+<div class="signature">nj.random.uuid()</div>
+<p><code>nj.random.uuid</code> verweist direkt auf <code>nj.uuid</code>. Unterstützt die Laufzeit <code>crypto.randomUUID()</code>, wird diese Funktion verwendet. Andernfalls erzeugt der Core eine UUID-ähnliche Zeichenfolge nach dem Muster <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code>.</p>
+<pre><code>const id = nj.random.uuid();</code></pre>
+<p class="note">Die Fallback-Variante verwendet <code>Math.random()</code> und ist nicht kryptografisch sicher.</p>
+</section>
+<section>
+<h2>Gesamtnavigation</h2>
+<p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../color/index.html">Color</a> · <a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a> · <a href="../config/index.html">Config</a></p>
+</section>
+</body>
+</html>

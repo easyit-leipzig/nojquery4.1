@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Observer-API von nojquery 4.1.0: DOM-Änderungen, Sichtbarkeit und Größenänderungen beobachten.">
+<title>Observer – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
+.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
+.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
+.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
+aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
+main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
+.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
+footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Observer</span></div></header>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Native Observer, kompakt gekapselt</div>
+<h1>Änderungen<br>gezielt erkennen.</h1>
+<p class="lead">Die Observer-Helfer kapseln <code>MutationObserver</code>, <code>IntersectionObserver</code> und <code>ResizeObserver</code> für nojquery-Selektoren und NJ-Objekte.</p>
+</div>
+<pre><code>const observer = nj.visible(".lazy", (visible, entry) =&gt; {
+  if (visible) {
+    entry.target.dataset.loaded = "1";
+  }
+});
+
+// später:
+observer.disconnect();</code></pre>
+</section>
+
+<div class="search"><input id="api-search" type="search" placeholder="Observer-API durchsuchen …"><div id="none">Keine passende Funktion gefunden.</div></div>
+
+<div class="layout">
+<aside><h2>Observer</h2><nav>
+<a href="#overview">Überblick</a>
+<a href="#observe">observe()</a>
+<a href="#visible">visible()</a>
+<a href="#resize">resize()</a>
+<a href="#lifecycle">Lebenszyklus</a>
+<a href="#examples">Praxisbeispiele</a>
+<a href="#limits">Grenzen</a>
+<a href="#crossrefs">Querverweise</a>
+</nav></aside>
+
+<main>
+<section id="overview" class="searchable" data-search="observer overview mutation intersection resize">
+<h2>Überblick</h2>
+<p class="intro">Alle drei Funktionen erstellen einen nativen Observer, registrieren sämtliche passenden Ziele und geben die Observer-Instanz zurück. Dadurch bleiben die nativen Methoden wie <code>disconnect()</code>, <code>unobserve()</code> oder <code>takeRecords()</code> verfügbar.</p>
+<table>
+<thead><tr><th>Helfer</th><th>Native Grundlage</th><th>Zweck</th></tr></thead>
+<tbody>
+<tr><td><code>nj.observe()</code></td><td><code>MutationObserver</code></td><td>DOM-Änderungen beobachten</td></tr>
+<tr><td><code>nj.visible()</code></td><td><code>IntersectionObserver</code></td><td>Sichtbarkeit im Viewport oder Root prüfen</td></tr>
+<tr><td><code>nj.resize()</code></td><td><code>ResizeObserver</code></td><td>Größenänderungen von Elementen erkennen</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="observe" class="searchable" data-search="observe mutation observer childList subtree attributes characterData">
+<h2>nj.observe()</h2>
+<code class="signature">nj.observe(target, callback[, options = { childList: true, subtree: true }]) → MutationObserver</code>
+<p>Beobachtet alle passenden Ziele mit einem gemeinsamen <code>MutationObserver</code>. Als Ziel können ein Selektor, ein DOM-Element oder ein NJ-Objekt verwendet werden.</p>
+<pre><code>const observer = nj.observe("#messages", (records, obs) =&gt; {
+  records.forEach(record =&gt; {
+    console.log(record.type, record.target);
+  });
+});</code></pre>
+<h3>Eigene Optionen</h3>
+<pre><code>const observer = nj.observe(".profile", records =&gt; {
+  console.log(records);
+}, {
+  attributes: true,
+  attributeFilter: ["class", "data-state"]
+});</code></pre>
+<div class="callout"><strong>Standard:</strong> Ohne drittes Argument werden Änderungen an direkten und verschachtelten Kindelementen beobachtet. Attribute und Textinhalte sind standardmäßig nicht aktiviert.</div>
+</section>
+
+<section id="visible" class="searchable" data-search="visible intersection observer isIntersecting threshold rootMargin lazy loading">
+<h2>nj.visible()</h2>
+<code class="signature">nj.visible(target, callback[, options = {}]) → IntersectionObserver</code>
+<p>Registriert alle passenden Elemente bei einem <code>IntersectionObserver</code>. Der Callback wird für jeden Eintrag separat aufgerufen.</p>
+<code class="signature">callback(isVisible, entry)</code>
+<pre><code>const observer = nj.visible(".section", (isVisible, entry) =&gt; {
+  entry.target.classList.toggle("is-visible", isVisible);
+}, {
+  threshold: 0.25
+});</code></pre>
+<p>Das erste Argument entspricht <code>entry.isIntersecting</code>. Das vollständige native <code>IntersectionObserverEntry</code>-Objekt steht als zweites Argument bereit.</p>
+<h3>Root-Margin für Vorladen</h3>
+<pre><code>nj.visible("img[data-src]", (visible, entry) =&gt; {
+  if (!visible) return;
+
+  entry.target.src = entry.target.dataset.src;
+  entry.target.removeAttribute("data-src");
+}, {
+  rootMargin: "300px 0px"
+});</code></pre>
+</section>
+
+<section id="resize" class="searchable" data-search="resize observer contentRect width height element size">
+<h2>nj.resize()</h2>
+<code class="signature">nj.resize(target, callback) → ResizeObserver</code>
+<p>Beobachtet Größenänderungen aller passenden Elemente. Der Callback wird für jeden Eintrag separat aufgerufen.</p>
+<code class="signature">callback(contentRect, entry)</code>
+<pre><code>const observer = nj.resize(".panel", (rect, entry) =&gt; {
+  entry.target.dataset.width = Math.round(rect.width);
+  entry.target.classList.toggle("compact", rect.width &lt; 480);
+});</code></pre>
+<div class="callout">Der aktuelle Core bietet für <code>nj.resize()</code> kein Optionsargument. Verwendet wird unmittelbar <code>entry.contentRect</code>.</div>
+</section>
+
+<section id="lifecycle" class="searchable" data-search="disconnect unobserve takeRecords lifecycle cleanup">
+<h2>Lebenszyklus und Aufräumen</h2>
+<p>Da die native Instanz zurückgegeben wird, muss sie bei dynamisch entfernten Komponenten gezielt beendet werden.</p>
+<pre><code>const observer = nj.visible(".card", onVisibility);
+
+// alles beenden
+observer.disconnect();</code></pre>
+<p>Bei Intersection- und Resize-Observern können auch einzelne Elemente abgemeldet werden:</p>
+<pre><code>const card = document.querySelector(".card");
+observer.unobserve(card);</code></pre>
+<p>Bei MutationObservern steht zusätzlich <code>takeRecords()</code> zur Verfügung, um noch nicht ausgelieferte Einträge abzurufen.</p>
+</section>
+
+<section id="examples"><h2>Praxisbeispiele</h2>
+<div class="grid">
+<article class="card searchable" data-search="dynamic list mutation count">
+<h3>Dynamische Liste zählen</h3>
+<pre><code>const list = document.querySelector("#tasks");
+
+nj.observe(list, () =&gt; {
+  nj("#task-count").text(list.children.length);
+}, {
+  childList: true
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="lazy animation visible">
+<h3>Animation beim Eintritt</h3>
+<pre><code>const obs = nj.visible(".reveal", (visible, entry) =&gt; {
+  if (!visible) return;
+
+  entry.target.classList.add("revealed");
+  obs.unobserve(entry.target);
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="responsive component resize">
+<h3>Komponentenbreite statt Viewport</h3>
+<pre><code>nj.resize(".toolbar", (rect, entry) =&gt; {
+  entry.target.classList.toggle(
+    "toolbar--stacked",
+    rect.width &lt; 600
+  );
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="multiple targets selector">
+<h3>Mehrere Ziele</h3>
+<pre><code>const observer = nj.observe(".live-region", records =&gt; {
+  console.log(records.length);
+});
+
+// Ein Observer überwacht alle Treffer.</code></pre>
+</article>
+</div>
+</section>
+
+<section id="limits"><h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Keine automatische Fallback-Implementierung für Browser ohne native Observer-Unterstützung.</li>
+<li>Keine integrierte Debounce- oder Throttle-Option.</li>
+<li>Keine automatische Abmeldung entfernter Komponenten.</li>
+<li><code>nj.visible()</code> gibt nur <code>isIntersecting</code> und den nativen Eintrag weiter, nicht das gesamte Entries-Array.</li>
+<li><code>nj.resize()</code> bietet im aktuellen Core kein Optionsargument.</li>
+<li>Fehler in Callbacks werden nicht intern abgefangen.</li>
+</ul>
+<p>Diese Angaben entsprechen der tatsächlich vorhandenen API in <code>nojquery.core.js</code>.</p>
+</section>
+
+<section id="crossrefs"><h2>Querverweise</h2>
+<div class="grid">
+<article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>Beobachtete Elemente auswählen und verändern.</p></article>
+<article class="card"><h3><a href="../core/animation.html">Animation</a></h3><p>Sichtbarkeit als Auslöser für Animationen verwenden.</p></article>
+<article class="card"><h3><a href="../templates/index.html">Templates</a></h3><p>Nach dynamischem Rendering auf DOM-Änderungen reagieren.</p></article>
+<article class="card"><h3><a href="../ajax/index.html">AJAX</a></h3><p>Nachgeladene Inhalte beobachten oder verzögert laden.</p></article>
+</div>
+</section>
+</main>
+</div>
+
+<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Observer-Dokumentation</footer>
+<script>
+const input=document.getElementById("api-search"),items=[...document.querySelectorAll(".searchable")],none=document.getElementById("none");
+input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+" "+(el.dataset.search||"")).toLowerCase().includes(q);el.classList.toggle("hidden",!hit);if(hit)count++});none.style.display=count?"none":"block"});
+</script>
+</body>
+</html>

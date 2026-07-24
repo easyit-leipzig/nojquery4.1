@@ -1,0 +1,771 @@
+{
+  "generated_at_utc": "2026-07-24T07:58:29.481688+00:00",
+  "core": {
+    "path": "docs/assets/js/nojquery.core.js",
+    "sha256": "8380408d31102e4d3a37f59ecaa4566f72a9d6501d94a20420920fdc47933754",
+    "size_bytes": 36698
+  },
+  "api": {
+    "wrapper_members": [
+      {
+        "name": "length",
+        "kind": "getter"
+      },
+      {
+        "name": "e",
+        "kind": "getter"
+      },
+      {
+        "name": "[Symbol.iterator]",
+        "kind": "method"
+      },
+      {
+        "name": "each",
+        "kind": "method",
+        "parameters": "callback"
+      },
+      {
+        "name": "map",
+        "kind": "method",
+        "parameters": "callback"
+      },
+      {
+        "name": "get",
+        "kind": "method",
+        "parameters": "index = 0"
+      },
+      {
+        "name": "first",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "last",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "eq",
+        "kind": "method",
+        "parameters": "index"
+      },
+      {
+        "name": "find",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "closest",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "parent",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "children",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "next",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "prev",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "html",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "text",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "val",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "append",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "prepend",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "before",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "after",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "appendTo",
+        "kind": "method",
+        "parameters": "target"
+      },
+      {
+        "name": "empty",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "remove",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "attr",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "removeAttr",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "hasAttr",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "prop",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "data",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "removeData",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "addClass",
+        "kind": "method",
+        "parameters": "classes"
+      },
+      {
+        "name": "removeClass",
+        "kind": "method",
+        "parameters": "classes"
+      },
+      {
+        "name": "toggleClass",
+        "kind": "method",
+        "parameters": "name, force"
+      },
+      {
+        "name": "hasClass",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "css",
+        "kind": "method",
+        "parameters": "property, value"
+      },
+      {
+        "name": "removeCss",
+        "kind": "method",
+        "parameters": "property"
+      },
+      {
+        "name": "show",
+        "kind": "method",
+        "parameters": "display = ''"
+      },
+      {
+        "name": "hide",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "toggle",
+        "kind": "method",
+        "parameters": "display = 'block'"
+      },
+      {
+        "name": "on",
+        "kind": "method",
+        "parameters": "events, selector, handler, options"
+      },
+      {
+        "name": "off",
+        "kind": "method",
+        "parameters": "events, handler"
+      },
+      {
+        "name": "once",
+        "kind": "method",
+        "parameters": "events, selector, handler, options = {}"
+      },
+      {
+        "name": "trigger",
+        "kind": "method",
+        "parameters": "name, detail"
+      },
+      {
+        "name": "checked",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "serialize",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "rect",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "scrollIntoView",
+        "kind": "method",
+        "parameters": "options = { behavior: 'smooth', block: 'start' }"
+      },
+      {
+        "name": "animate",
+        "kind": "method",
+        "parameters": "keyframes, options = {}"
+      },
+      {
+        "name": "fadeIn",
+        "kind": "method",
+        "parameters": "duration"
+      },
+      {
+        "name": "fadeOut",
+        "kind": "method",
+        "parameters": "duration"
+      },
+      {
+        "name": "is",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "exists",
+        "kind": "method",
+        "parameters": ""
+      }
+    ],
+    "namespaces": [
+      {
+        "name": "config",
+        "members": [
+          "debug",
+          "warn",
+          "exposeUnderscore",
+          "exposeDollar",
+          "forceAliasOverwrite",
+          "ajaxTimeout",
+          "animation"
+        ],
+        "line": 381
+      },
+      {
+        "name": "storage",
+        "members": [
+          "local",
+          "session",
+          "create",
+          "available"
+        ],
+        "line": 518
+      },
+      {
+        "name": "router",
+        "members": [
+          "start",
+          "navigate",
+          "replace",
+          "params"
+        ],
+        "line": 653
+      },
+      {
+        "name": "url",
+        "members": [
+          "parse",
+          "get",
+          "set",
+          "remove",
+          "query",
+          "hash"
+        ],
+        "line": 660
+      },
+      {
+        "name": "cookie",
+        "members": [
+          "set",
+          "get",
+          "has",
+          "remove"
+        ],
+        "line": 670
+      },
+      {
+        "name": "validate",
+        "members": [
+          "required",
+          "email",
+          "url",
+          "number",
+          "integer",
+          "date",
+          "phone",
+          "iban",
+          "bic",
+          "min",
+          "max",
+          "minLength",
+          "maxLength",
+          "test"
+        ],
+        "line": 678
+      },
+      {
+        "name": "format",
+        "members": [
+          "number",
+          "money",
+          "percent",
+          "date",
+          "bytes"
+        ],
+        "line": 685
+      },
+      {
+        "name": "clipboard",
+        "members": [
+          "copy",
+          "read"
+        ],
+        "line": 707
+      },
+      {
+        "name": "key",
+        "members": [
+          "on",
+          "enter",
+          "escape"
+        ],
+        "line": 708
+      },
+      {
+        "name": "device",
+        "members": [
+          "touch",
+          "mobile",
+          "tablet",
+          "desktop",
+          "online"
+        ],
+        "line": 709
+      },
+      {
+        "name": "color",
+        "members": [
+          "hexToRgb",
+          "rgbToHex",
+          "lighten",
+          "darken"
+        ],
+        "line": 712
+      },
+      {
+        "name": "date",
+        "members": [
+          "today",
+          "addDays",
+          "diff",
+          "format"
+        ],
+        "line": 717
+      },
+      {
+        "name": "random",
+        "members": [
+          "int",
+          "float",
+          "string",
+          "color",
+          "uuid"
+        ],
+        "line": 719
+      },
+      {
+        "name": "bus",
+        "members": [
+          "on",
+          "off",
+          "once",
+          "emit"
+        ],
+        "line": 723
+      },
+      {
+        "name": "core",
+        "members": [
+          "utilities"
+        ],
+        "line": 727
+      }
+    ],
+    "direct_statics": [
+      {
+        "name": "version",
+        "kind": "property",
+        "line": 378,
+        "expression": "'4.1.0';"
+      },
+      {
+        "name": "NJ",
+        "kind": "property",
+        "line": 379,
+        "expression": "NJ;"
+      },
+      {
+        "name": "ready",
+        "kind": "function",
+        "line": 530,
+        "expression": "callback => {"
+      },
+      {
+        "name": "create",
+        "kind": "function",
+        "line": 536,
+        "expression": "(tag, attributes = {}, children = []) => {"
+      },
+      {
+        "name": "extend",
+        "kind": "function",
+        "line": 554,
+        "expression": "(...objects) => Object.assign(...objects);"
+      },
+      {
+        "name": "deepEqual",
+        "kind": "function",
+        "line": 555,
+        "expression": "(a, b) => {"
+      },
+      {
+        "name": "isJSON",
+        "kind": "function",
+        "line": 559,
+        "expression": "value => {"
+      },
+      {
+        "name": "arrayRemove",
+        "kind": "function",
+        "line": 568,
+        "expression": "(array, value) => {"
+      },
+      {
+        "name": "filterObjectArray",
+        "kind": "function",
+        "line": 573,
+        "expression": "(array, field, value) => array.filter(item => item?.[field] === value);"
+      },
+      {
+        "name": "forEach",
+        "kind": "function",
+        "line": 574,
+        "expression": "(array, callback) => array.forEach(callback);"
+      },
+      {
+        "name": "cssVar",
+        "kind": "function",
+        "line": 575,
+        "expression": "(name, value) => {"
+      },
+      {
+        "name": "detectBrowser",
+        "kind": "function",
+        "line": 580,
+        "expression": "() => {"
+      },
+      {
+        "name": "request",
+        "kind": "function",
+        "line": 591,
+        "expression": "async (url, options = {}) => {"
+      },
+      {
+        "name": "ajax",
+        "kind": "alias",
+        "line": 615,
+        "expression": "nj.request;"
+      },
+      {
+        "name": "upload",
+        "kind": "function",
+        "line": 616,
+        "expression": "(url, files, fields = {}, options = {}) => {"
+      },
+      {
+        "name": "cache",
+        "kind": "instance",
+        "line": 635,
+        "expression": "new CacheManager();"
+      },
+      {
+        "name": "CacheManager",
+        "kind": "property",
+        "line": 638,
+        "expression": "CacheManager;"
+      },
+      {
+        "name": "observe",
+        "kind": "function",
+        "line": 641,
+        "expression": "(target, callback, options={ childList:true, subtree:true }) => { const obs=new MutationObserver(callback); toArray(target instanceof NJ?target:nj(target)).forEach(el=>obs.observe(el,options)); return"
+      },
+      {
+        "name": "visible",
+        "kind": "function",
+        "line": 642,
+        "expression": "(target, callback, options={}) => { const obs=new IntersectionObserver(entries=>entries.forEach(e=>callback(e.isIntersecting,e)),options); nj(target).each(function(){obs.observe(this);}); return obs; "
+      },
+      {
+        "name": "resize",
+        "kind": "function",
+        "line": 643,
+        "expression": "(target, callback) => { const obs=new ResizeObserver(entries=>entries.forEach(e=>callback(e.contentRect,e))); nj(target).each(function(){obs.observe(this);}); return obs; };"
+      },
+      {
+        "name": "escapeHTML",
+        "kind": "function",
+        "line": 646,
+        "expression": "value => String(value ?? '').replace(/[&<>'\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',\"'\":'&#39;','\"':'&quot;'}[c]));"
+      },
+      {
+        "name": "template",
+        "kind": "function",
+        "line": 647,
+        "expression": "(template, data={}) => String(template).replace(/{{{\\s*([\\w.]+)\\s*}}}|{{\\s*([\\w.]+)\\s*}}/g, (_,raw,safe) => { const path=raw||safe; const val=path.split('.').reduce((o,k)=>o?.[k],data); return raw ? S"
+      },
+      {
+        "name": "render",
+        "kind": "function",
+        "line": 648,
+        "expression": "(target, template, data={}, mode='html') => { const html=nj.template(template,data); const el=nj(target); return mode==='append' ? el.append(html) : el.html(html); };"
+      },
+      {
+        "name": "route",
+        "kind": "function",
+        "line": 652,
+        "expression": "(pattern, handler) => { routes.push({pattern,handler}); return nj; };"
+      },
+      {
+        "name": "navigate",
+        "kind": "function",
+        "line": 659,
+        "expression": "(...a)=>nj.router.navigate(...a);"
+      },
+      {
+        "name": "drag",
+        "kind": "function",
+        "line": 702,
+        "expression": "(target, options={}) => nj(target).each(function(){ this.draggable=options.enabled!==false; this.addEventListener('dragstart',e=>{e.dataTransfer?.setData('text/plain',options.data?.(this) ?? this.id ?"
+      },
+      {
+        "name": "drop",
+        "kind": "function",
+        "line": 703,
+        "expression": "(target, handler, options={}) => nj(target).each(function(){ this.addEventListener('dragover',e=>{e.preventDefault();options.over?.call(this,e);}); this.addEventListener('drop',e=>{e.preventDefault();"
+      },
+      {
+        "name": "sortable",
+        "kind": "function",
+        "line": 704,
+        "expression": "(target, options={}) => nj(target).each(function(){ let dragged=null; Array.from(this.children).forEach(ch=>{ch.draggable=true;ch.addEventListener('dragstart',()=>dragged=ch);}); this.addEventListener"
+      },
+      {
+        "name": "uuid",
+        "kind": "function",
+        "line": 718,
+        "expression": "() => global.crypto?.randomUUID?.() || 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0,v=c==='x'?r:(r&3|8);return v.toString(16);});"
+      },
+      {
+        "name": "logger",
+        "kind": "function",
+        "line": 724,
+        "expression": "['log','info','warn','error','debug','table','group','groupEnd'].reduce((o,m)=>(o[m]=(...args)=>{if(nj.config.debug || ['warn','error'].includes(m)) console[m]?.('[nojquery]',...args);},o),{});"
+      },
+      {
+        "name": "log",
+        "kind": "function",
+        "line": 725,
+        "expression": "(...args)=>nj.logger.log(...args);"
+      },
+      {
+        "name": "exposeAliases",
+        "kind": "function",
+        "line": 739,
+        "expression": "function (options = {}) {"
+      },
+      {
+        "name": "releaseAlias",
+        "kind": "function",
+        "line": 766,
+        "expression": "name => {"
+      },
+      {
+        "name": "hasAlias",
+        "kind": "function",
+        "line": 772,
+        "expression": "name => global[name] === nj;"
+      },
+      {
+        "name": "oEx",
+        "kind": "alias",
+        "line": 810,
+        "expression": "nj.extend;"
+      },
+      {
+        "name": "cEq",
+        "kind": "alias",
+        "line": 811,
+        "expression": "nj.deepEqual;"
+      },
+      {
+        "name": "isJ",
+        "kind": "alias",
+        "line": 812,
+        "expression": "nj.isJSON;"
+      },
+      {
+        "name": "rAE",
+        "kind": "alias",
+        "line": 813,
+        "expression": "nj.arrayRemove;"
+      },
+      {
+        "name": "fOA",
+        "kind": "alias",
+        "line": 814,
+        "expression": "nj.filterObjectArray;"
+      },
+      {
+        "name": "fEa",
+        "kind": "function",
+        "line": 815,
+        "expression": "(array, callback) => array.forEach((value, index) => callback(index, value));"
+      },
+      {
+        "name": "ddS",
+        "kind": "function",
+        "line": 816,
+        "expression": "(name, value) => nj.cssVar(name, value);"
+      },
+      {
+        "name": "ddG",
+        "kind": "function",
+        "line": 817,
+        "expression": "name => nj.cssVar(name);"
+      },
+      {
+        "name": "gBr",
+        "kind": "alias",
+        "line": 818,
+        "expression": "nj.detectBrowser;"
+      },
+      {
+        "name": "delete",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, options={})"
+      },
+      {
+        "name": "get",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, options={})"
+      },
+      {
+        "name": "head",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, options={})"
+      },
+      {
+        "name": "patch",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, data, options={})"
+      },
+      {
+        "name": "post",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, data, options={})"
+      },
+      {
+        "name": "put",
+        "kind": "dynamic_function",
+        "line": null,
+        "expression": "(url, data, options={})"
+      }
+    ],
+    "aliases": [
+      {
+        "name": "ajax",
+        "target": "nj.request",
+        "line": 615
+      },
+      {
+        "name": "oEx",
+        "target": "nj.extend",
+        "line": 810
+      },
+      {
+        "name": "cEq",
+        "target": "nj.deepEqual",
+        "line": 811
+      },
+      {
+        "name": "isJ",
+        "target": "nj.isJSON",
+        "line": 812
+      },
+      {
+        "name": "rAE",
+        "target": "nj.arrayRemove",
+        "line": 813
+      },
+      {
+        "name": "fOA",
+        "target": "nj.filterObjectArray",
+        "line": 814
+      },
+      {
+        "name": "gBr",
+        "target": "nj.detectBrowser",
+        "line": 818
+      }
+    ]
+  }
+}

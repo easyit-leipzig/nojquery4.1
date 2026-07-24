@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Events-API von nojquery 4.1.0: on, off, once, trigger, Delegation und EventBus.">
+  <title>Events – nojquery 4.1.0</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface-2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--code-text:#e5edf8;--ok:#147d47;--warn:#9a5b00;--radius:18px}
+    @media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface-2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--code-text:#eaf1fb;--ok:#6ed89c;--warn:#ffc36a}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-inner,.hero,.layout,footer,.search-wrap{max-width:1280px;margin:0 auto}.topbar-inner{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+    .brand{display:flex;align-items:baseline;gap:.5rem;font-weight:850;letter-spacing:-.03em;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted);font-size:.9rem}
+    .hero{padding:4.5rem 1.25rem 2.2rem}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.55rem 0 1rem}.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:900px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}.button{display:inline-flex;align-items:center;min-height:44px;padding:.65rem 1rem;border:1px solid var(--line);border-radius:.7rem;font-weight:700}.button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    .search-wrap{padding:0 1.25rem 2rem}.search-box{position:relative}.search-box input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text);padding:0 1rem 0 3rem;font:inherit}.search-box span{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--muted)}
+    .layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto;padding-right:.5rem}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}aside nav{display:grid;gap:.22rem}aside a{color:var(--text);padding:.42rem .65rem;border-radius:.55rem;font-size:.92rem}aside a:hover{background:var(--surface-2);text-decoration:none}
+    main{min-width:0}.section{scroll-margin-top:94px;margin-bottom:3.6rem}.section>h2{font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:-.04em;margin-bottom:.4rem}.section-intro{color:var(--muted);max-width:850px}
+    .api-entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.25rem;margin:1rem 0}.api-entry{scroll-margin-top:94px}.api-entry h3,.card h3{margin:0 0 .35rem}.signature{display:block;background:var(--code);color:var(--code-text);padding:.85rem 1rem;border-radius:10px;overflow:auto;margin:.8rem 0}.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin:.7rem 0}.pill{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:.2rem .58rem;font-size:.78rem}.return{color:var(--ok)}
+    table{width:100%;border-collapse:collapse;margin:1rem 0}th,td{text-align:left;vertical-align:top;border:1px solid var(--line);padding:.7rem .8rem}th{background:var(--surface-2)}pre{background:var(--code);color:var(--code-text);border-radius:12px;padding:1rem;overflow:auto;white-space:pre-wrap}.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1.2rem 0}.warning{color:var(--warn)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}.no-results{display:none;padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-top:1rem}
+    footer{padding:2rem 1.25rem 4rem;color:var(--muted);border-top:1px solid var(--line)}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:static;max-height:none}aside nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.crumbs{display:none}.grid{grid-template-columns:1fr}aside nav{grid-template-columns:1fr}th,td{display:block;width:100%}th{border-bottom:0}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">no<span>jquery</span></a>
+    <span class="version">v4.1.0</span>
+    <div class="crumbs"><a href="../index.html">Dokumentation</a> / Core / Events</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Core API · Detailseite 2</div>
+  <h1>Events</h1>
+  <p class="lead">Die Events-API verbindet native DOM-Ereignisse mit einer verkettbaren Schnittstelle. Sie unterstützt mehrere Ereignisnamen, Delegation, gezieltes Entfernen, einmalige Handler, benutzerdefinierte Ereignisse und einen globalen EventBus.</p>
+  <div class="hero-actions">
+    <a class="button primary" href="#on">Mit on() beginnen</a>
+    <a class="button" href="dom.html">DOM &amp; Core</a>
+    <a class="button" href="../index.html">Hauptseite</a>
+  </div>
+</section>
+
+<div class="search-wrap">
+  <label class="search-box">
+    <span aria-hidden="true">⌕</span>
+    <input id="api-search" type="search" placeholder="Event-Funktion durchsuchen …" autocomplete="off">
+  </label>
+  <div id="no-results" class="no-results">Keine passende Event-Funktion gefunden.</div>
+</div>
+
+<div class="layout">
+  <aside>
+    <h2>Events</h2>
+    <nav>
+      <a href="#grundprinzip">Grundprinzip</a>
+      <a href="#on">on()</a>
+      <a href="#delegation">Delegation</a>
+      <a href="#off">off()</a>
+      <a href="#once">once()</a>
+      <a href="#trigger">trigger()</a>
+      <a href="#optionen">Listener-Optionen</a>
+      <a href="#eventbus">EventBus</a>
+      <a href="#muster">Anwendungsmuster</a>
+      <a href="#fehler">Typische Fehler</a>
+      <a href="#querverweise">Querverweise</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="section searchable" id="grundprinzip" data-search="event listener addEventListener native dom wrapper">
+      <h2>Grundprinzip</h2>
+      <p class="section-intro">Die Methoden <code>on()</code>, <code>off()</code>, <code>once()</code> und <code>trigger()</code> arbeiten mit nativen DOM-Ereignissen. nojquery speichert registrierte Handler intern am jeweiligen Element, damit sie später auch bei delegierten Ereignissen zuverlässig entfernt werden können.</p>
+      <pre><code>nj("#save").on("click", event => {
+  event.preventDefault();
+  saveRecord();
+});</code></pre>
+      <div class="callout"><strong>Verkettung:</strong> Die DOM-Eventmethoden geben den aktuellen NJ-Wrapper zurück. Dadurch lassen sich Listener direkt mit Klassen-, Attribut- oder Sichtbarkeitsoperationen kombinieren.</div>
+    </section>
+
+    <section class="section" id="on">
+      <h2>Listener registrieren</h2>
+
+      <article class="api-entry searchable" data-search="on events selector handler options listener multiple">
+        <h3>on(events, selector, handler, options)</h3>
+        <code class="signature">wrapper.on(events, handler[, options]) → NJ
+wrapper.on(events, selector, handler[, options]) → NJ</code>
+        <p>Registriert einen oder mehrere Event-Listener auf allen ausgewählten Elementen. Mehrere Ereignisnamen werden durch Leerzeichen getrennt.</p>
+        <table>
+          <tr><th>Parameter</th><th>Typ</th><th>Beschreibung</th></tr>
+          <tr><td><code>events</code></td><td>String</td><td>Ein oder mehrere Ereignisnamen, etwa <code>"click"</code> oder <code>"focus blur"</code>.</td></tr>
+          <tr><td><code>selector</code></td><td>String</td><td>Optionaler CSS-Selektor für Delegation.</td></tr>
+          <tr><td><code>handler</code></td><td>Function</td><td>Auszuführende Callback-Funktion.</td></tr>
+          <tr><td><code>options</code></td><td>Boolean | Object</td><td>Optionen für <code>addEventListener()</code>.</td></tr>
+        </table>
+        <div class="meta"><span class="pill return">Rückgabe: NJ</span><span class="pill">verkettbar</span><span class="pill">mehrere Events</span></div>
+        <pre><code>nj("#search").on("focus blur", event => {
+  nj(event.currentTarget).toggleClass("active", event.type === "focus");
+});</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="delegation">
+      <h2>Event-Delegation</h2>
+      <p class="section-intro">Bei delegierten Ereignissen sitzt der eigentliche Listener auf einem stabilen Elternelement. nojquery sucht vom Ereignisziel aus mit <code>closest(selector)</code> nach dem passenden Element.</p>
+
+      <article class="api-entry searchable" data-search="delegation dynamic elements closest contains selector">
+        <h3>Delegierte Listener</h3>
+        <code class="signature">wrapper.on(events, selector, handler[, options]) → NJ</code>
+        <p>Delegation eignet sich besonders für dynamisch nachgeladene Listen, Tabellen, Menüs und CRUD-Oberflächen.</p>
+        <pre><code>nj("#user-table").on("click", "button[data-action='edit']", function (event) {
+  const row = nj(this).closest("tr");
+  const id = row.data("id");
+
+  openEditor(id);
+});</code></pre>
+        <div class="callout"><strong><code>this</code> im Handler:</strong> Bei einer normalen Funktion verweist <code>this</code> auf das Element, das dem delegierten Selektor entspricht. Bei einer Arrow-Funktion gibt es diese Bindung nicht.</div>
+      </article>
+
+      <article class="api-entry searchable" data-search="delegation boundary contains nested parent">
+        <h3>Delegationsgrenze</h3>
+        <p>Ein delegierter Treffer wird nur verarbeitet, wenn er innerhalb des Elements liegt, auf dem der Listener registriert wurde. Dadurch reagiert ein Tabellen-Listener nicht auf gleichartige Schaltflächen außerhalb der Tabelle.</p>
+      </article>
+    </section>
+
+    <section class="section" id="off">
+      <h2>Listener entfernen</h2>
+
+      <article class="api-entry searchable" data-search="off remove listener handler events all">
+        <h3>off(events, handler)</h3>
+        <code class="signature">wrapper.off([events][, handler]) → NJ</code>
+        <p>Entfernt zuvor mit <code>on()</code> oder <code>once()</code> registrierte Listener. Ohne Argumente werden alle von nojquery verwalteten Listener der Auswahl entfernt.</p>
+        <table>
+          <tr><th>Aufruf</th><th>Wirkung</th></tr>
+          <tr><td><code>off()</code></td><td>Entfernt alle gespeicherten Listener.</td></tr>
+          <tr><td><code>off("click")</code></td><td>Entfernt alle Click-Listener.</td></tr>
+          <tr><td><code>off("click", handler)</code></td><td>Entfernt nur den angegebenen Click-Handler.</td></tr>
+          <tr><td><code>off(null, handler)</code></td><td>Entfernt den Handler unabhängig vom Ereignisnamen.</td></tr>
+        </table>
+        <pre><code>function handleSave(event) {
+  event.preventDefault();
+}
+
+const button = nj("#save");
+button.on("click", handleSave);
+
+// Später:
+button.off("click", handleSave);</code></pre>
+        <p class="warning"><strong>Wichtig:</strong> Eine neu geschriebene anonyme Funktion ist nicht dieselbe Funktionsreferenz. Zum gezielten Entfernen muss der ursprüngliche Handler gespeichert werden.</p>
+      </article>
+    </section>
+
+    <section class="section" id="once">
+      <h2>Einmalige Listener</h2>
+
+      <article class="api-entry searchable" data-search="once one time event listener options delegation">
+        <h3>once(events, selector, handler, options)</h3>
+        <code class="signature">wrapper.once(events, handler[, options]) → NJ
+wrapper.once(events, selector, handler[, options]) → NJ</code>
+        <p>Registriert Listener mit der nativen Option <code>once: true</code>. Nach der ersten Ausführung entfernt der Browser den Listener automatisch.</p>
+        <pre><code>nj("#intro-video").once("play", () => {
+  nj.log.info("Video wurde erstmals gestartet.");
+});</code></pre>
+        <p>Delegierte einmalige Listener sind ebenfalls möglich:</p>
+        <pre><code>nj("#steps").once("click", ".start-button", function () {
+  startWizard();
+});</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="trigger">
+      <h2>Benutzerdefinierte Ereignisse auslösen</h2>
+
+      <article class="api-entry searchable" data-search="trigger custom event detail bubbles cancelable">
+        <h3>trigger(name, detail)</h3>
+        <code class="signature">wrapper.trigger(name[, detail]) → NJ</code>
+        <p>Erzeugt für jedes ausgewählte Element ein <code>CustomEvent</code>. Das Ereignis ist standardmäßig <code>bubbles: true</code> und <code>cancelable: true</code>.</p>
+        <pre><code>nj("#editor").on("record:saved", event => {
+  console.log(event.detail.id);
+});
+
+nj("#editor").trigger("record:saved", {
+  id: 42,
+  status: "completed"
+});</code></pre>
+        <div class="callout"><strong>Datenzugriff:</strong> Zusätzliche Daten stehen im Listener unter <code>event.detail</code> zur Verfügung.</div>
+      </article>
+
+      <article class="api-entry searchable" data-search="custom names colon convention namespace">
+        <h3>Ereignisnamen</h3>
+        <p>Für anwendungsspezifische Ereignisse empfiehlt sich eine klare Benennung wie <code>record:saved</code>, <code>menu:opened</code> oder <code>form:validated</code>. Der Doppelpunkt ist lediglich eine Konvention und kein technischer Namespace.</p>
+      </article>
+    </section>
+
+    <section class="section" id="optionen">
+      <h2>Listener-Optionen</h2>
+
+      <article class="api-entry searchable" data-search="capture passive once signal abortcontroller options">
+        <h3>addEventListener-Optionen</h3>
+        <p>Die <code>options</code> werden direkt an <code>addEventListener()</code> weitergereicht.</p>
+        <pre><code>nj(window).on("scroll", handleScroll, {
+  passive: true
+});
+
+nj(document).on("click", handleCapture, {
+  capture: true
+});</code></pre>
+        <table>
+          <tr><th>Option</th><th>Verwendung</th></tr>
+          <tr><td><code>capture</code></td><td>Listener in der Capture-Phase ausführen.</td></tr>
+          <tr><td><code>passive</code></td><td>Signalisiert, dass <code>preventDefault()</code> nicht verwendet wird.</td></tr>
+          <tr><td><code>once</code></td><td>Nach einmaliger Ausführung entfernen; normalerweise über <code>once()</code>.</td></tr>
+          <tr><td><code>signal</code></td><td>Listener über einen <code>AbortController</code> beenden.</td></tr>
+        </table>
+      </article>
+    </section>
+
+    <section class="section" id="eventbus">
+      <h2>Globaler EventBus</h2>
+      <p class="section-intro"><code>nj.bus</code> verwendet ein internes <code>EventTarget</code>. Es eignet sich für lose gekoppelte Kommunikation zwischen Modulen, die nicht über dieselben DOM-Elemente verbunden sind.</p>
+
+      <article class="api-entry searchable" data-search="nj bus on global eventbus">
+        <h3>nj.bus.on(name, handler)</h3>
+        <code class="signature">nj.bus.on(name, handler) → handler</code>
+        <p>Registriert einen globalen Handler und gibt dieselbe Handler-Funktion zurück.</p>
+        <pre><code>const unsubscribeTarget = nj.bus.on("user:updated", event => {
+  refreshUserView(event.detail);
+});</code></pre>
+      </article>
+
+      <article class="api-entry searchable" data-search="nj bus off remove global handler">
+        <h3>nj.bus.off(name, handler)</h3>
+        <code class="signature">nj.bus.off(name, handler) → undefined</code>
+        <p>Entfernt einen bestimmten globalen Handler.</p>
+        <pre><code>nj.bus.off("user:updated", unsubscribeTarget);</code></pre>
+      </article>
+
+      <article class="api-entry searchable" data-search="nj bus once global one time">
+        <h3>nj.bus.once(name, handler)</h3>
+        <code class="signature">nj.bus.once(name, handler) → undefined</code>
+        <p>Registriert einen globalen Handler für genau eine Ausführung.</p>
+      </article>
+
+      <article class="api-entry searchable" data-search="nj bus emit dispatch custom event detail">
+        <h3>nj.bus.emit(name, detail)</h3>
+        <code class="signature">nj.bus.emit(name[, detail]) → Boolean</code>
+        <p>Sendet ein globales <code>CustomEvent</code>. Der Rückgabewert stammt von <code>dispatchEvent()</code>.</p>
+        <pre><code>nj.bus.emit("user:updated", {
+  id: 42,
+  name: "Olaf"
+});</code></pre>
+      </article>
+
+      <div class="callout"><strong>DOM-Event oder EventBus?</strong> Verwende DOM-Events, wenn das Ereignis zu einem konkreten Element gehört. Verwende <code>nj.bus</code>, wenn unabhängige Anwendungsmodule miteinander kommunizieren sollen.</div>
+    </section>
+
+    <section class="section" id="muster">
+      <h2>Anwendungsmuster</h2>
+
+      <div class="grid">
+        <article class="card searchable" data-search="crud delegated table edit delete">
+          <h3>CRUD-Tabelle</h3>
+          <pre><code>nj("#records").on("click", "[data-action]", function () {
+  const action = this.dataset.action;
+  const id = nj(this).closest("tr").data("id");
+
+  nj.bus.emit(`record:${action}`, { id });
+});</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="form submit validation custom event">
+          <h3>Formularworkflow</h3>
+          <pre><code>nj("#contact").on("submit", async event => {
+  event.preventDefault();
+
+  const data = nj(event.currentTarget).serialize();
+  await nj.post("/api/contact", data);
+
+  nj(event.currentTarget).trigger("form:sent", data);
+});</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="modal escape keyboard once">
+          <h3>Einmaliger Dialogstart</h3>
+          <pre><code>nj("#open-help").once("click", async () => {
+  await loadHelpContent();
+  nj("#help-dialog").show();
+});</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="module eventbus status notification">
+          <h3>Modulübergreifende Meldung</h3>
+          <pre><code>nj.bus.on("status:changed", event => {
+  nj("#global-status").text(event.detail.message);
+});
+
+nj.bus.emit("status:changed", {
+  message: "Synchronisierung abgeschlossen"
+});</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="fehler">
+      <h2>Typische Fehler</h2>
+
+      <article class="api-entry searchable" data-search="anonymous handler off error function reference">
+        <h3>Anonyme Funktion später entfernen</h3>
+        <pre><code>// Nicht entfernbar über eine neue Funktion:
+nj("#save").on("click", () => save());
+nj("#save").off("click", () => save());</code></pre>
+        <p>Die beiden Arrow-Funktionen sind unterschiedliche Objekte. Speichere den Handler stattdessen in einer Variablen.</p>
+      </article>
+
+      <article class="api-entry searchable" data-search="arrow this delegation error">
+        <h3><code>this</code> in einer Arrow-Funktion erwarten</h3>
+        <p>Delegierte Handler binden <code>this</code> nur bei normalen Funktionen. In Arrow-Funktionen sollte <code>event.target</code>, <code>event.currentTarget</code> oder eine normale Funktion verwendet werden.</p>
+      </article>
+
+      <article class="api-entry searchable" data-search="passive preventdefault warning">
+        <h3><code>preventDefault()</code> bei passivem Listener</h3>
+        <p>Ein Listener mit <code>passive: true</code> darf das Standardverhalten nicht verhindern. Diese Option ist vor allem für Scroll- und Touch-Ereignisse gedacht.</p>
+      </article>
+    </section>
+
+    <section class="section" id="querverweise">
+      <h2>Querverweise</h2>
+      <div class="grid">
+        <article class="card"><h3>DOM &amp; Core</h3><p>Auswahl, Traversierung, Klassen, Attribute und Formulare.</p><a href="dom.html">DOM-Dokumentation öffnen →</a></article>
+        <article class="card"><h3>Keyboard</h3><p>Tastenkombinationen und globale Tastatursteuerung werden als eigenes Modul dokumentiert.</p><a href="../keyboard/index.html">Keyboard öffnen →</a></article>
+        <article class="card"><h3>HTTP/AJAX</h3><p>Events können Lade-, Erfolgs- und Fehlerzustände einer Anfrage koordinieren.</p><a href="../ajax/index.html">AJAX öffnen →</a></article>
+        <article class="card"><h3>Observer</h3><p>Mutation-, Intersection- und ResizeObserver ergänzen klassische DOM-Ereignisse.</p><a href="../observer/index.html">Observer öffnen →</a></article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>nojquery 4.1.0 – Events</strong><br>
+  Detailseite 2 der HTML-API-Dokumentation
+</footer>
+
+<script src="../assets/js/nojquery.core.js?v=4.1.0"></script>
+<script>
+  nj.ready(() => {
+    const input = nj("#api-search");
+    const items = Array.from(document.querySelectorAll(".searchable"));
+    const noResults = nj("#no-results");
+
+    input.on("input", event => {
+      const query = event.target.value.trim().toLocaleLowerCase("de");
+      let visible = 0;
+
+      items.forEach(item => {
+        const content = `${item.textContent} ${item.dataset.search || ""}`.toLocaleLowerCase("de");
+        const matches = !query || content.includes(query);
+        item.classList.toggle("hidden", !matches);
+        if (matches) visible += 1;
+      });
+
+      noResults.css("display", visible === 0 && query ? "block" : "none");
+    });
+  });
+</script>
+<section><h2>Gesamtnavigation</h2><p><a href="dom.html">DOM</a> · <a href="events.html">Events</a> · <a href="animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="../validation/index.html">Validation</a> · <a href="../formatter/index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="../config/index.html">Config</a></p></section>
+<p><a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a></p>
+</body>
+</html>

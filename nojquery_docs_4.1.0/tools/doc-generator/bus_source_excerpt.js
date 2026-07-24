@@ -1,0 +1,1 @@
+nj.bus = { on:(name,handler)=>{busTarget.addEventListener(name,handler);return handler;}, off:(name,handler)=>busTarget.removeEventListener(name,handler), once:(name,handler)=>busTarget.addEventListener(name,handler,{once:true}), emit:(name,detail)=>busTarget.dispatchEvent(new CustomEvent(name,{detail})) };

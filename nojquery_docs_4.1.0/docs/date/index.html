@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nj.date – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}code,pre{font-family:Consolas,monospace}pre,.signature{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}.note{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}th,td{border-color:#2b3a50}.note{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Namespace <code>nj.date</code></h1>
+<p>Hilfsfunktionen für Tagesbeginn, Datumsverschiebung, Zeitdifferenzen und lokalisierte Datumsformatierung.</p>
+</header>
+<section>
+<h2>Überblick</h2>
+<table>
+<tr><th>Methode</th><th>Rückgabe</th><th>Zweck</th></tr>
+<tr><td><code>today()</code></td><td><code>Date</code></td><td>Erzeugt den heutigen Tag um 00:00:00.000 Uhr in lokaler Zeit.</td></tr>
+<tr><td><code>addDays(d, n)</code></td><td><code>Date</code></td><td>Erzeugt eine neue Datumsinstanz und verschiebt sie um <code>n</code> Kalendertage.</td></tr>
+<tr><td><code>diff(a, b, unit = "days")</code></td><td><code>number</code></td><td>Berechnet die Zeitdifferenz von <code>a</code> bis <code>b</code>.</td></tr>
+<tr><td><code>format(d, locale = navigator.language, opt = {})</code></td><td><code>string</code></td><td>Formatiert ein Datum mit <code>Intl.DateTimeFormat</code>.</td></tr>
+</table>
+</section>
+<section id="today">
+<h2><code>today()</code></h2>
+<div class="signature">nj.date.today()</div>
+<p>Die Funktion erzeugt ein neues <code>Date</code>-Objekt für das aktuelle lokale Datum und setzt Stunden, Minuten, Sekunden und Millisekunden auf null.</p>
+<pre><code>const start = nj.date.today();
+console.log(start); // heutiges Datum, 00:00:00.000</code></pre>
+</section>
+<section id="adddays">
+<h2><code>addDays(d, n)</code></h2>
+<div class="signature">nj.date.addDays(d, n)</div>
+<p><code>d</code> wird über <code>new Date(d)</code> in eine neue Datumsinstanz überführt. Anschließend wird der Kalendertag mit <code>setDate()</code> um <code>n</code> verschoben. Das übergebene Objekt wird dadurch nicht direkt verändert.</p>
+<pre><code>const basis = new Date("2026-07-24T12:00:00");
+const spaeter = nj.date.addDays(basis, 5);
+const frueher = nj.date.addDays(basis, -2);</code></pre>
+<p class="note">Da die Methode mit Kalendertagen arbeitet, können Zeitzonen- und Sommerzeitübergänge die Differenz in Millisekunden beeinflussen.</p>
+</section>
+<section id="diff">
+<h2><code>diff(a, b, unit = "days")</code></h2>
+<div class="signature">nj.date.diff(a, b, unit = "days")</div>
+<p>Die Methode berechnet <code>new Date(b) - new Date(a)</code> und teilt das Ergebnis durch den Faktor der gewünschten Einheit.</p>
+<table>
+<tr><th><code>unit</code></th><th>Teiler</th></tr>
+<tr><td><code>"seconds"</code></td><td>1.000</td></tr>
+<tr><td><code>"minutes"</code></td><td>60.000</td></tr>
+<tr><td><code>"hours"</code></td><td>3.600.000</td></tr>
+<tr><td><code>"days"</code></td><td>86.400.000</td></tr>
+</table>
+<pre><code>nj.date.diff("2026-07-20", "2026-07-24");          // 4
+nj.date.diff("2026-07-24T08:00", "2026-07-24T10:30", "hours"); // 2.5</code></pre>
+<p>Eine unbekannte Einheit verwendet den Divisor <code>1</code>; das Ergebnis entspricht dann der Differenz in Millisekunden.</p>
+</section>
+<section id="format">
+<h2><code>format(d, locale = navigator.language, opt = {})</code></h2>
+<div class="signature">nj.date.format(d, locale = navigator.language, opt = {})</div>
+<p>Das Datum wird mit <code>new Intl.DateTimeFormat(locale, opt)</code> formatiert. Ohne explizite Sprache wird <code>navigator.language</code> verwendet.</p>
+<pre><code>nj.date.format("2026-07-24", "de-DE");
+
+nj.date.format("2026-07-24", "de-DE", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric"
+});</code></pre>
+<p class="note">Die konkrete Ausgabe hängt von Laufzeit, Gebietsschema, Zeitzone und den übergebenen Optionen ab.</p>
+</section>
+<section>
+<h2>Gesamtnavigation</h2>
+<p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../color/index.html">Color</a> · <a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a> · <a href="../config/index.html">Config</a></p>
+</section>
+</body>
+</html>

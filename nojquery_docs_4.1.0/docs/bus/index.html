@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nj.bus – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}
+a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}
+code,pre{font-family:Consolas,monospace}pre,.signature{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}
+.note{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}
+@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}th,td{border-color:#2b3a50}.note{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Namespace <code>nj.bus</code></h1>
+<p>Ein zentraler Ereignisbus auf Basis eines nativen <code>EventTarget</code>.</p>
+</header>
+
+<section>
+<h2>Überblick</h2>
+<table>
+<tr><th>Methode</th><th>Rückgabe</th><th>Zweck</th></tr>
+<tr><td><code>on(name, handler)</code></td><td>der übergebene Handler</td><td>Registriert einen Event-Handler.</td></tr>
+<tr><td><code>off(name, handler)</code></td><td><code>undefined</code></td><td>Entfernt genau diesen Handler.</td></tr>
+<tr><td><code>once(name, handler)</code></td><td><code>undefined</code></td><td>Registriert einen Handler mit <code>{ once: true }</code>.</td></tr>
+<tr><td><code>emit(name, detail)</code></td><td><code>boolean</code></td><td>Erzeugt ein <code>CustomEvent</code> mit <code>event.detail</code>.</td></tr>
+</table>
+</section>
+
+<section id="on">
+<h2><code>on(name, handler)</code></h2>
+<div class="signature">nj.bus.on(name, handler)</div>
+<p>Die Methode registriert den Handler mit <code>addEventListener()</code> am internen Bus. Anschließend gibt sie dieselbe Handler-Funktion zurück.</p>
+<pre><code>const loginHandler = nj.bus.on("user:login", event => {
+  console.log(event.detail.name);
+});</code></pre>
+<p class="note">Der Handler erhält ein Event-Objekt. Die übermittelten Nutzdaten stehen unter <code>event.detail</code>.</p>
+</section>
+
+<section id="off">
+<h2><code>off(name, handler)</code></h2>
+<div class="signature">nj.bus.off(name, handler)</div>
+<p>Intern wird <code>removeEventListener(name, handler)</code> aufgerufen. Zum Entfernen muss daher dieselbe Funktionsreferenz verwendet werden, die zuvor registriert wurde.</p>
+<pre><code>nj.bus.off("user:login", loginHandler);</code></pre>
+<p class="note">Der aktuelle Core besitzt keine Variante zum Entfernen aller Handler eines Ereignisnamens ohne Handlerreferenz.</p>
+</section>
+
+<section id="once">
+<h2><code>once(name, handler)</code></h2>
+<div class="signature">nj.bus.once(name, handler)</div>
+<p>Die Registrierung erfolgt mit <code>addEventListener(name, handler, { once: true })</code>. Der Browser entfernt den Handler nach dem ersten Ereignis automatisch.</p>
+<pre><code>nj.bus.once("app:ready", event => {
+  console.log("Bereit:", event.detail);
+});</code></pre>
+</section>
+
+<section id="emit">
+<h2><code>emit(name, detail)</code></h2>
+<div class="signature">nj.bus.emit(name, detail)</div>
+<p>Die Methode erstellt <code>new CustomEvent(name, { detail })</code> und übergibt das Ereignis an <code>dispatchEvent()</code>. Die Nutzdaten sind im Handler über <code>event.detail</code> verfügbar.</p>
+<pre><code>nj.bus.on("order:created", event => {
+  console.log(event.detail.orderId);
+  console.log(event.detail.total);
+});
+
+nj.bus.emit("order:created", {
+  orderId: 4711,
+  total: 89.90
+});</code></pre>
+<p>Der Rückgabewert stammt direkt von <code>EventTarget.dispatchEvent()</code>.</p>
+</section>
+
+<section>
+<h2>Vollständiges Beispiel</h2>
+<pre><code>const handler = nj.bus.on("data:loaded", event => {
+  console.log("Datensätze:", event.detail.count);
+});
+
+nj.bus.emit("data:loaded", { count: 12 });
+nj.bus.off("data:loaded", handler);</code></pre>
+</section>
+
+<section>
+<h2>Gesamtnavigation</h2>
+<p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../color/index.html">Color</a> · <a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a> · <a href="../config/index.html">Config</a></p>
+</section>
+</body>
+</html>

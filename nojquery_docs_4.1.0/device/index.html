@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Device – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}
+a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}
+code,pre{font-family:Consolas,monospace}pre,.sig{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}
+nav{display:flex;flex-wrap:wrap;gap:.8rem;margin:1rem 0 2rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}
+.callout{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}
+@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}table th,table td{border-color:#2b3a50}.callout{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Device</h1>
+<p>Geräte-, Viewport- und Online-Prüfungen der tatsächlich vorhandenen <code>nj.device</code>-API.</p>
+</header>
+
+<nav>
+<a href="#touch">touch()</a>
+<a href="#mobile">mobile()</a>
+<a href="#tablet">tablet()</a>
+<a href="#desktop">desktop()</a>
+<a href="#online">online()</a>
+<a href="#limits">Grenzen</a>
+</nav>
+
+<section>
+<h2>Überblick</h2>
+<table>
+<tr><th>Funktion</th><th>Prüfung</th><th>Rückgabe</th></tr>
+<tr><td><code>touch()</code></td><td><code>ontouchstart</code> oder <code>navigator.maxTouchPoints</code></td><td>boolean</td></tr>
+<tr><td><code>mobile()</code></td><td>Viewport bis 767 px</td><td>boolean</td></tr>
+<tr><td><code>tablet()</code></td><td>Viewport 768–1024 px</td><td>boolean</td></tr>
+<tr><td><code>desktop()</code></td><td>Viewport ab 1025 px</td><td>boolean</td></tr>
+<tr><td><code>online()</code></td><td><code>navigator.onLine</code></td><td>boolean</td></tr>
+</table>
+</section>
+
+<section id="touch">
+<h2>nj.device.touch()</h2>
+<p class="sig">nj.device.touch() → boolean</p>
+<p>Prüft, ob Touch-Unterstützung vorhanden ist.</p>
+<pre><code>if (nj.device.touch()) {
+  document.body.classList.add("is-touch");
+}</code></pre>
+<div class="callout">Touch-Unterstützung bedeutet nicht, dass ausschließlich Touch verwendet wird. Hybridgeräte können zugleich Maus und Tastatur besitzen.</div>
+</section>
+
+<section id="mobile">
+<h2>nj.device.mobile()</h2>
+<p class="sig">nj.device.mobile() → boolean</p>
+<p>Verwendet <code>matchMedia("(max-width: 767px)")</code>.</p>
+<pre><code>if (nj.device.mobile()) {
+  nj("#navigation").addClass("navigation--compact");
+}</code></pre>
+</section>
+
+<section id="tablet">
+<h2>nj.device.tablet()</h2>
+<p class="sig">nj.device.tablet() → boolean</p>
+<p>Verwendet <code>matchMedia("(min-width: 768px) and (max-width: 1024px)")</code>.</p>
+<pre><code>const columns = nj.device.tablet() ? 2 : 3;</code></pre>
+</section>
+
+<section id="desktop">
+<h2>nj.device.desktop()</h2>
+<p class="sig">nj.device.desktop() → boolean</p>
+<p>Verwendet <code>matchMedia("(min-width: 1025px)")</code>.</p>
+<pre><code>if (nj.device.desktop()) {
+  enableWideLayout();
+}</code></pre>
+</section>
+
+<section id="online">
+<h2>nj.device.online()</h2>
+<p class="sig">nj.device.online() → boolean</p>
+<p>Gibt den aktuellen Wert von <code>navigator.onLine</code> zurück.</p>
+<pre><code>if (!nj.device.online()) {
+  nj("#status").text("Offline");
+}</code></pre>
+<div class="callout"><code>navigator.onLine</code> garantiert nicht, dass eine bestimmte API oder ein Server erreichbar ist.</div>
+</section>
+
+<section>
+<h2>Praxisbeispiel</h2>
+<pre><code>function updateEnvironment() {
+  document.body.classList.toggle("is-mobile", nj.device.mobile());
+  document.body.classList.toggle("is-tablet", nj.device.tablet());
+  document.body.classList.toggle("is-desktop", nj.device.desktop());
+  document.body.classList.toggle("is-offline", !nj.device.online());
+}
+
+updateEnvironment();
+window.addEventListener("resize", updateEnvironment);
+window.addEventListener("online", updateEnvironment);
+window.addEventListener("offline", updateEnvironment);</code></pre>
+</section>
+
+<section id="limits">
+<h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Keine Browser-, Betriebssystem- oder User-Agent-Erkennung.</li>
+<li>Mobile, Tablet und Desktop beruhen nur auf Viewportbreiten.</li>
+<li>Keine automatische Aktualisierung bei Resize.</li>
+<li>Keine Erkennung von Maus, Stift, Orientierung oder Pixeldichte.</li>
+<li><code>online()</code> prüft keine tatsächliche Servererreichbarkeit.</li>
+<li>Keine eigenen Online-/Offline-Listener.</li>
+</ul>
+</section>
+
+<section>
+<h2>Querverweise</h2>
+<p><a href="../core/events.html">Events</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../core/dom.html">DOM</a></p>
+</section>
+</body>
+</html>

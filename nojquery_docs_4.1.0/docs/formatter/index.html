@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Formatter-API von nojquery 4.1.0: number, money, percent, date und bytes.">
+<title>Formatter – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
+.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
+.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
+.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
+aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
+main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
+.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
+footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Formatter</span></div></header>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Intl-basierte Ausgabe</div>
+<h1>Werte passend<br>darstellen.</h1>
+<p class="lead">Das Formatter-Modul nutzt die nativen Internationalisierungs-APIs des Browsers und ergänzt eine kompakte Formatierung für Byte-Größen.</p>
+</div>
+<pre><code>nj.format.money(1299.5, "EUR", "de-DE");
+// "1.299,50 €"
+
+nj.format.bytes(1048576);
+// "1 MB"</code></pre>
+</section>
+
+<div class="search"><input id="api-search" type="search" placeholder="Formatter-API durchsuchen …"><div id="none">Keine passende Funktion gefunden.</div></div>
+
+<div class="layout">
+<aside><h2>Formatter</h2><nav>
+<a href="#overview">Überblick</a>
+<a href="#number">number()</a>
+<a href="#money">money()</a>
+<a href="#percent">percent()</a>
+<a href="#date">date()</a>
+<a href="#bytes">bytes()</a>
+<a href="#examples">Praxisbeispiele</a>
+<a href="#limits">Grenzen</a>
+<a href="#crossrefs">Querverweise</a>
+</nav></aside>
+
+<main>
+<section id="overview" class="searchable" data-search="formatter intl locale browser">
+<h2>Überblick</h2>
+<p class="intro"><code>nj.format</code> bündelt fünf reine Formatierungsfunktionen. Die Standard-Locale ist jeweils <code>navigator.language</code>, sofern kein eigener Wert übergeben wird.</p>
+<div class="callout"><strong>Hinweis:</strong> Die Ergebnisse hängen von Browser, Locale, Währung und übergebenen Intl-Optionen ab. Die Beispiele zeigen typische Ausgaben, keine garantiert identischen Zeichenfolgen in jedem Browser.</div>
+</section>
+
+<section id="api"><h2>API</h2>
+
+<article id="number" class="entry searchable" data-search="number locale Intl NumberFormat decimals grouping">
+<h3>nj.format.number()</h3>
+<code class="signature">nj.format.number(value[, locale = navigator.language][, options = {}]) → string</code>
+<p>Formatiert eine Zahl mit <code>Intl.NumberFormat</code>. Alle gültigen Optionen des nativen Formatters können weitergereicht werden.</p>
+<pre><code>nj.format.number(1234567.89, "de-DE");
+// "1.234.567,89"
+
+nj.format.number(12.3456, "de-DE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+// "12,35"</code></pre>
+</article>
+
+<article id="money" class="entry searchable" data-search="money currency euro dollar Intl">
+<h3>nj.format.money()</h3>
+<code class="signature">nj.format.money(value[, currency = "EUR"][, locale = navigator.language]) → string</code>
+<p>Formatiert einen Wert als Währung. Der ISO-Währungscode wird an <code>Intl.NumberFormat</code> übergeben.</p>
+<pre><code>nj.format.money(49.9, "EUR", "de-DE");
+// "49,90 €"
+
+nj.format.money(49.9, "USD", "en-US");
+// "$49.90"</code></pre>
+</article>
+
+<article id="percent" class="entry searchable" data-search="percent percentage ratio Intl">
+<h3>nj.format.percent()</h3>
+<code class="signature">nj.format.percent(value[, locale = navigator.language][, options = {}]) → string</code>
+<p>Formatiert einen Verhältniswert als Prozentzahl. Wie bei <code>Intl.NumberFormat</code> entspricht <code>1</code> dabei 100 Prozent.</p>
+<pre><code>nj.format.percent(0.375, "de-DE");
+// "38 %"
+
+nj.format.percent(0.375, "de-DE", {
+  minimumFractionDigits: 1
+});
+// "37,5 %"</code></pre>
+</article>
+
+<article id="date" class="entry searchable" data-search="date Intl DateTimeFormat locale">
+<h3>nj.format.date()</h3>
+<code class="signature">nj.format.date(value[, locale = navigator.language][, options = {}]) → string</code>
+<p>Erzeugt zunächst <code>new Date(value)</code> und formatiert diesen Wert anschließend mit <code>Intl.DateTimeFormat</code>.</p>
+<pre><code>nj.format.date("2026-07-23", "de-DE");
+// typischerweise "23.7.2026"
+
+nj.format.date("2026-07-23T18:30:00", "de-DE", {
+  dateStyle: "long",
+  timeStyle: "short"
+});</code></pre>
+<div class="callout">Ungültige Datumswerte können einen <code>RangeError</code> auslösen. Bei externen Eingaben sollte vorher <code>nj.validate.date()</code> verwendet werden.</div>
+</article>
+
+<article id="bytes" class="entry searchable" data-search="bytes kilobytes megabytes file size">
+<h3>nj.format.bytes()</h3>
+<code class="signature">nj.format.bytes(bytes[, decimals = 2]) → string</code>
+<p>Formatiert eine Byte-Anzahl in B, KB, MB, GB, TB oder PB. Grundlage ist 1024.</p>
+<pre><code>nj.format.bytes(0);          // "0 B"
+nj.format.bytes(1024);       // "1 KB"
+nj.format.bytes(1536);       // "1.5 KB"
+nj.format.bytes(1048576);    // "1 MB"
+nj.format.bytes(1234567, 2); // "1.18 MB"</code></pre>
+<p>Die Nachkommastellen werden mit <code>toFixed()</code> begrenzt und anschließend über <code>parseFloat()</code> von unnötigen Nullen befreit.</p>
+</article>
+</section>
+
+<section id="examples"><h2>Praxisbeispiele</h2>
+<div class="grid">
+<article class="card searchable" data-search="table prices render template">
+<h3>Preise in einer Tabelle</h3>
+<pre><code>const rows = products.map(product =&gt; ({
+  ...product,
+  priceFormatted: nj.format.money(product.price)
+}));
+
+nj.render("#products", template, { rows });</code></pre>
+</article>
+
+<article class="card searchable" data-search="dashboard percent statistic">
+<h3>Dashboard-Kennzahl</h3>
+<pre><code>const conversionRate = orders / visitors;
+
+nj("#conversion").text(
+  nj.format.percent(conversionRate, "de-DE", {
+    maximumFractionDigits: 1
+  })
+);</code></pre>
+</article>
+
+<article class="card searchable" data-search="file upload size bytes">
+<h3>Dateigröße vor Upload</h3>
+<pre><code>input.addEventListener("change", () =&gt; {
+  const file = input.files[0];
+  nj("#file-size").text(
+    file ? nj.format.bytes(file.size) : ""
+  );
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="date validation">
+<h3>Datum nur nach Prüfung formatieren</h3>
+<pre><code>const value = apiResponse.created_at;
+
+const output = nj.validate.date(value)
+  ? nj.format.date(value, "de-DE", { dateStyle: "medium" })
+  : "Ungültiges Datum";</code></pre>
+</article>
+</div>
+</section>
+
+<section id="limits"><h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Keine Parser für lokalisierte Zahlen, Währungen oder Datumswerte.</li>
+<li>Keine Formatierung von Dauer, Telefonnummern oder relativen Zeitangaben.</li>
+<li>Keine zentrale globale Locale-Konfiguration innerhalb von <code>nj.format</code>.</li>
+<li><code>money()</code> akzeptiert keine zusätzlichen Intl-Optionen.</li>
+<li><code>bytes()</code> unterstützt Einheiten nur bis PB.</li>
+<li>Fehler ungültiger Währungs-, Locale- oder Datumswerte werden nicht intern abgefangen.</li>
+</ul>
+<p>Diese Grenzen entsprechen dem tatsächlich vorhandenen Stand in <code>nojquery.core.js</code>.</p>
+</section>
+
+<section id="crossrefs"><h2>Querverweise</h2>
+<div class="grid">
+<article class="card"><h3><a href="../validation/index.html">Validation</a></h3><p>Eingabewerte vor der Formatierung prüfen.</p></article>
+<article class="card"><h3><a href="../templates/index.html">Templates</a></h3><p>Vorformatierte Werte sicher ausgeben.</p></article>
+<article class="card"><h3><a href="../ajax/index.html">AJAX</a></h3><p>Serverdaten laden und für die Oberfläche formatieren.</p></article>
+<article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>Formatierte Texte in vorhandene Elemente einsetzen.</p></article>
+</div>
+</section>
+</main>
+</div>
+
+<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Formatter-Dokumentation</footer>
+<script>
+const input=document.getElementById("api-search"),items=[...document.querySelectorAll(".searchable")],none=document.getElementById("none");
+input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+" "+(el.dataset.search||"")).toLowerCase().includes(q);el.classList.toggle("hidden",!hit);if(hit)count++});none.style.display=count?"none":"block"});
+</script>
+<section><h2>Gesamtnavigation</h2><p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="../validation/index.html">Validation</a> · <a href="index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="../config/index.html">Config</a></p></section>
+<p><a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a></p>
+</body>
+</html>

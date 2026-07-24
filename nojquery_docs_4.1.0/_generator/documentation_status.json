@@ -1,0 +1,471 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-07-24T07:12:37.321524+00:00",
+    "phase": 2,
+    "source_archive": "nojquery_docs_4.1.0(4).zip",
+    "audited_pages": 17,
+    "complete_pages": 13,
+    "partial_pages": 1,
+    "missing_pages": 0,
+    "invalid_mapping_pages": 3,
+    "duplicate_api_count": 0,
+    "invalid_reference_count": 0,
+    "broken_link_count": 11,
+    "undocumented_namespace_count": 5,
+    "undocumented_static_count": 24,
+    "undocumented_wrapper_count": 16
+  },
+  "pages": [
+    {
+      "page": "core/dom.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 31,
+      "expected_apis": [
+        "NJ.find",
+        "NJ.closest",
+        "NJ.parent",
+        "NJ.children",
+        "NJ.next",
+        "NJ.prev",
+        "NJ.html",
+        "NJ.text",
+        "NJ.val",
+        "NJ.append",
+        "NJ.prepend",
+        "NJ.before",
+        "NJ.after",
+        "NJ.appendTo",
+        "NJ.empty",
+        "NJ.remove",
+        "NJ.attr",
+        "NJ.removeAttr",
+        "NJ.hasAttr",
+        "NJ.prop",
+        "NJ.data",
+        "NJ.removeData",
+        "NJ.addClass",
+        "NJ.removeClass",
+        "NJ.toggleClass",
+        "NJ.hasClass",
+        "NJ.css",
+        "NJ.removeCss",
+        "NJ.show",
+        "NJ.hide",
+        "NJ.toggle"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 24979
+    },
+    {
+      "page": "core/events.html",
+      "exists": true,
+      "status": "invalid_mapping",
+      "expected_api_count": 4,
+      "expected_apis": [
+        "NJ.on",
+        "NJ.one",
+        "NJ.off",
+        "NJ.trigger"
+      ],
+      "invalid_expected_apis": [
+        "NJ.one"
+      ],
+      "missing_api_mentions": [],
+      "size_bytes": 22246
+    },
+    {
+      "page": "core/animation.html",
+      "exists": true,
+      "status": "invalid_mapping",
+      "expected_api_count": 7,
+      "expected_apis": [
+        "NJ.fadeIn",
+        "NJ.fadeOut",
+        "NJ.fadeToggle",
+        "NJ.slideDown",
+        "NJ.slideUp",
+        "NJ.animate",
+        "NJ.stop"
+      ],
+      "invalid_expected_apis": [
+        "NJ.fadeToggle",
+        "NJ.slideDown",
+        "NJ.slideUp",
+        "NJ.stop"
+      ],
+      "missing_api_mentions": [
+        "NJ.fadeToggle",
+        "NJ.stop"
+      ],
+      "size_bytes": 19490
+    },
+    {
+      "page": "ajax/index.html",
+      "exists": true,
+      "status": "invalid_mapping",
+      "expected_api_count": 9,
+      "expected_apis": [
+        "nj.request",
+        "nj.get",
+        "nj.delete",
+        "nj.head",
+        "nj.post",
+        "nj.put",
+        "nj.patch",
+        "nj.ajax",
+        "nj.upload"
+      ],
+      "invalid_expected_apis": [
+        "nj.ajax"
+      ],
+      "missing_api_mentions": [],
+      "size_bytes": 14710
+    },
+    {
+      "page": "storage/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 5,
+      "expected_apis": [
+        "nj.storage",
+        "nj.storage.local",
+        "nj.storage.session",
+        "nj.storage.create",
+        "nj.storage.available"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 15797
+    },
+    {
+      "page": "cache/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 2,
+      "expected_apis": [
+        "nj.cache",
+        "nj.CacheManager"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 14673
+    },
+    {
+      "page": "templates/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 3,
+      "expected_apis": [
+        "nj.escapeHTML",
+        "nj.template",
+        "nj.render"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 13462
+    },
+    {
+      "page": "router/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 7,
+      "expected_apis": [
+        "nj.router",
+        "nj.router.start",
+        "nj.router.navigate",
+        "nj.router.replace",
+        "nj.router.params",
+        "nj.route",
+        "nj.navigate"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 5146
+    },
+    {
+      "page": "url/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 7,
+      "expected_apis": [
+        "nj.url",
+        "nj.url.parse",
+        "nj.url.get",
+        "nj.url.set",
+        "nj.url.remove",
+        "nj.url.query",
+        "nj.url.hash"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 6299
+    },
+    {
+      "page": "cookies/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 5,
+      "expected_apis": [
+        "nj.cookie",
+        "nj.cookie.set",
+        "nj.cookie.get",
+        "nj.cookie.has",
+        "nj.cookie.remove"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 5019
+    },
+    {
+      "page": "validation/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 15,
+      "expected_apis": [
+        "nj.validate",
+        "nj.validate.required",
+        "nj.validate.email",
+        "nj.validate.url",
+        "nj.validate.number",
+        "nj.validate.integer",
+        "nj.validate.date",
+        "nj.validate.phone",
+        "nj.validate.iban",
+        "nj.validate.bic",
+        "nj.validate.min",
+        "nj.validate.max",
+        "nj.validate.minLength",
+        "nj.validate.maxLength",
+        "nj.validate.test"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 14280
+    },
+    {
+      "page": "formatter/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 6,
+      "expected_apis": [
+        "nj.format",
+        "nj.format.number",
+        "nj.format.money",
+        "nj.format.percent",
+        "nj.format.date",
+        "nj.format.bytes"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 11804
+    },
+    {
+      "page": "observer/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 3,
+      "expected_apis": [
+        "nj.observe",
+        "nj.visible",
+        "nj.resize"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 12842
+    },
+    {
+      "page": "clipboard/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 3,
+      "expected_apis": [
+        "nj.clipboard",
+        "nj.clipboard.copy",
+        "nj.clipboard.read"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 12343
+    },
+    {
+      "page": "keyboard/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 4,
+      "expected_apis": [
+        "nj.key",
+        "nj.key.on",
+        "nj.key.enter",
+        "nj.key.escape"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 12897
+    },
+    {
+      "page": "device/index.html",
+      "exists": true,
+      "status": "complete",
+      "expected_api_count": 6,
+      "expected_apis": [
+        "nj.device",
+        "nj.device.touch",
+        "nj.device.mobile",
+        "nj.device.tablet",
+        "nj.device.desktop",
+        "nj.device.online"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [],
+      "size_bytes": 4936
+    },
+    {
+      "page": "config/index.html",
+      "exists": true,
+      "status": "partial",
+      "expected_api_count": 8,
+      "expected_apis": [
+        "nj.config",
+        "nj.config.debug",
+        "nj.config.warn",
+        "nj.config.exposeUnderscore",
+        "nj.config.exposeDollar",
+        "nj.config.forceAliasOverwrite",
+        "nj.config.ajaxTimeout",
+        "nj.config.animation"
+      ],
+      "invalid_expected_apis": [],
+      "missing_api_mentions": [
+        "nj.config.ajaxTimeout",
+        "nj.config.animation",
+        "nj.config.debug",
+        "nj.config.exposeDollar",
+        "nj.config.exposeUnderscore",
+        "nj.config.forceAliasOverwrite",
+        "nj.config.warn"
+      ],
+      "size_bytes": 315
+    }
+  ],
+  "duplicates": {},
+  "invalid_references": [],
+  "broken_links": [
+    {
+      "page": "index.html",
+      "href": "ajax/request.html"
+    },
+    {
+      "page": "index.html",
+      "href": "utilities/index.html"
+    },
+    {
+      "page": "index.html",
+      "href": "reference/configuration.html"
+    },
+    {
+      "page": "index.html",
+      "href": "reference/aliases.html"
+    },
+    {
+      "page": "index.html",
+      "href": "getting-started/migration-from-jquery.html"
+    },
+    {
+      "page": "index.html",
+      "href": "getting-started/installation.html"
+    },
+    {
+      "page": "index.html",
+      "href": "core/selectors.html"
+    },
+    {
+      "page": "index.html",
+      "href": "api/index.html"
+    },
+    {
+      "page": "index.html",
+      "href": "cookbook/index.html"
+    },
+    {
+      "page": "core/animation.html",
+      "href": "../cookbook/index.html"
+    },
+    {
+      "page": "core/dom.html",
+      "href": "../api/index.html"
+    }
+  ],
+  "undocumented": {
+    "namespaces": [
+      "bus",
+      "color",
+      "core",
+      "date",
+      "random"
+    ],
+    "direct_statics_without_aliases": [
+      "NJ",
+      "arrayRemove",
+      "create",
+      "cssVar",
+      "ddG",
+      "ddS",
+      "deepEqual",
+      "detectBrowser",
+      "drag",
+      "drop",
+      "exposeAliases",
+      "extend",
+      "fEa",
+      "filterObjectArray",
+      "forEach",
+      "hasAlias",
+      "isJSON",
+      "log",
+      "logger",
+      "ready",
+      "releaseAlias",
+      "sortable",
+      "uuid",
+      "version"
+    ],
+    "wrapper_members": [
+      "[Symbol.iterator]",
+      "checked",
+      "e",
+      "each",
+      "eq",
+      "exists",
+      "first",
+      "get",
+      "is",
+      "last",
+      "length",
+      "map",
+      "once",
+      "rect",
+      "scrollIntoView",
+      "serialize"
+    ]
+  },
+  "aliases": {
+    "ajax": "nj.request;",
+    "oEx": "nj.extend;",
+    "cEq": "nj.deepEqual;",
+    "isJ": "nj.isJSON;",
+    "rAE": "nj.arrayRemove;",
+    "fOA": "nj.filterObjectArray;",
+    "gBr": "nj.detectBrowser;"
+  },
+  "decision": {
+    "restart_required": false,
+    "recommended_base": "4.1.0_17_device",
+    "discard_or_replace": [
+      "4.1.0_18_config in Phase 3 anhand der echten API prüfen und neu erzeugen",
+      "4.1.0_19_cookie nicht fortführen, da Dublette"
+    ],
+    "next_phase": "Phase 3: gezielte Korrektur des Gesamtstands"
+  }
+}

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Clipboard-API von nojquery 4.1.0: Texte in die Zwischenablage schreiben und daraus lesen.">
+<title>Clipboard – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
+.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
+.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
+.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
+aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
+main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
+.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
+footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Clipboard</span></div></header>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Native Clipboard API</div>
+<h1>Texte kopieren<br>und lesen.</h1>
+<p class="lead">Das Clipboard-Modul stellt zwei asynchrone Helfer bereit: einen Wert als Text schreiben und Text aus der Zwischenablage lesen.</p>
+</div>
+<pre><code>await nj.clipboard.copy("Bestellnummer 4711");
+
+const text = await nj.clipboard.read();
+console.log(text);</code></pre>
+</section>
+
+<div class="search"><input id="api-search" type="search" placeholder="Clipboard-API durchsuchen …"><div id="none">Keine passende Funktion gefunden.</div></div>
+
+<div class="layout">
+<aside><h2>Clipboard</h2><nav>
+<a href="#overview">Überblick</a>
+<a href="#copy">copy()</a>
+<a href="#read">read()</a>
+<a href="#permissions">Berechtigungen</a>
+<a href="#errors">Fehlerbehandlung</a>
+<a href="#examples">Praxisbeispiele</a>
+<a href="#limits">Grenzen</a>
+<a href="#crossrefs">Querverweise</a>
+</nav></aside>
+
+<main>
+<section id="overview" class="searchable" data-search="clipboard overview navigator async promise">
+<h2>Überblick</h2>
+<p class="intro"><code>nj.clipboard</code> delegiert direkt an <code>navigator.clipboard.writeText()</code> und <code>navigator.clipboard.readText()</code>. Beide Funktionen sind asynchron und liefern Promises.</p>
+<table>
+<thead><tr><th>Funktion</th><th>Native Grundlage</th><th>Ergebnis</th></tr></thead>
+<tbody>
+<tr><td><code>nj.clipboard.copy(value)</code></td><td><code>navigator.clipboard.writeText()</code></td><td><code>Promise&lt;void&gt;</code></td></tr>
+<tr><td><code>nj.clipboard.read()</code></td><td><code>navigator.clipboard.readText()</code></td><td><code>Promise&lt;string&gt;</code></td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Wichtig:</strong> Die Zwischenablage-API ist normalerweise nur in sicheren Kontexten verfügbar, etwa über HTTPS oder auf <code>localhost</code>. Zusätzlich können Browser eine direkte Benutzeraktion und eine Berechtigung verlangen.</div>
+</section>
+
+<section id="copy" class="searchable" data-search="copy write text writeText stringify">
+<h2>nj.clipboard.copy()</h2>
+<code class="signature">nj.clipboard.copy(value) → Promise&lt;void&gt;</code>
+<p>Wandelt den übergebenen Wert mit <code>String(value)</code> in Text um und schreibt diesen in die Zwischenablage.</p>
+<pre><code>await nj.clipboard.copy("Hallo Welt");</code></pre>
+<h3>Nicht-string-Werte</h3>
+<pre><code>await nj.clipboard.copy(4711);        // schreibt "4711"
+await nj.clipboard.copy(true);        // schreibt "true"
+await nj.clipboard.copy(null);        // schreibt "null"
+await nj.clipboard.copy({ id: 1 });   // schreibt "[object Object]"</code></pre>
+<p>Objekte sollten daher vorher bewusst serialisiert werden:</p>
+<pre><code>const data = { id: 1, status: "ok" };
+
+await nj.clipboard.copy(
+  JSON.stringify(data, null, 2)
+);</code></pre>
+</section>
+
+<section id="read" class="searchable" data-search="read readText clipboard text">
+<h2>nj.clipboard.read()</h2>
+<code class="signature">nj.clipboard.read() → Promise&lt;string&gt;</code>
+<p>Liest Text aus der Zwischenablage und gibt ihn als Promise-Ergebnis zurück.</p>
+<pre><code>const text = await nj.clipboard.read();
+
+nj("#clipboard-preview").text(text);</code></pre>
+<p>Die Funktion liest ausschließlich Text. Bilder, Dateien oder andere Clipboard-Datentypen werden vom aktuellen Core nicht unterstützt.</p>
+</section>
+
+<section id="permissions" class="searchable" data-search="permissions secure context user gesture https localhost">
+<h2>Berechtigungen und Browserregeln</h2>
+<p>Die tatsächliche Ausführung wird durch die Sicherheitsregeln des Browsers bestimmt. Typische Voraussetzungen sind:</p>
+<ul>
+<li>Ausführung über HTTPS oder <code>localhost</code>.</li>
+<li>Aufruf nach einer Benutzeraktion, beispielsweise einem Klick.</li>
+<li>Erlaubnis zum Lesen oder Schreiben der Zwischenablage.</li>
+<li>Ein aktiver und sichtbarer Browser-Tab.</li>
+</ul>
+<pre><code>nj("#copy-button").on("click", async () =&gt; {
+  await nj.clipboard.copy("Kopierter Inhalt");
+});</code></pre>
+<div class="callout">Insbesondere das Lesen ist in vielen Browsern strenger geschützt als das Schreiben. Ein erfolgreicher Schreibzugriff bedeutet daher nicht automatisch, dass auch <code>read()</code> erlaubt ist.</div>
+</section>
+
+<section id="errors" class="searchable" data-search="errors catch NotAllowedError unavailable fallback">
+<h2>Fehlerbehandlung</h2>
+<p>Der Core fängt Fehler der nativen Clipboard-API nicht ab. Ablehnungen müssen deshalb im aufrufenden Code behandelt werden.</p>
+<pre><code>try {
+  await nj.clipboard.copy("Text");
+  nj("#status").text("Kopiert");
+} catch (error) {
+  console.error(error);
+  nj("#status").text("Kopieren nicht möglich");
+}</code></pre>
+<h3>Verfügbarkeit prüfen</h3>
+<pre><code>if (!navigator.clipboard) {
+  console.warn("Clipboard API nicht verfügbar");
+}</code></pre>
+<p>Eine automatische Fallback-Lösung, etwa über ein temporäres <code>textarea</code> und <code>document.execCommand("copy")</code>, ist nicht Bestandteil von nojquery 4.1.0.</p>
+</section>
+
+<section id="examples"><h2>Praxisbeispiele</h2>
+<div class="grid">
+<article class="card searchable" data-search="button copy code snippet">
+<h3>Code kopieren</h3>
+<pre><code>nj("[data-copy]").on("click", async function () {
+  const selector = this.dataset.copy;
+  const text = document.querySelector(selector)?.textContent ?? "";
+
+  try {
+    await nj.clipboard.copy(text);
+    this.textContent = "Kopiert";
+  } catch {
+    this.textContent = "Fehler";
+  }
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="url share current link">
+<h3>Aktuelle URL kopieren</h3>
+<pre><code>nj("#copy-link").on("click", async () =&gt; {
+  await nj.clipboard.copy(location.href);
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="json copy export">
+<h3>JSON-Daten kopieren</h3>
+<pre><code>const exportData = {
+  generatedAt: new Date().toISOString(),
+  items
+};
+
+await nj.clipboard.copy(
+  JSON.stringify(exportData, null, 2)
+);</code></pre>
+</article>
+
+<article class="card searchable" data-search="paste read form input">
+<h3>Text in ein Feld übernehmen</h3>
+<pre><code>nj("#paste").on("click", async () =&gt; {
+  try {
+    const value = await nj.clipboard.read();
+    nj("#target").val(value);
+  } catch (error) {
+    console.error("Lesen fehlgeschlagen", error);
+  }
+});</code></pre>
+</article>
+</div>
+</section>
+
+<section id="limits"><h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Nur Textzugriff über <code>writeText()</code> und <code>readText()</code>.</li>
+<li>Keine Unterstützung für Bilder, HTML-Fragmente oder Dateien.</li>
+<li>Keine integrierte Verfügbarkeitsprüfung.</li>
+<li>Keine automatische Berechtigungsabfrage.</li>
+<li>Keine Fallback-Implementierung für ältere Browser.</li>
+<li>Keine interne Fehlerbehandlung oder Statusmeldung.</li>
+<li>Keine Funktion zum Leeren der Zwischenablage.</li>
+</ul>
+<p>Diese Angaben entsprechen der tatsächlich vorhandenen API in <code>nojquery.core.js</code>.</p>
+</section>
+
+<section id="crossrefs"><h2>Querverweise</h2>
+<div class="grid">
+<article class="card"><h3><a href="../core/events.html">Events</a></h3><p>Clipboard-Aktionen sicher an Benutzerinteraktionen binden.</p></article>
+<article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>Texte aus Elementen lesen oder gelesene Inhalte einsetzen.</p></article>
+<article class="card"><h3><a href="../templates/index.html">Templates</a></h3><p>Strukturierte Inhalte vor dem Kopieren aufbereiten.</p></article>
+<article class="card"><h3><a href="../validation/index.html">Validation</a></h3><p>Eingelesene Zwischenablage-Inhalte vor der Weiterverarbeitung prüfen.</p></article>
+</div>
+</section>
+</main>
+</div>
+
+<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Clipboard-Dokumentation</footer>
+<script>
+const input=document.getElementById("api-search"),items=[...document.querySelectorAll(".searchable")],none=document.getElementById("none");
+input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+" "+(el.dataset.search||"")).toLowerCase().includes(q);el.classList.toggle("hidden",!hit);if(hit)count++});none.style.display=count?"none":"block"});
+</script>
+</body>
+</html>

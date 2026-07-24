@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Animations-API von nojquery 4.1.0: animate, fade, slide, zoom und shake.">
+  <title>Animationen – nojquery 4.1.0</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface-2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--code-text:#e5edf8;--ok:#147d47;--warn:#9a5b00;--radius:18px}
+    @media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface-2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--code-text:#eaf1fb;--ok:#6ed89c;--warn:#ffc36a}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .topbar-inner,.hero,.layout,footer,.search-wrap{max-width:1280px;margin:0 auto}.topbar-inner{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+    .brand{display:flex;align-items:baseline;gap:.5rem;font-weight:850;letter-spacing:-.03em;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted);font-size:.9rem}
+    .hero{padding:4.5rem 1.25rem 2.2rem}.eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.55rem 0 1rem}.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--muted);max-width:900px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}.button{display:inline-flex;align-items:center;min-height:44px;padding:.65rem 1rem;border:1px solid var(--line);border-radius:.7rem;font-weight:700}.button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+    .search-wrap{padding:0 1.25rem 2rem}.search-box{position:relative}.search-box input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text);padding:0 1rem 0 3rem;font:inherit}.search-box span{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--muted)}
+    .layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto;padding-right:.5rem}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}aside nav{display:grid;gap:.22rem}aside a{color:var(--text);padding:.42rem .65rem;border-radius:.55rem;font-size:.92rem}aside a:hover{background:var(--surface-2);text-decoration:none}
+    main{min-width:0}.section{scroll-margin-top:94px;margin-bottom:3.6rem}.section>h2{font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:-.04em;margin-bottom:.4rem}.section-intro{color:var(--muted);max-width:850px}
+    .api-entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.25rem;margin:1rem 0}.api-entry{scroll-margin-top:94px}.api-entry h3,.card h3{margin:0 0 .35rem}.signature{display:block;background:var(--code);color:var(--code-text);padding:.85rem 1rem;border-radius:10px;overflow:auto;margin:.8rem 0}.meta{display:flex;flex-wrap:wrap;gap:.45rem;margin:.7rem 0}.pill{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:.2rem .58rem;font-size:.78rem}.return{color:var(--ok)}
+    table{width:100%;border-collapse:collapse;margin:1rem 0}th,td{text-align:left;vertical-align:top;border:1px solid var(--line);padding:.7rem .8rem}th{background:var(--surface-2)}pre{background:var(--code);color:var(--code-text);border-radius:12px;padding:1rem;overflow:auto;white-space:pre-wrap}.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1.2rem 0}.warning{color:var(--warn)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}.no-results{display:none;padding:1rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-top:1rem}
+    footer{padding:2rem 1.25rem 4rem;color:var(--muted);border-top:1px solid var(--line)}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:static;max-height:none}aside nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.crumbs{display:none}.grid{grid-template-columns:1fr}aside nav{grid-template-columns:1fr}th,td{display:block;width:100%}th{border-bottom:0}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">no<span>jquery</span></a>
+    <span class="version">v4.1.0</span>
+    <div class="crumbs"><a href="../index.html">Dokumentation</a> / Core / Animation</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Core API · Detailseite 3</div>
+  <h1>Animationen</h1>
+  <p class="lead">Die Animations-API basiert auf der Web Animations API. Sie deckt freie Keyframe-Animationen sowie fertige Effekte für Einblenden, Ausblenden, Auf- und Zuklappen, Zoom und visuelles Hervorheben ab.</p>
+  <div class="hero-actions">
+    <a class="button primary" href="#animate">Mit animate() beginnen</a>
+    <a class="button" href="events.html">Events</a>
+    <a class="button" href="dom.html">DOM &amp; Core</a>
+  </div>
+</section>
+
+<div class="search-wrap">
+  <label class="search-box">
+    <span aria-hidden="true">⌕</span>
+    <input id="api-search" type="search" placeholder="Animationsfunktion durchsuchen …" autocomplete="off">
+  </label>
+  <div id="no-results" class="no-results">Keine passende Animationsfunktion gefunden.</div>
+</div>
+
+<div class="layout">
+  <aside>
+    <h2>Animationen</h2>
+    <nav>
+      <a href="#grundprinzip">Grundprinzip</a>
+      <a href="#animate">animate()</a>
+      <a href="#fade">Fade-Effekte</a>
+      <a href="#slide">Slide-Effekte</a>
+      <a href="#zoom">Zoom-Effekte</a>
+      <a href="#shake">shake()</a>
+      <a href="#optionen">Optionen</a>
+      <a href="#promises">Promises</a>
+      <a href="#muster">Anwendungsmuster</a>
+      <a href="#performance">Performance</a>
+      <a href="#querverweise">Querverweise</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="section searchable" id="grundprinzip" data-search="web animations api keyframes timing promise">
+      <h2>Grundprinzip</h2>
+      <p class="section-intro">Animationen werden mit nativen <code>Element.animate()</code>-Aufrufen erzeugt. Freie Animationen arbeiten mit Keyframes und Timing-Optionen. Komfortmethoden kapseln typische UI-Effekte.</p>
+      <pre><code>await nj(".card").animate(
+  [
+    { opacity: 0, transform: "translateY(12px)" },
+    { opacity: 1, transform: "translateY(0)" }
+  ],
+  { duration: 250, easing: "ease-out" }
+);</code></pre>
+      <div class="callout"><strong>Asynchrones Verhalten:</strong> Animationsmethoden liefern ein Promise, sobald die Bibliothek auf den Abschluss der nativen Animationen wartet. Dadurch lassen sich Animationen sauber mit <code>await</code> koordinieren.</div>
+    </section>
+
+    <section class="section" id="animate">
+      <h2>Freie Animationen</h2>
+
+      <article class="api-entry searchable" data-search="animate keyframes options duration easing fill delay iterations direction">
+        <h3>animate(keyframes, options)</h3>
+        <code class="signature">wrapper.animate(keyframes[, options]) → Promise&lt;NJ&gt;</code>
+        <p>Animiert alle ausgewählten Elemente mit frei definierten Keyframes. Die Methode sammelt die nativen Animationen und wartet auf deren Abschluss.</p>
+        <table>
+          <tr><th>Parameter</th><th>Typ</th><th>Beschreibung</th></tr>
+          <tr><td><code>keyframes</code></td><td>Array | Object</td><td>Keyframes gemäß Web Animations API.</td></tr>
+          <tr><td><code>options</code></td><td>Number | Object</td><td>Dauer in Millisekunden oder vollständige Timing-Optionen.</td></tr>
+        </table>
+        <pre><code>await nj("#panel").animate(
+  [
+    { opacity: 0, transform: "scale(.96)" },
+    { opacity: 1, transform: "scale(1)" }
+  ],
+  {
+    duration: 220,
+    easing: "cubic-bezier(.2,.8,.2,1)",
+    fill: "both"
+  }
+);</code></pre>
+        <div class="meta"><span class="pill return">Rückgabe: Promise&lt;NJ&gt;</span><span class="pill">mehrere Elemente</span></div>
+      </article>
+    </section>
+
+    <section class="section" id="fade">
+      <h2>Fade-Effekte</h2>
+
+      <article class="api-entry searchable" data-search="fadein opacity show display duration">
+        <h3>fadeIn(duration)</h3>
+        <code class="signature">wrapper.fadeIn([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Blendet zuvor versteckte Elemente ein. Der Effekt animiert die Deckkraft von 0 auf 1 und stellt sicher, dass die Elemente sichtbar sind.</p>
+        <pre><code>await nj("#notice").fadeIn(240);</code></pre>
+      </article>
+
+      <article class="api-entry searchable" data-search="fadeout opacity hide duration">
+        <h3>fadeOut(duration)</h3>
+        <code class="signature">wrapper.fadeOut([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Blendet Elemente aus und setzt sie nach Abschluss auf unsichtbar.</p>
+        <pre><code>await nj("#notice").fadeOut(180);</code></pre>
+        <p class="warning"><strong>Hinweis:</strong> Nach dem Ausblenden ist das Element nicht mehr sichtbar. Für eine reine Opacity-Animation ohne anschließendes Verbergen ist <code>animate()</code> zu verwenden.</p>
+      </article>
+    </section>
+
+    <section class="section" id="slide">
+      <h2>Slide-Effekte</h2>
+
+      <article class="api-entry searchable" data-search="slidedown height open accordion expand">
+
+        <h3>slideToggle(duration)</h3>
+        <code class="signature">wrapper.slideToggle([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Öffnet oder schließt die Auswahl abhängig vom aktuellen Sichtbarkeitszustand.</p>
+        <pre><code>nj("#toggle-details").on("click", async () => {
+  await nj("#details").slideToggle(220);
+});</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="zoom">
+      <h2>Zoom-Effekte</h2>
+
+      <article class="api-entry searchable" data-search="zoomin scale opacity dialog card">
+        <h3>zoomIn(duration)</h3>
+        <code class="signature">wrapper.zoomIn([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Blendet ein Element mit einer kombinierten Scale- und Opacity-Animation ein.</p>
+        <pre><code>await nj("#dialog").zoomIn(180);</code></pre>
+      </article>
+
+      <article class="api-entry searchable" data-search="zoomout scale opacity hide dialog">
+        <h3>zoomOut(duration)</h3>
+        <code class="signature">wrapper.zoomOut([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Verkleinert und verblasst ein Element. Nach Abschluss wird es verborgen.</p>
+        <pre><code>await nj("#dialog").zoomOut(160);</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="shake">
+      <h2>Visuelle Hervorhebung</h2>
+
+      <article class="api-entry searchable" data-search="shake error invalid attention horizontal transform">
+        <h3>shake(duration)</h3>
+        <code class="signature">wrapper.shake([duration]) → Promise&lt;NJ&gt;</code>
+        <p>Bewegt Elemente kurz horizontal hin und her. Der Effekt eignet sich für fehlerhafte Eingaben, abgelehnte Aktionen oder besonders wichtige Hinweise.</p>
+        <pre><code>if (!nj("#email").val()) {
+  await nj("#email").shake(320);
+  nj("#email").get()?.focus();
+}</code></pre>
+        <p class="warning"><strong>Barrierefreiheit:</strong> Bewegung sollte sparsam eingesetzt werden. Bei Nutzern mit reduzierter Bewegungspräferenz empfiehlt sich ein alternativer visueller Zustand, etwa eine Fehlerklasse.</p>
+      </article>
+    </section>
+
+    <section class="section" id="optionen">
+      <h2>Timing-Optionen</h2>
+      <article class="api-entry searchable" data-search="duration easing delay fill iterations direction composite">
+        <h3>Unterstützte Optionen</h3>
+        <table>
+          <tr><th>Option</th><th>Bedeutung</th></tr>
+          <tr><td><code>duration</code></td><td>Dauer der Animation in Millisekunden.</td></tr>
+          <tr><td><code>delay</code></td><td>Verzögerung vor Beginn.</td></tr>
+          <tr><td><code>easing</code></td><td>Zeitfunktion wie <code>linear</code>, <code>ease</code> oder <code>cubic-bezier(...)</code>.</td></tr>
+          <tr><td><code>fill</code></td><td>Übernahme der Keyframe-Werte vor oder nach der Laufzeit.</td></tr>
+          <tr><td><code>iterations</code></td><td>Anzahl der Wiederholungen.</td></tr>
+          <tr><td><code>direction</code></td><td>Richtung, etwa <code>normal</code>, <code>reverse</code> oder <code>alternate</code>.</td></tr>
+        </table>
+        <pre><code>await nj(".pulse").animate(
+  [
+    { transform: "scale(1)" },
+    { transform: "scale(1.04)" },
+    { transform: "scale(1)" }
+  ],
+  {
+    duration: 420,
+    easing: "ease-in-out",
+    iterations: 2
+  }
+);</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="promises">
+      <h2>Promises und Reihenfolgen</h2>
+
+      <article class="api-entry searchable" data-search="await promise sequence parallel promise all">
+        <h3>Animationen nacheinander</h3>
+        <pre><code>await nj("#dialog").fadeIn(160);
+await nj("#dialog-content").zoomIn(180);</code></pre>
+        <p>Mit <code>await</code> beginnt die zweite Animation erst nach dem Ende der ersten.</p>
+      </article>
+
+      <article class="api-entry searchable" data-search="parallel promise all multiple animation">
+        <h3>Animationen parallel</h3>
+        <pre><code>await Promise.all([
+  nj("#sidebar").animate({ opacity: 1 }, { duration: 220 }),
+  nj("#overlay").fadeIn(180)
+]);</code></pre>
+        <p><code>Promise.all()</code> wartet, bis alle beteiligten Animationen abgeschlossen sind.</p>
+      </article>
+    </section>
+
+    <section class="section" id="muster">
+      <h2>Anwendungsmuster</h2>
+
+      <div class="grid">
+        <article class="card searchable" data-search="accordion slide toggle aria expanded">
+          <h3>Akkordeon</h3>
+          <pre><code>nj("[data-accordion]").on("click", "button", async function () {
+  const panel = nj(this).next();
+  const open = this.getAttribute("aria-expanded") === "true";
+
+  this.setAttribute("aria-expanded", String(!open));
+  await panel.slideToggle(220);
+});</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="toast notification fadein fadeout timeout">
+          <h3>Toast-Nachricht</h3>
+          <pre><code>async function showToast(message) {
+  nj("#toast").text(message);
+  await nj("#toast").fadeIn(160);
+
+  setTimeout(() => {
+    nj("#toast").fadeOut(180);
+  }, 2500);
+}</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="dialog modal zoom overlay">
+          <h3>Dialog öffnen</h3>
+          <pre><code>await Promise.all([
+  nj("#dialog-overlay").fadeIn(140),
+  nj("#dialog").zoomIn(180)
+]);</code></pre>
+        </article>
+
+        <article class="card searchable" data-search="form validation shake error">
+          <h3>Formularfehler</h3>
+          <pre><code>const invalid = nj("#form :invalid");
+
+if (invalid.exists()) {
+  invalid.addClass("field-error");
+  await invalid.first().shake(280);
+}</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="performance">
+      <h2>Performance und Zugänglichkeit</h2>
+      <article class="api-entry searchable" data-search="performance transform opacity layout reflow accessibility reduced motion">
+        <h3>Empfehlungen</h3>
+        <p>Animationen von <code>transform</code> und <code>opacity</code> sind meist günstiger als häufige Änderungen layoutrelevanter Eigenschaften. Slide-Effekte benötigen Höhenmessungen und sollten bei sehr großen Elementmengen gezielt eingesetzt werden.</p>
+        <pre><code>const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+if (reduceMotion) {
+  nj("#panel").show();
+} else {
+  await nj("#panel").animate({ opacity: 1 }, { duration: 220 });
+}</code></pre>
+      </article>
+    </section>
+
+    <section class="section" id="querverweise">
+      <h2>Querverweise</h2>
+      <div class="grid">
+        <article class="card"><h3>DOM &amp; Core</h3><p><code>show()</code>, <code>hide()</code>, Klassen und CSS bilden die Grundlage der Animationszustände.</p><a href="dom.html">DOM öffnen →</a></article>
+        <article class="card"><h3>Events</h3><p>Animationen werden häufig durch Klick-, Submit- oder CustomEvents ausgelöst.</p><a href="events.html">Events öffnen →</a></article>
+        <article class="card"><h3>Observer</h3><p>IntersectionObserver kann Animationen beim Eintritt in den sichtbaren Bereich starten.</p><a href="../observer/index.html">Observer öffnen →</a></article>
+        <article class="card"><h3>Cookbook</h3><p>Komplette Komponenten wie Akkordeons, Dialoge und Toasts werden später im Cookbook zusammengeführt.</p><a href="../index.html">Cookbook öffnen →</a></article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <strong>nojquery 4.1.0 – Animationen</strong><br>
+  Detailseite 3 der HTML-API-Dokumentation
+</footer>
+
+<script src="../assets/js/nojquery.core.js?v=4.1.0"></script>
+<script>
+  nj.ready(() => {
+    const input = nj("#api-search");
+    const items = Array.from(document.querySelectorAll(".searchable"));
+    const noResults = nj("#no-results");
+
+    input.on("input", event => {
+      const query = event.target.value.trim().toLocaleLowerCase("de");
+      let visible = 0;
+
+      items.forEach(item => {
+        const content = `${item.textContent} ${item.dataset.search || ""}`.toLocaleLowerCase("de");
+        const matches = !query || content.includes(query);
+        item.classList.toggle("hidden", !matches);
+        if (matches) visible += 1;
+      });
+
+      noResults.css("display", visible === 0 && query ? "block" : "none");
+    });
+  });
+</script>
+<section><h2>Gesamtnavigation</h2><p><a href="dom.html">DOM</a> · <a href="events.html">Events</a> · <a href="animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="../validation/index.html">Validation</a> · <a href="../formatter/index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="../config/index.html">Config</a></p></section>
+</body>
+</html>

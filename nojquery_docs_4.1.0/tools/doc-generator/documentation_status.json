@@ -1,0 +1,160 @@
+{
+  "generated_at_utc": "2026-07-24T10:48:52.705540+00:00",
+  "validation": {
+    "passed": true,
+    "error_count": 0,
+    "duplicate_api_owners": {},
+    "invalid_api_mappings": [],
+    "broken_local_links": []
+  },
+  "pages": [
+    {
+      "page": "core/dom.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/events.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/animation.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "ajax/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "storage/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "cache/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "templates/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "router/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "url/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "cookies/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "validation/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "formatter/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "observer/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "clipboard/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "keyboard/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "device/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "config/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "color/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "date/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "random/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "bus/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/collection.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    }
+  ],
+  "undocumented": {
+    "namespaces": [],
+    "direct_statics_without_aliases": [],
+    "wrapper_members": []
+  },
+  "next_documentation_candidate": {
+    "kind": null,
+    "name": null,
+    "members": []
+  }
+}

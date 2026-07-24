@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "core": "docs/assets/js/nojquery.core.js",
+  "namespace_priority": [
+    "color",
+    "date",
+    "random",
+    "bus",
+    "logger",
+    "core"
+  ],
+  "pages": [
+    {
+      "page": "core/dom.html",
+      "wrapper": [
+        "find",
+        "closest",
+        "parent",
+        "children",
+        "next",
+        "prev",
+        "html",
+        "text",
+        "val",
+        "append",
+        "prepend",
+        "before",
+        "after",
+        "appendTo",
+        "empty",
+        "remove",
+        "attr",
+        "removeAttr",
+        "hasAttr",
+        "prop",
+        "data",
+        "removeData",
+        "addClass",
+        "removeClass",
+        "toggleClass",
+        "hasClass",
+        "css",
+        "removeCss",
+        "show",
+        "hide",
+        "toggle"
+      ]
+    },
+    {
+      "page": "core/events.html",
+      "wrapper": [
+        "on",
+        "off",
+        "once",
+        "trigger"
+      ]
+    },
+    {
+      "page": "core/animation.html",
+      "wrapper": [
+        "animate",
+        "fadeIn",
+        "fadeOut"
+      ]
+    },
+    {
+      "page": "ajax/index.html",
+      "statics": [
+        "request",
+        "get",
+        "delete",
+        "head",
+        "post",
+        "put",
+        "patch",
+        "ajax",
+        "upload"
+      ]
+    },
+    {
+      "page": "storage/index.html",
+      "namespaces": [
+        "storage"
+      ]
+    },
+    {
+      "page": "cache/index.html",
+      "statics": [
+        "cache",
+        "CacheManager"
+      ]
+    },
+    {
+      "page": "templates/index.html",
+      "statics": [
+        "escapeHTML",
+        "template",
+        "render"
+      ]
+    },
+    {
+      "page": "router/index.html",
+      "namespaces": [
+        "router"
+      ],
+      "statics": [
+        "route",
+        "navigate"
+      ]
+    },
+    {
+      "page": "url/index.html",
+      "namespaces": [
+        "url"
+      ]
+    },
+    {
+      "page": "cookies/index.html",
+      "namespaces": [
+        "cookie"
+      ]
+    },
+    {
+      "page": "validation/index.html",
+      "namespaces": [
+        "validate"
+      ]
+    },
+    {
+      "page": "formatter/index.html",
+      "namespaces": [
+        "format"
+      ]
+    },
+    {
+      "page": "observer/index.html",
+      "statics": [
+        "observe",
+        "visible",
+        "resize"
+      ]
+    },
+    {
+      "page": "clipboard/index.html",
+      "namespaces": [
+        "clipboard"
+      ]
+    },
+    {
+      "page": "keyboard/index.html",
+      "namespaces": [
+        "key"
+      ]
+    },
+    {
+      "page": "device/index.html",
+      "namespaces": [
+        "device"
+      ]
+    },
+    {
+      "page": "config/index.html",
+      "namespaces": [
+        "config"
+      ]
+    },
+    {
+      "page": "color/index.html",
+      "namespaces": [
+        "color"
+      ]
+    }
+  ]
+}

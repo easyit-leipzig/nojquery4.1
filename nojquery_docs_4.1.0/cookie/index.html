@@ -1,0 +1,6 @@
+<html><body><h1>cookie</h1><pre>nj.cookie = {
+    set(name,value,options={}){ let s=`${encodeURIComponent(name)}=${encodeURIComponent(JSON.stringify(value))}`; if(options.days) s+=`; Max-Age=${options.days*86400}`; s+=`; Path=${options.path||'/'}`; if(options.sameSite) s+=`; SameSite=${options.sameSite}`; if(options.secure) s+='; Secure'; document.cookie=s; return value; },
+    get(name,fallback=null){ const key=encodeURIComponent(name)+'='; const item=document.cookie.split('; ').find(v=>v.startsWith(key)); if(!item)return fallback; try{return JSON.parse(decodeURIComponent(item.slice(key.length)));}catch{return decodeURIComponent(item.slice(key.length));} },
+    has(name){ return this.get(name,Symbol.for('nj.missing'))!==Symbol.for('nj.missing'); },
+    remove(name,options={}){ this.set(name,'',{...options,days:-1}); return true; }
+  };</pre><p>Kumulative Dokumentation 4.1.0_19.</p></body></html>

@@ -1,0 +1,14 @@
+<!doctype html><html lang='de'><head><meta charset='utf-8'><title>nj.color</title></head><body>
+<a href="../index.html">Zurück</a>
+<h1>Namespace nj.color</h1>
+<p>Dieser Namespace stellt Hilfsfunktionen zur Farbkonvertierung und Helligkeitsänderung bereit.</p>
+<h2>hexToRgb(hex)</h2><pre><code>nj.color.hexToRgb("#336699") // -> {r:51,g:102,b:153}</code></pre>
+<p>Akzeptiert 3- oder 6-stellige Hexwerte und liefert ein Objekt mit den Komponenten <code>r</code>, <code>g</code> und <code>b</code>.</p>
+<h2>rgbToHex(r,g,b)</h2><pre><code>nj.color.rgbToHex(51,102,153) // -> "#336699"</code></pre>
+<p>Begrenzt Werte automatisch auf den Bereich 0…255 und erzeugt einen Hex-Farbwert.</p>
+<h2>lighten(hex,p=10)</h2><pre><code>nj.color.lighten("#336699",20)</code></pre>
+<p>Erhöht die Helligkeit um den angegebenen Prozentwert.</p>
+<h2>darken(hex,p=10)</h2><pre><code>nj.color.darken("#336699",20)</code></pre>
+<p>Verringert die Helligkeit. Intern wird <code>lighten()</code> mit negativem Prozentwert verwendet.</p>
+<p><a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a></p>
+</body></html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Validation-API von nojquery 4.1.0: required, email, url, number, integer, date, phone, iban, bic, min, max, minLength, maxLength und test.">
+<title>Validation – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8;--good:#147d44;--bad:#b42318}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb;--good:#6bd99b;--bad:#ff8b83}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
+.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
+.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
+.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
+aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
+main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
+.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.1rem .5rem;font-size:.8rem}.ok{color:var(--good)}.error{color:var(--bad)}
+footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Validation</span></div></header>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Validation API</div>
+<h1>Werte klar<br>prüfen.</h1>
+<p class="lead">Das Validation-Modul stellt kleine, direkt aufrufbare Prüffunktionen sowie <code>nj.validate.test()</code> für regelbasierte Einzelwertprüfungen bereit.</p>
+</div>
+<pre><code>const result = nj.validate.test(email, {
+  required: true,
+  email: true
+});
+
+if (!result.valid) {
+  console.log(result.errors);
+}</code></pre>
+</section>
+
+<div class="search"><input id="api-search" type="search" placeholder="Validation-API durchsuchen …"><div id="none">Keine passende Funktion gefunden.</div></div>
+
+<div class="layout">
+<aside><h2>Validation</h2><nav>
+<a href="#overview">Überblick</a>
+<a href="#required">required()</a>
+<a href="#email">email()</a>
+<a href="#url">url()</a>
+<a href="#number">number()</a>
+<a href="#integer">integer()</a>
+<a href="#date">date()</a>
+<a href="#phone">phone()</a>
+<a href="#iban">iban()</a>
+<a href="#bic">bic()</a>
+<a href="#limits">Grenzregeln</a>
+<a href="#test">test()</a>
+<a href="#forms">Formularbeispiel</a>
+<a href="#limits-core">Grenzen</a>
+</nav></aside>
+
+<main>
+<section id="overview" class="searchable" data-search="validation overview rules result errors">
+<h2>Überblick</h2>
+<p class="intro">Alle Prüffunktionen liefern <code>true</code> oder <code>false</code>. <code>nj.validate.test(value, rules)</code> kombiniert mehrere Regeln und liefert ein Objekt mit <code>valid</code> und <code>errors</code>.</p>
+<div class="callout"><strong>Wichtig:</strong> Das Modul validiert einzelne Werte. Eine automatische Formularanalyse, DOM-Fehleranzeige oder serverseitige Prüfung ist nicht Bestandteil des aktuellen Core.</div>
+</section>
+
+<section id="api"><h2>Direkte Prüffunktionen</h2>
+
+<article id="required" class="entry searchable" data-search="required empty whitespace null undefined">
+<h3>nj.validate.required(value)</h3>
+<code class="signature">nj.validate.required(value) → boolean</code>
+<p>Lehnt <code>null</code>, <code>undefined</code>, leere Zeichenketten und reine Leerzeichen ab.</p>
+<pre><code>nj.validate.required("Olaf"); // true
+nj.validate.required("   ");  // false
+nj.validate.required(0);      // true</code></pre>
+</article>
+
+<article id="email" class="entry searchable" data-search="email address">
+<h3>nj.validate.email(value)</h3>
+<code class="signature">nj.validate.email(value) → boolean</code>
+<p>Prüft mit einem kompakten regulären Ausdruck auf ein einfaches E-Mail-Format.</p>
+<pre><code>nj.validate.email("info@example.org"); // true
+nj.validate.email("info@localhost");   // false</code></pre>
+</article>
+
+<article id="url" class="entry searchable" data-search="url absolute new URL">
+<h3>nj.validate.url(value)</h3>
+<code class="signature">nj.validate.url(value) → boolean</code>
+<p>Verwendet den nativen <code>URL</code>-Konstruktor. Gültig sind Werte, die sich ohne Basis-URL parsen lassen.</p>
+<pre><code>nj.validate.url("https://example.org/path"); // true
+nj.validate.url("/relative/path");           // false</code></pre>
+</article>
+
+<article id="number" class="entry searchable" data-search="number finite numeric">
+<h3>nj.validate.number(value)</h3>
+<code class="signature">nj.validate.number(value) → boolean</code>
+<p>Akzeptiert Werte, die nicht leer sind und sich mit <code>Number()</code> in eine endliche Zahl umwandeln lassen.</p>
+<pre><code>nj.validate.number("12.5"); // true
+nj.validate.number("");     // false
+nj.validate.number("12x");  // false</code></pre>
+</article>
+
+<article id="integer" class="entry searchable" data-search="integer whole number">
+<h3>nj.validate.integer(value)</h3>
+<code class="signature">nj.validate.integer(value) → boolean</code>
+<p>Wandelt den Wert mit <code>Number()</code> um und prüft danach <code>Number.isInteger()</code>.</p>
+<pre><code>nj.validate.integer("42");  // true
+nj.validate.integer("4.2"); // false</code></pre>
+</article>
+
+<article id="date" class="entry searchable" data-search="date parse timestamp">
+<h3>nj.validate.date(value)</h3>
+<code class="signature">nj.validate.date(value) → boolean</code>
+<p>Prüft, ob <code>Date.parse(value)</code> einen gültigen Zeitwert erzeugt.</p>
+<pre><code>nj.validate.date("2026-07-23"); // true
+nj.validate.date("kein Datum"); // false</code></pre>
+</article>
+
+<article id="phone" class="entry searchable" data-search="phone telephone plus digits spaces">
+<h3>nj.validate.phone(value)</h3>
+<code class="signature">nj.validate.phone(value) → boolean</code>
+<p>Erwartet mindestens sechs Folgezeichen nach einem führenden Pluszeichen oder einer Ziffer. Erlaubt sind Ziffern, Leerzeichen, Klammern, Punkt, Schrägstrich und Bindestrich.</p>
+<pre><code>nj.validate.phone("+49 341 123456"); // true
+nj.validate.phone("123");            // false</code></pre>
+</article>
+
+<article id="iban" class="entry searchable" data-search="iban modulo 97 banking">
+<h3>nj.validate.iban(value)</h3>
+<code class="signature">nj.validate.iban(value) → boolean</code>
+<p>Entfernt Leerzeichen, prüft die Grundstruktur und führt anschließend die Modulo-97-Prüfung aus.</p>
+<pre><code>nj.validate.iban("DE89 3704 0044 0532 0130 00"); // true</code></pre>
+</article>
+
+<article id="bic" class="entry searchable" data-search="bic swift bank code">
+<h3>nj.validate.bic(value)</h3>
+<code class="signature">nj.validate.bic(value) → boolean</code>
+<p>Prüft einen BIC mit acht oder elf Zeichen nach dem im Core hinterlegten Muster.</p>
+<pre><code>nj.validate.bic("COBADEFFXXX"); // true</code></pre>
+</article>
+</section>
+
+<section id="limits"><h2>Grenz- und Längenregeln</h2>
+<table>
+<thead><tr><th>Regel</th><th>Signatur</th><th>Prüfung</th></tr></thead>
+<tbody>
+<tr class="searchable" data-search="min minimum"><td><code>min</code></td><td><code>min(value, n)</code></td><td><code>Number(value) &gt;= n</code></td></tr>
+<tr class="searchable" data-search="max maximum"><td><code>max</code></td><td><code>max(value, n)</code></td><td><code>Number(value) &lt;= n</code></td></tr>
+<tr class="searchable" data-search="minLength minimum length"><td><code>minLength</code></td><td><code>minLength(value, n)</code></td><td><code>String(value).length &gt;= n</code></td></tr>
+<tr class="searchable" data-search="maxLength maximum length"><td><code>maxLength</code></td><td><code>maxLength(value, n)</code></td><td><code>String(value).length &lt;= n</code></td></tr>
+</tbody>
+</table>
+<pre><code>nj.validate.min("18", 18);          // true
+nj.validate.max(120, 100);          // false
+nj.validate.minLength("abc", 3);    // true
+nj.validate.maxLength("abcdef", 5); // false</code></pre>
+</section>
+
+<section id="test" class="searchable" data-search="test rules errors valid aggregate">
+<h2>nj.validate.test()</h2>
+<code class="signature">nj.validate.test(value[, rules = {}]) → { valid, errors }</code>
+<p>Durchläuft alle Regeln. Bei <code>true</code> wird die jeweilige Funktion nur mit dem Wert aufgerufen. Bei jedem anderen Argument erhält die Regel zusätzlich diesen Wert.</p>
+<pre><code>const result = nj.validate.test("17", {
+  required: true,
+  integer: true,
+  min: 18,
+  max: 120
+});
+
+// {
+//   valid: false,
+//   errors: ["min"]
+// }</code></pre>
+<div class="callout">Unbekannte Regeln werden still ignoriert, weil nur vorhandene Funktionen ausgeführt werden. Regelargumente und Fehlermeldungen werden nicht automatisch lokalisiert.</div>
+</section>
+
+<section id="forms"><h2>Formularbeispiel</h2>
+<pre><code>const form = document.querySelector("#registration");
+
+form.addEventListener("submit", event =&gt; {
+  event.preventDefault();
+
+  const email = form.elements.email.value;
+  const age = form.elements.age.value;
+
+  const emailResult = nj.validate.test(email, {
+    required: true,
+    email: true
+  });
+
+  const ageResult = nj.validate.test(age, {
+    required: true,
+    integer: true,
+    min: 18
+  });
+
+  if (!emailResult.valid || !ageResult.valid) {
+    console.log({
+      email: emailResult.errors,
+      age: ageResult.errors
+    });
+    return;
+  }
+
+  // Daten erst jetzt an den Server senden.
+});</code></pre>
+<p>Clientseitige Prüfung verbessert die Bedienung, ersetzt aber keine serverseitige Validierung.</p>
+</section>
+
+<section id="limits-core"><h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Keine automatische Validierung eines vollständigen Formulars.</li>
+<li>Keine integrierte DOM-Ausgabe von Fehlermeldungen.</li>
+<li>Keine benutzerdefinierten Validatoren über eine Registrierungs-API.</li>
+<li>Keine Regeln wie <code>pattern</code>, <code>equals</code>, <code>between</code> oder <code>custom</code>.</li>
+<li>Keine asynchronen Prüfungen.</li>
+<li>Keine Übersetzung oder Zuordnung menschenlesbarer Fehlermeldungen.</li>
+</ul>
+<p>Diese Angaben entsprechen der tatsächlich vorhandenen API in <code>nojquery.core.js</code>.</p>
+</section>
+
+<section><h2>Querverweise</h2>
+<div class="grid">
+<article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>Feldwerte lesen und Fehlermeldungen darstellen.</p></article>
+<article class="card"><h3><a href="../ajax/index.html">AJAX</a></h3><p>Nur erfolgreich geprüfte Daten übertragen.</p></article>
+<article class="card"><h3><a href="../storage/index.html">Storage</a></h3><p>Formularentwürfe zwischenspeichern.</p></article>
+<article class="card"><h3><a href="../templates/index.html">Templates</a></h3><p>Validierungsfehler sicher rendern.</p></article>
+</div>
+</section>
+</main>
+</div>
+
+<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Validation-Dokumentation</footer>
+<script>
+const input=document.getElementById("api-search"),items=[...document.querySelectorAll(".searchable")],none=document.getElementById("none");
+input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+" "+(el.dataset.search||"")).toLowerCase().includes(q);el.classList.toggle("hidden",!hit);if(hit)count++});none.style.display=count?"none":"block"});
+</script>
+<section><h2>Gesamtnavigation</h2><p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="index.html">Validation</a> · <a href="../formatter/index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="../config/index.html">Config</a></p></section>
+<p><a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a></p>
+</body>
+</html>

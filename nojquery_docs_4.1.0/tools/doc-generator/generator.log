@@ -1,0 +1,13 @@
+Phase 3: Basis 4.1.0_17_device konsolidiert.
+Verifizierte Config-Seite erzeugt.
+Cookie-Dublette ausgeschlossen.
+Defekte lokale Links nach Build: 0.
+2026-07-24T07:33:38.405543+00:00 validation=failed errors=5 next=color
+2026-07-24T07:33:52.308371+00:00 validation=failed errors=5 next=color
+2026-07-24T07:35:02.983789+00:00 validation=passed errors=0 next=color
+2026-07-24T07:58:29.482734+00:00 validation=passed errors=0 next=date
+2026-07-24T08:24:26.725390+00:00 validation=passed errors=0 next=random
+2026-07-24T08:27:46.325996+00:00 validation=passed errors=0 next=bus
+2026-07-24T08:50:39.209948+00:00 validation=passed errors=0 next=core
+2026-07-24T10:41:29.847596+00:00 validation=passed errors=0 next=None
+2026-07-24T10:48:52.706169+00:00 validation=passed errors=0 next=None

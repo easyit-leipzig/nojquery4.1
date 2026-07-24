@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Core Utilities – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}
+a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}
+code,pre{font-family:Consolas,monospace}pre,.signature{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}
+.note{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}
+@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}th,td{border-color:#2b3a50}.note{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Core Utilities</h1>
+<p>Direkte Hilfsfunktionen und Grundfunktionen des nojquery-Core.</p>
+</header>
+
+<section>
+<h2>Einordnung</h2>
+<p>Der Generator führt diesen Bereich als <code>nj.core</code> mit dem Unterbereich <code>utilities</code>. Im JavaScript-Core ist <code>nj.core</code> jedoch kein separates Namespace-Objekt. Dokumentiert werden deshalb die tatsächlich unmittelbar unter <code>nj</code> definierten Hilfsfunktionen.</p>
+</section>
+
+<section>
+<h2>Überblick</h2>
+<table>
+<tr><th>API</th><th>Rückgabe</th><th>Zweck</th></tr>
+<tr><td><code>nj.exposeAliases(options = {})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.create(tag, attributes = {}, children = [])</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.extend(...objects)</code></td><td><code>object</code></td><td>Kombiniert Eigenschaften mehrerer Objekte.</td></tr><tr><td><code>nj.deepEqual(a, b)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.arrayRemove(array, value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.filterObjectArray(array, field, value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.forEach(array, callback)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.cssVar(name, value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.detectBrowser()</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.upload(url, files, fields = {}, options = {})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.observe(target, callback, options={ childList:true, subtree:true })</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.visible(target, callback, options={})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.resize(target, callback)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.template(template, data={})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.render(target, template, data={}, mode='html')</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.route(pattern, handler)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.navigate(...a)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.drag(target, options={})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.drop(target, handler, options={})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.sortable(target, options={})</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.uuid()</code></td><td><code>string</code></td><td>Erzeugt eine UUID; bevorzugt crypto.randomUUID().</td></tr><tr><td><code>nj.log(...args)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.fEa(array, callback)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.ddS(name, value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.ready(callback)</code></td><td><code>undefined</code></td><td>Führt einen Callback nach erreichter DOM-Bereitschaft aus.</td></tr><tr><td><code>nj.isJSON(value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.escapeHTML(value)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.releaseAlias(name)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.hasAlias(name)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr><tr><td><code>nj.ddG(name)</code></td><td><code>abhängig von der Methode</code></td><td>Direkte Hilfsfunktion des nojquery-Core.</td></tr>
+</table>
+</section>
+
+
+<section id="exposealiases">
+<h2><code>nj.exposeAliases(options = {})</code></h2>
+<div class="signature">nj.exposeAliases(options = {})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.exposeAliases(options = {});</code></pre>
+</section>
+
+<section id="create">
+<h2><code>nj.create(tag, attributes = {}, children = [])</code></h2>
+<div class="signature">nj.create(tag, attributes = {}, children = [])</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.create(tag, attributes = {}, children = []);</code></pre>
+</section>
+
+<section id="extend">
+<h2><code>nj.extend(...objects)</code></h2>
+<div class="signature">nj.extend(...objects)</div>
+<p>Kombiniert Eigenschaften mehrerer Objekte.</p>
+<pre><code>// Beispiel
+const result = nj.extend(...objects);</code></pre>
+</section>
+
+<section id="deepequal">
+<h2><code>nj.deepEqual(a, b)</code></h2>
+<div class="signature">nj.deepEqual(a, b)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.deepEqual(a, b);</code></pre>
+</section>
+
+<section id="arrayremove">
+<h2><code>nj.arrayRemove(array, value)</code></h2>
+<div class="signature">nj.arrayRemove(array, value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.arrayRemove(array, value);</code></pre>
+</section>
+
+<section id="filterobjectarray">
+<h2><code>nj.filterObjectArray(array, field, value)</code></h2>
+<div class="signature">nj.filterObjectArray(array, field, value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.filterObjectArray(array, field, value);</code></pre>
+</section>
+
+<section id="foreach">
+<h2><code>nj.forEach(array, callback)</code></h2>
+<div class="signature">nj.forEach(array, callback)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.forEach(array, callback);</code></pre>
+</section>
+
+<section id="cssvar">
+<h2><code>nj.cssVar(name, value)</code></h2>
+<div class="signature">nj.cssVar(name, value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.cssVar(name, value);</code></pre>
+</section>
+
+<section id="detectbrowser">
+<h2><code>nj.detectBrowser()</code></h2>
+<div class="signature">nj.detectBrowser()</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.detectBrowser();</code></pre>
+</section>
+
+<section id="upload">
+<h2><code>nj.upload(url, files, fields = {}, options = {})</code></h2>
+<div class="signature">nj.upload(url, files, fields = {}, options = {})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.upload(url, files, fields = {}, options = {});</code></pre>
+</section>
+
+<section id="observe">
+<h2><code>nj.observe(target, callback, options={ childList:true, subtree:true })</code></h2>
+<div class="signature">nj.observe(target, callback, options={ childList:true, subtree:true })</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.observe(target, callback, options={ childList:true, subtree:true });</code></pre>
+</section>
+
+<section id="visible">
+<h2><code>nj.visible(target, callback, options={})</code></h2>
+<div class="signature">nj.visible(target, callback, options={})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.visible(target, callback, options={});</code></pre>
+</section>
+
+<section id="resize">
+<h2><code>nj.resize(target, callback)</code></h2>
+<div class="signature">nj.resize(target, callback)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.resize(target, callback);</code></pre>
+</section>
+
+<section id="template">
+<h2><code>nj.template(template, data={})</code></h2>
+<div class="signature">nj.template(template, data={})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.template(template, data={});</code></pre>
+</section>
+
+<section id="render">
+<h2><code>nj.render(target, template, data={}, mode='html')</code></h2>
+<div class="signature">nj.render(target, template, data={}, mode='html')</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.render(target, template, data={}, mode='html');</code></pre>
+</section>
+
+<section id="route">
+<h2><code>nj.route(pattern, handler)</code></h2>
+<div class="signature">nj.route(pattern, handler)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.route(pattern, handler);</code></pre>
+</section>
+
+<section id="navigate">
+<h2><code>nj.navigate(...a)</code></h2>
+<div class="signature">nj.navigate(...a)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.navigate(...a);</code></pre>
+</section>
+
+<section id="drag">
+<h2><code>nj.drag(target, options={})</code></h2>
+<div class="signature">nj.drag(target, options={})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.drag(target, options={});</code></pre>
+</section>
+
+<section id="drop">
+<h2><code>nj.drop(target, handler, options={})</code></h2>
+<div class="signature">nj.drop(target, handler, options={})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.drop(target, handler, options={});</code></pre>
+</section>
+
+<section id="sortable">
+<h2><code>nj.sortable(target, options={})</code></h2>
+<div class="signature">nj.sortable(target, options={})</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.sortable(target, options={});</code></pre>
+</section>
+
+<section id="uuid">
+<h2><code>nj.uuid()</code></h2>
+<div class="signature">nj.uuid()</div>
+<p>Erzeugt eine UUID; bevorzugt crypto.randomUUID().</p>
+<pre><code>// Beispiel
+const result = nj.uuid();</code></pre>
+</section>
+
+<section id="log">
+<h2><code>nj.log(...args)</code></h2>
+<div class="signature">nj.log(...args)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.log(...args);</code></pre>
+</section>
+
+<section id="fea">
+<h2><code>nj.fEa(array, callback)</code></h2>
+<div class="signature">nj.fEa(array, callback)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.fEa(array, callback);</code></pre>
+</section>
+
+<section id="dds">
+<h2><code>nj.ddS(name, value)</code></h2>
+<div class="signature">nj.ddS(name, value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.ddS(name, value);</code></pre>
+</section>
+
+<section id="ready">
+<h2><code>nj.ready(callback)</code></h2>
+<div class="signature">nj.ready(callback)</div>
+<p>Führt einen Callback nach erreichter DOM-Bereitschaft aus.</p>
+<pre><code>// Beispiel
+const result = nj.ready(callback);</code></pre>
+</section>
+
+<section id="isjson">
+<h2><code>nj.isJSON(value)</code></h2>
+<div class="signature">nj.isJSON(value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.isJSON(value);</code></pre>
+</section>
+
+<section id="escapehtml">
+<h2><code>nj.escapeHTML(value)</code></h2>
+<div class="signature">nj.escapeHTML(value)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.escapeHTML(value);</code></pre>
+</section>
+
+<section id="releasealias">
+<h2><code>nj.releaseAlias(name)</code></h2>
+<div class="signature">nj.releaseAlias(name)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.releaseAlias(name);</code></pre>
+</section>
+
+<section id="hasalias">
+<h2><code>nj.hasAlias(name)</code></h2>
+<div class="signature">nj.hasAlias(name)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.hasAlias(name);</code></pre>
+</section>
+
+<section id="ddg">
+<h2><code>nj.ddG(name)</code></h2>
+<div class="signature">nj.ddG(name)</div>
+<p>Direkte Hilfsfunktion des nojquery-Core.</p>
+<pre><code>// Beispiel
+const result = nj.ddG(name);</code></pre>
+</section>
+
+
+
+<section id="phase10-static-index">
+<h2>Vollständiger statischer Core-Index</h2>
+<p>Die folgenden direkten Core-Einträge werden vom Generator dieser Seite zugeordnet:</p>
+<ul><li><code>nj.NJ</code></li><li><code>nj.arrayRemove</code></li><li><code>nj.create</code></li><li><code>nj.cssVar</code></li><li><code>nj.ddG</code></li><li><code>nj.ddS</code></li><li><code>nj.deepEqual</code></li><li><code>nj.detectBrowser</code></li><li><code>nj.drag</code></li><li><code>nj.drop</code></li><li><code>nj.exposeAliases</code></li><li><code>nj.extend</code></li><li><code>nj.fEa</code></li><li><code>nj.filterObjectArray</code></li><li><code>nj.forEach</code></li><li><code>nj.hasAlias</code></li><li><code>nj.isJSON</code></li><li><code>nj.log</code></li><li><code>nj.logger</code></li><li><code>nj.ready</code></li><li><code>nj.releaseAlias</code></li><li><code>nj.sortable</code></li><li><code>nj.uuid</code></li><li><code>nj.version</code></li></ul>
+<p><code>NJ</code> bezeichnet zusätzlich die zugrunde liegende Wrapper-Klasse; <code>version</code> enthält die Bibliotheksversion. <code>logger</code> stellt die protokollierenden Methoden bereit.</p>
+</section>
+<section>
+<h2>Gesamtnavigation</h2>
+<p><a href="dom.html">DOM</a> · <a href="events.html">Events</a> · <a href="animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../color/index.html">Color</a> · <a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a> · <a href="../config/index.html">Config</a></p>
+</section>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Keyboard-API von nojquery 4.1.0: Tastenkombinationen und Enter/Escape-Helfer.">
+<title>Keyboard – nojquery 4.1.0</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--surface:#fff;--surface2:#edf2f8;--text:#172033;--muted:#647087;--line:#dbe3ee;--accent:#2457d6;--code:#111827;--codeText:#e5edf8}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1320;--surface:#131c2b;--surface2:#1a2638;--text:#edf3fb;--muted:#a7b4c7;--line:#2b3a50;--accent:#7ba2ff;--code:#080d16;--codeText:#eaf1fb}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}code,pre{font-family:Consolas,monospace}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar,.hero,.layout,.search,footer{max-width:1280px;margin:auto}.bar{min-height:70px;padding:.8rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.brand{font-weight:850;font-size:1.15rem;color:var(--text)}.brand span{color:var(--accent)}.version{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.15rem .55rem}.crumbs{margin-left:auto;color:var(--muted)}
+.hero{padding:4.5rem 1.25rem 2rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.06em;margin:.5rem 0 1rem}.lead{max-width:920px;color:var(--muted);font-size:1.2rem}
+.hero pre,.signature,pre{display:block;background:var(--code);color:var(--codeText);padding:1rem;border-radius:10px;overflow:auto;white-space:pre-wrap}
+.search{padding:0 1.25rem 2rem}.search input{width:100%;min-height:56px;border:1px solid var(--line);border-radius:13px;background:var(--surface);color:var(--text);padding:0 1rem;font:inherit}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:2rem;padding:0 1.25rem 4rem}
+aside{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 112px);overflow:auto}aside h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+nav{display:grid;gap:.25rem}nav a{color:var(--text);padding:.45rem .6rem;border-radius:.5rem}nav a:hover{background:var(--surface2);text-decoration:none}
+main{min-width:0}section{scroll-margin-top:95px;margin-bottom:3.25rem}section h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.04em;margin-bottom:.5rem}.intro{color:var(--muted);max-width:900px}
+.entry,.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.2rem}.entry{margin-top:1rem}.entry h3,.card h3{margin-top:0}.signature{color:#b8d1ff}
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.hidden{display:none!important}#none{display:none;background:var(--surface);border:1px solid var(--line);padding:1rem;border-radius:12px;margin-top:1rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid var(--line);padding:.75rem;text-align:left;vertical-align:top}th{background:var(--surface2)}
+footer{padding:2rem 1.25rem 4rem;border-top:1px solid var(--line);color:var(--muted)}
+@media(max-width:900px){.hero,.layout{grid-template-columns:1fr}aside{position:static;max-height:none}nav{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.crumbs{display:none}.grid,nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="../index.html">no<span>jquery</span></a><span class="version">v4.1.0</span><span class="crumbs">Keyboard</span></div></header>
+
+<section class="hero">
+<div>
+<div class="eyebrow">Tastatursteuerung</div>
+<h1>Tasten und<br>Kombinationen.</h1>
+<p class="lead">Die Keyboard-API registriert <code>keydown</code>-Handler für einzelne Tasten und Kombinationen mit Ctrl, Shift, Alt oder Meta.</p>
+</div>
+<pre><code>const off = nj.key.on("ctrl+s", event =&gt; {
+  event.preventDefault();
+  saveDocument();
+});
+
+// später:
+off();</code></pre>
+</section>
+
+<div class="search"><input id="api-search" type="search" placeholder="Keyboard-API durchsuchen …"><div id="none">Keine passende Funktion gefunden.</div></div>
+
+<div class="layout">
+<aside><h2>Keyboard</h2><nav>
+<a href="#overview">Überblick</a>
+<a href="#on">on()</a>
+<a href="#enter">enter()</a>
+<a href="#escape">escape()</a>
+<a href="#combos">Kombinationen</a>
+<a href="#cleanup">Abmelden</a>
+<a href="#examples">Praxisbeispiele</a>
+<a href="#limits">Grenzen</a>
+<a href="#crossrefs">Querverweise</a>
+</nav></aside>
+
+<main>
+<section id="overview" class="searchable" data-search="keyboard overview keydown shortcut hotkey">
+<h2>Überblick</h2>
+<p class="intro"><code>nj.key</code> stellt einen allgemeinen Tastenkombinations-Helfer und zwei Kurzformen für Enter und Escape bereit.</p>
+<table>
+<thead><tr><th>Funktion</th><th>Zweck</th><th>Rückgabe</th></tr></thead>
+<tbody>
+<tr><td><code>nj.key.on()</code></td><td>Taste oder Kombination registrieren</td><td>Funktion zum Abmelden</td></tr>
+<tr><td><code>nj.key.enter()</code></td><td>Enter auf <code>document</code> registrieren</td><td>Funktion zum Abmelden</td></tr>
+<tr><td><code>nj.key.escape()</code></td><td>Escape auf <code>document</code> registrieren</td><td>Funktion zum Abmelden</td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Vergleich:</strong> Tastennamen und Kombinationen werden intern in Kleinbuchstaben umgewandelt. Der Abgleich erfolgt gegen <code>event.key.toLowerCase()</code>.</div>
+</section>
+
+<section id="on" class="searchable" data-search="on combo handler target document keydown">
+<h2>nj.key.on()</h2>
+<code class="signature">nj.key.on(combo, handler[, target = document]) → function</code>
+<p>Registriert einen <code>keydown</code>-Listener am angegebenen Ziel. Standardziel ist <code>document</code>.</p>
+<pre><code>const unregister = nj.key.on("f2", event =&gt; {
+  console.log("F2 gedrückt", event);
+});</code></pre>
+<h3>Eigenes Ziel</h3>
+<pre><code>const input = document.querySelector("#search");
+
+const off = nj.key.on("enter", event =&gt; {
+  runSearch(event.currentTarget.value);
+}, input);</code></pre>
+<p>Als Ziel wird ein Objekt erwartet, das <code>addEventListener()</code> und <code>removeEventListener()</code> unterstützt.</p>
+</section>
+
+<section id="enter" class="searchable" data-search="enter shortcut helper">
+<h2>nj.key.enter()</h2>
+<code class="signature">nj.key.enter(handler) → function</code>
+<p>Kurzform für <code>nj.key.on("enter", handler)</code>. Die Registrierung erfolgt immer am Standardziel <code>document</code>.</p>
+<pre><code>const offEnter = nj.key.enter(event =&gt; {
+  submitCurrentDialog();
+});</code></pre>
+<div class="callout">Der aktuelle Helper akzeptiert kein eigenes Zielargument. Für ein bestimmtes Element muss <code>nj.key.on("enter", handler, target)</code> verwendet werden.</div>
+</section>
+
+<section id="escape" class="searchable" data-search="escape esc shortcut helper close">
+<h2>nj.key.escape()</h2>
+<code class="signature">nj.key.escape(handler) → function</code>
+<p>Kurzform für <code>nj.key.on("escape", handler)</code>. Die Registrierung erfolgt am <code>document</code>.</p>
+<pre><code>const offEscape = nj.key.escape(() =&gt; {
+  closeModal();
+});</code></pre>
+<p>Der native <code>event.key</code>-Wert muss dabei <code>"Escape"</code> ergeben. Die alternative Bezeichnung <code>"Esc"</code> wird vom Helper nicht speziell normalisiert.</p>
+</section>
+
+<section id="combos" class="searchable" data-search="combination ctrl shift alt meta modifiers shortcuts">
+<h2>Tastenkombinationen</h2>
+<p>Die Kombination wird an Pluszeichen getrennt. Der letzte Teil gilt als Haupttaste, davorstehende unterstützte Teile als Modifikatortasten.</p>
+<pre><code>nj.key.on("ctrl+s", save);
+nj.key.on("ctrl+shift+p", openCommandPalette);
+nj.key.on("alt+arrowdown", openMenu);
+nj.key.on("meta+k", openSearch);</code></pre>
+<table>
+<thead><tr><th>Text im Combo-String</th><th>Geprüfte Event-Eigenschaft</th></tr></thead>
+<tbody>
+<tr><td><code>ctrl</code></td><td><code>event.ctrlKey</code></td></tr>
+<tr><td><code>shift</code></td><td><code>event.shiftKey</code></td></tr>
+<tr><td><code>alt</code></td><td><code>event.altKey</code></td></tr>
+<tr><td><code>meta</code></td><td><code>event.metaKey</code></td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Zusätzliche Modifikatoren:</strong> Der aktuelle Abgleich verlangt nur, dass die im String genannten Modifikatoren gedrückt sind. Nicht genannte Modifikatoren werden nicht ausgeschlossen.</div>
+</section>
+
+<section id="cleanup" class="searchable" data-search="cleanup remove unregister off listener">
+<h2>Listener wieder entfernen</h2>
+<p>Jeder Registrierungsaufruf gibt eine Funktion zurück, welche genau den erzeugten <code>keydown</code>-Listener entfernt.</p>
+<pre><code>const off = nj.key.on("ctrl+enter", sendMessage);
+
+// Komponente wird entfernt:
+off();</code></pre>
+<p>Diese Rückgabefunktion sollte bei kurzlebigen Komponenten oder wechselnden Ansichten aufgerufen werden, um doppelte Handler zu vermeiden.</p>
+</section>
+
+<section id="examples"><h2>Praxisbeispiele</h2>
+<div class="grid">
+<article class="card searchable" data-search="save ctrl s preventDefault">
+<h3>Speichern mit Ctrl+S</h3>
+<pre><code>const offSave = nj.key.on("ctrl+s", async event =&gt; {
+  event.preventDefault();
+
+  await saveDocument();
+  nj("#status").text("Gespeichert");
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="modal escape close">
+<h3>Modal mit Escape schließen</h3>
+<pre><code>const offEscape = nj.key.escape(event =&gt; {
+  const modal = document.querySelector(".modal.is-open");
+  if (!modal) return;
+
+  event.preventDefault();
+  modal.classList.remove("is-open");
+});</code></pre>
+</article>
+
+<article class="card searchable" data-search="input enter form search">
+<h3>Suche im Eingabefeld</h3>
+<pre><code>const field = document.querySelector("#search");
+
+nj.key.on("enter", event =&gt; {
+  event.preventDefault();
+  search(field.value);
+}, field);</code></pre>
+</article>
+
+<article class="card searchable" data-search="command palette ctrl shift p meta k">
+<h3>Plattformabhängige Shortcuts</h3>
+<pre><code>const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
+const combo = isMac ? "meta+k" : "ctrl+k";
+
+nj.key.on(combo, event =&gt; {
+  event.preventDefault();
+  openCommandPalette();
+});</code></pre>
+</article>
+</div>
+</section>
+
+<section id="limits"><h2>Grenzen des aktuellen Moduls</h2>
+<ul>
+<li>Nur <code>keydown</code>; keine Helfer für <code>keyup</code> oder <code>keypress</code>.</li>
+<li>Keine automatische Unterdrückung des Browser-Standardverhaltens.</li>
+<li>Keine Prüfung, ob Eingabefelder oder editierbare Elemente fokussiert sind.</li>
+<li>Keine Unterscheidung zwischen linker und rechter Modifikatortaste.</li>
+<li>Keine Unterstützung für <code>event.code</code> oder tastaturlayout-unabhängige Shortcuts.</li>
+<li>Keine Sequenzen wie „g dann h“.</li>
+<li>Keine Alias-Normalisierung für alternative Tastennamen.</li>
+<li><code>enter()</code> und <code>escape()</code> akzeptieren kein eigenes Ziel.</li>
+</ul>
+<p>Diese Angaben entsprechen der tatsächlich vorhandenen API in <code>nojquery.core.js</code>.</p>
+</section>
+
+<section id="crossrefs"><h2>Querverweise</h2>
+<div class="grid">
+<article class="card"><h3><a href="../core/events.html">Events</a></h3><p>Allgemeine Ereignisregistrierung und Event-Delegation.</p></article>
+<article class="card"><h3><a href="../clipboard/index.html">Clipboard</a></h3><p>Kopieraktionen über Tastenkombinationen auslösen.</p></article>
+<article class="card"><h3><a href="../core/dom.html">DOM</a></h3><p>Fokus, Formulare und sichtbare Komponenten steuern.</p></article>
+<article class="card"><h3><a href="../router/index.html">Router</a></h3><p>Ansichten und Navigation über Shortcuts öffnen.</p></article>
+</div>
+</section>
+</main>
+</div>
+
+<footer><a href="../index.html">← Zur Hauptdokumentation</a><br>nojquery 4.1.0 · Keyboard-Dokumentation</footer>
+<script>
+const input=document.getElementById("api-search"),items=[...document.querySelectorAll(".searchable")],none=document.getElementById("none");
+input.addEventListener("input",()=>{const q=input.value.trim().toLowerCase();let count=0;items.forEach(el=>{const hit=!q||(el.textContent+" "+(el.dataset.search||"")).toLowerCase().includes(q);el.classList.toggle("hidden",!hit);if(hit)count++});none.style.display=count?"none":"block"});
+</script>
+<section><h2>Gesamtnavigation</h2><p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="../validation/index.html">Validation</a> · <a href="../formatter/index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="../config/index.html">Config</a></p></section>
+</body>
+</html>

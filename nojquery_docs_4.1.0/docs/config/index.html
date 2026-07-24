@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Konfiguration – nojquery 4.1.0</title>
+<style>
+body{font:16px/1.65 system-ui,sans-serif;max-width:1100px;margin:auto;padding:2rem;color:#172033;background:#f4f7fb}
+a{color:#2457d6}header,section{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:1.4rem;margin-bottom:1.25rem}
+code,pre{font-family:Consolas,monospace}pre,.sig{background:#111827;color:#e5edf8;padding:1rem;border-radius:10px;overflow:auto}
+nav{display:flex;flex-wrap:wrap;gap:.8rem;margin:1rem 0 2rem}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #dbe3ee;padding:.7rem;text-align:left;vertical-align:top}
+.callout{border-left:4px solid #2457d6;padding:1rem;background:#edf2f8}
+@media(prefers-color-scheme:dark){body{background:#0d1320;color:#edf3fb}header,section{background:#131c2b;border-color:#2b3a50}table th,table td{border-color:#2b3a50}.callout{background:#1a2638}}
+</style>
+</head>
+<body>
+<header>
+<p><a href="../index.html">← Hauptdokumentation</a></p>
+<h1>Konfiguration</h1>
+<p>Vollständige Referenz des im Core tatsächlich vorhandenen Objekts <code>nj.config</code>.</p>
+</header>
+<nav>
+<a href="#ueberblick">Überblick</a><a href="#optionen">Optionen</a><a href="#beispiele">Beispiele</a><a href="#wirkung">Wirkung</a>
+</nav>
+<section id="ueberblick">
+<h2>Überblick</h2>
+<p><code>nj.config</code> ist ein frei veränderbares Konfigurationsobjekt. Es besitzt im ausgelieferten Core keine eigenen Methoden.</p>
+<pre><code>nj.config = {
+  debug: false,
+  warn: true,
+  exposeUnderscore: true,
+  exposeDollar: false,
+  forceAliasOverwrite: false,
+  ajaxTimeout: 8000,
+  animation: {
+    duration: 300,
+    easing: "ease"
+  }
+};</code></pre>
+</section>
+<section id="optionen">
+<h2>Optionen</h2>
+<table>
+<tr><th>Eigenschaft</th><th>Standard</th><th>Bedeutung</th></tr>
+<tr><td><code>debug</code></td><td><code>false</code></td><td>Aktiviert zusätzliche Fehler- und Logger-Ausgaben.</td></tr>
+<tr><td><code>warn</code></td><td><code>true</code></td><td>Erlaubt Warnungen, insbesondere bei Alias-Konflikten.</td></tr>
+<tr><td><code>exposeUnderscore</code></td><td><code>true</code></td><td>Gibt <code>_</code> beim Alias-Setup standardmäßig für <code>nj</code> frei.</td></tr>
+<tr><td><code>exposeDollar</code></td><td><code>false</code></td><td>Gibt <code>$</code> beim Alias-Setup standardmäßig nicht frei.</td></tr>
+<tr><td><code>forceAliasOverwrite</code></td><td><code>false</code></td><td>Verhindert standardmäßig das Überschreiben bereits belegter Aliase.</td></tr>
+<tr><td><code>ajaxTimeout</code></td><td><code>8000</code></td><td>Standard-Timeout für Requests in Millisekunden.</td></tr>
+<tr><td><code>animation.duration</code></td><td><code>300</code></td><td>Standarddauer für Animationen in Millisekunden.</td></tr>
+<tr><td><code>animation.easing</code></td><td><code>"ease"</code></td><td>Standard-Easing für Animationen.</td></tr>
+</table>
+</section>
+<section id="beispiele">
+<h2>Beispiele</h2>
+<pre><code>nj.config.debug = true;
+nj.config.ajaxTimeout = 12000;
+nj.config.animation.duration = 450;
+nj.config.animation.easing = "ease-in-out";</code></pre>
+<div class="callout">Konfigurationswerte sollten vor der ersten Nutzung der davon abhängigen Funktionen gesetzt werden.</div>
+</section>
+<section id="wirkung">
+<h2>Tatsächliche Verwendung im Core</h2>
+<ul>
+<li><code>debug</code> steuert Diagnoseausgaben in Selektor-, Storage- und weiteren Fehlerpfaden sowie im Logger.</li>
+<li><code>warn</code> steuert Warnungen bei belegten Aliasnamen.</li>
+<li>Die Aliasoptionen werden von <code>nj.exposeAliases()</code> gelesen.</li>
+<li><code>ajaxTimeout</code> wird als Standardwert für HTTP-Anfragen verwendet.</li>
+<li>Die Animationswerte werden von <code>animate()</code>, Fade-, Slide- und Zoom-Funktionen verwendet.</li>
+</ul>
+</section>
+<section>
+<h2>Querverweise</h2>
+<p><a href="../ajax/index.html">AJAX</a> · <a href="../core/animation.html">Animation</a> · <a href="../index.html#aliases">Aliase</a></p>
+</section>
+<section><h2>Gesamtnavigation</h2><p><a href="../core/dom.html">DOM</a> · <a href="../core/events.html">Events</a> · <a href="../core/animation.html">Animation</a> · <a href="../ajax/index.html">AJAX</a> · <a href="../storage/index.html">Storage</a> · <a href="../cache/index.html">Cache</a> · <a href="../templates/index.html">Templates</a> · <a href="../router/index.html">Router</a> · <a href="../url/index.html">URL</a> · <a href="../cookies/index.html">Cookies</a> · <a href="../validation/index.html">Validation</a> · <a href="../formatter/index.html">Formatter</a> · <a href="../observer/index.html">Observer</a> · <a href="../clipboard/index.html">Clipboard</a> · <a href="../keyboard/index.html">Keyboard</a> · <a href="../device/index.html">Device</a> · <a href="index.html">Config</a></p></section>
+<p><a href="../date/index.html">Date</a> · <a href="../random/index.html">Random</a> · <a href="../bus/index.html">Bus</a></p>
+</body>
+</html>

@@ -1,0 +1,181 @@
+{
+  "generated_at_utc": "2026-07-24T07:58:29.481990+00:00",
+  "validation": {
+    "passed": true,
+    "error_count": 0,
+    "duplicate_api_owners": {},
+    "invalid_api_mappings": [],
+    "broken_local_links": []
+  },
+  "pages": [
+    {
+      "page": "core/dom.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/events.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "core/animation.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "ajax/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "storage/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "cache/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "templates/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "router/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "url/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "cookies/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "validation/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "formatter/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "observer/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "clipboard/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "keyboard/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "device/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "config/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    },
+    {
+      "page": "color/index.html",
+      "status": "complete",
+      "missing_api_mentions": [],
+      "invalid_api_mappings": []
+    }
+  ],
+  "undocumented": {
+    "namespaces": [
+      "date",
+      "random",
+      "bus",
+      "core"
+    ],
+    "direct_statics_without_aliases": [
+      "NJ",
+      "arrayRemove",
+      "create",
+      "cssVar",
+      "ddG",
+      "ddS",
+      "deepEqual",
+      "detectBrowser",
+      "drag",
+      "drop",
+      "exposeAliases",
+      "extend",
+      "fEa",
+      "filterObjectArray",
+      "forEach",
+      "hasAlias",
+      "isJSON",
+      "log",
+      "logger",
+      "ready",
+      "releaseAlias",
+      "sortable",
+      "uuid",
+      "version"
+    ],
+    "wrapper_members": [
+      "[Symbol.iterator]",
+      "checked",
+      "e",
+      "each",
+      "eq",
+      "exists",
+      "first",
+      "get",
+      "is",
+      "last",
+      "length",
+      "map",
+      "rect",
+      "scrollIntoView",
+      "serialize"
+    ]
+  },
+  "next_documentation_candidate": {
+    "kind": "namespace",
+    "name": "date",
+    "members": [
+      "today",
+      "addDays",
+      "diff",
+      "format"
+    ]
+  }
+}

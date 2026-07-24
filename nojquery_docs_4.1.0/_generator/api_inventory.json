@@ -1,0 +1,1061 @@
+{
+  "generated_at_utc": "2026-07-24T05:15:01.041582+00:00",
+  "phase": 1,
+  "source": {
+    "archive": "nojquery_docs_4.1.0(4).zip",
+    "archive_size_bytes": 19954185,
+    "archive_sha256": "931d5604ae5431e504252f81008792272f7b88370de3a5f257f747a3c9ef859a",
+    "archive_entries": 48,
+    "root_directory": "nojquery_docs_4.1.0",
+    "core_path": "assets/js/nojquery.core.js",
+    "core_size_bytes": 36698,
+    "core_sha256": "8380408d31102e4d3a37f59ecaa4566f72a9d6501d94a20420920fdc47933754",
+    "declared_version": "4.1.0"
+  },
+  "documentation": {
+    "top_level_directories": [
+      "ajax",
+      "cache",
+      "clipboard",
+      "config",
+      "cookies",
+      "core",
+      "device",
+      "formatter",
+      "keyboard",
+      "observer",
+      "router",
+      "storage",
+      "templates",
+      "url",
+      "validation",
+      "zip_content"
+    ],
+    "html_page_count": 18,
+    "html_pages": [
+      {
+        "path": "ajax/index.html",
+        "title": "AJAX & HTTP – nojquery 4.1.0",
+        "h1": "AJAX &amp; HTTP",
+        "size_bytes": 14710
+      },
+      {
+        "path": "cache/index.html",
+        "title": "Cache – nojquery 4.1.0",
+        "h1": "Schnelle Daten.Kontrollierte Lebensdauer.",
+        "size_bytes": 14673
+      },
+      {
+        "path": "clipboard/index.html",
+        "title": "Clipboard – nojquery 4.1.0",
+        "h1": "Texte kopierenund lesen.",
+        "size_bytes": 12343
+      },
+      {
+        "path": "config/index.html",
+        "title": "config",
+        "h1": "config",
+        "size_bytes": 315
+      },
+      {
+        "path": "cookies/index.html",
+        "title": "Cookies – nojquery 4.1.0",
+        "h1": "Cookies",
+        "size_bytes": 5019
+      },
+      {
+        "path": "core/animation.html",
+        "title": "Animationen – nojquery 4.1.0",
+        "h1": "Animationen",
+        "size_bytes": 19490
+      },
+      {
+        "path": "core/dom.html",
+        "title": "DOM & Core – nojquery 4.1.0",
+        "h1": "DOM &amp; Core",
+        "size_bytes": 24979
+      },
+      {
+        "path": "core/events.html",
+        "title": "Events – nojquery 4.1.0",
+        "h1": "Events",
+        "size_bytes": 22246
+      },
+      {
+        "path": "device/index.html",
+        "title": "Device – nojquery 4.1.0",
+        "h1": "Device",
+        "size_bytes": 4936
+      },
+      {
+        "path": "formatter/index.html",
+        "title": "Formatter – nojquery 4.1.0",
+        "h1": "Werte passenddarstellen.",
+        "size_bytes": 11804
+      },
+      {
+        "path": "index.html",
+        "title": "nojquery 4.1.0 – API-Dokumentation",
+        "h1": "Modernes DOM.Ohne jQuery.",
+        "size_bytes": 20798
+      },
+      {
+        "path": "keyboard/index.html",
+        "title": "Keyboard – nojquery 4.1.0",
+        "h1": "Tasten undKombinationen.",
+        "size_bytes": 12897
+      },
+      {
+        "path": "observer/index.html",
+        "title": "Observer – nojquery 4.1.0",
+        "h1": "Änderungengezielt erkennen.",
+        "size_bytes": 12842
+      },
+      {
+        "path": "router/index.html",
+        "title": "Router – nojquery 4.1.0",
+        "h1": "Router",
+        "size_bytes": 5146
+      },
+      {
+        "path": "storage/index.html",
+        "title": "Storage – nojquery 4.1.0",
+        "h1": "Storage",
+        "size_bytes": 15797
+      },
+      {
+        "path": "templates/index.html",
+        "title": "Templates – nojquery 4.1.0",
+        "h1": "Daten sicherin HTML einsetzen.",
+        "size_bytes": 13462
+      },
+      {
+        "path": "url/index.html",
+        "title": "URL – nojquery 4.1.0",
+        "h1": "URL",
+        "size_bytes": 6299
+      },
+      {
+        "path": "validation/index.html",
+        "title": "Validation – nojquery 4.1.0",
+        "h1": "Werte klarprüfen.",
+        "size_bytes": 14280
+      }
+    ],
+    "embedded_zip_count": 10,
+    "embedded_zips": [
+      {
+        "path": "zip_content/easyit_leipzig_modernisiert_v1.0.zip",
+        "size_bytes": 19208543,
+        "sha256": "162b49527ddc101677938929785ac2ffdf430ef7a56a6c5c8a763bc86192b931"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_09_router(2).zip",
+        "size_bytes": 60648,
+        "sha256": "f44dcc4e4a3234a4fe7b2b5c214a3e7c56238035610872b3d23608dec0030fb9"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_10_url(2).zip",
+        "size_bytes": 63236,
+        "sha256": "cad9f63a63046bb925d8de62877d1e92f5b938ba5d15b028b2936ebd9ef46bf9"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_11_cookies(1).zip",
+        "size_bytes": 65605,
+        "sha256": "1b52054b044f438231dc6aeda325961071fc6818a6b571a1b57186ba2cd2f1dd"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_12_validation.zip",
+        "size_bytes": 70830,
+        "sha256": "8810660b560581f21668069ae2f74a655e907cd95c06d451f50d91949c2416c4"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_13_formatter.zip",
+        "size_bytes": 75467,
+        "sha256": "ce74d5b7e89f08fae2989c8cd5ce9162236f59d8b0cd4b2bd3cd5f2b52439aa3"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_14_observer.zip",
+        "size_bytes": 80275,
+        "sha256": "37ab95cd311dd4b6a1c933fb71a693d9b789951cb0f7cf5fd528bd1325473d5e"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_15_clipboard.zip",
+        "size_bytes": 85017,
+        "sha256": "3dd5a90fc81b6c2d4102c94d7ef469b30c0bbb9592951f7221f8af1b63d60e1d"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_16_keyboard.zip",
+        "size_bytes": 89805,
+        "sha256": "29ece945a75e7642318027e812f32e064d208ffcb1a2c085bcb5b335ac3c3a17"
+      },
+      {
+        "path": "zip_content/nojquery_docs_4.1.0_17_device.zip",
+        "size_bytes": 91816,
+        "sha256": "164a8aaa15ddc4f705312886c51184b1c70b18dc994c229aa2bcb871e0f18328"
+      }
+    ]
+  },
+  "core_api": {
+    "wrapper_class": "NJ",
+    "wrapper_member_count": 53,
+    "wrapper_members": [
+      {
+        "name": "length",
+        "kind": "getter"
+      },
+      {
+        "name": "e",
+        "kind": "getter"
+      },
+      {
+        "name": "[Symbol.iterator]",
+        "kind": "method"
+      },
+      {
+        "name": "each",
+        "kind": "method",
+        "parameters": "callback"
+      },
+      {
+        "name": "map",
+        "kind": "method",
+        "parameters": "callback"
+      },
+      {
+        "name": "get",
+        "kind": "method",
+        "parameters": "index = 0"
+      },
+      {
+        "name": "first",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "last",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "eq",
+        "kind": "method",
+        "parameters": "index"
+      },
+      {
+        "name": "find",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "closest",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "parent",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "children",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "next",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "prev",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "html",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "text",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "val",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "append",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "prepend",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "before",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "after",
+        "kind": "method",
+        "parameters": "content"
+      },
+      {
+        "name": "appendTo",
+        "kind": "method",
+        "parameters": "target"
+      },
+      {
+        "name": "empty",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "remove",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "attr",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "removeAttr",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "hasAttr",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "prop",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "data",
+        "kind": "method",
+        "parameters": "name, value"
+      },
+      {
+        "name": "removeData",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "addClass",
+        "kind": "method",
+        "parameters": "classes"
+      },
+      {
+        "name": "removeClass",
+        "kind": "method",
+        "parameters": "classes"
+      },
+      {
+        "name": "toggleClass",
+        "kind": "method",
+        "parameters": "name, force"
+      },
+      {
+        "name": "hasClass",
+        "kind": "method",
+        "parameters": "name"
+      },
+      {
+        "name": "css",
+        "kind": "method",
+        "parameters": "property, value"
+      },
+      {
+        "name": "removeCss",
+        "kind": "method",
+        "parameters": "property"
+      },
+      {
+        "name": "show",
+        "kind": "method",
+        "parameters": "display = ''"
+      },
+      {
+        "name": "hide",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "toggle",
+        "kind": "method",
+        "parameters": "display = 'block'"
+      },
+      {
+        "name": "on",
+        "kind": "method",
+        "parameters": "events, selector, handler, options"
+      },
+      {
+        "name": "off",
+        "kind": "method",
+        "parameters": "events, handler"
+      },
+      {
+        "name": "once",
+        "kind": "method",
+        "parameters": "events, selector, handler, options = {}"
+      },
+      {
+        "name": "trigger",
+        "kind": "method",
+        "parameters": "name, detail"
+      },
+      {
+        "name": "checked",
+        "kind": "method",
+        "parameters": "value"
+      },
+      {
+        "name": "serialize",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "rect",
+        "kind": "method",
+        "parameters": ""
+      },
+      {
+        "name": "scrollIntoView",
+        "kind": "method",
+        "parameters": "options = { behavior: 'smooth', block: 'start' }"
+      },
+      {
+        "name": "animate",
+        "kind": "method",
+        "parameters": "keyframes, options = {}"
+      },
+      {
+        "name": "fadeIn",
+        "kind": "method",
+        "parameters": "duration"
+      },
+      {
+        "name": "fadeOut",
+        "kind": "method",
+        "parameters": "duration"
+      },
+      {
+        "name": "is",
+        "kind": "method",
+        "parameters": "selector"
+      },
+      {
+        "name": "exists",
+        "kind": "method",
+        "parameters": ""
+      }
+    ],
+    "namespace_count": 15,
+    "namespaces": [
+      {
+        "name": "config",
+        "members": [
+          "debug",
+          "warn",
+          "exposeUnderscore",
+          "exposeDollar",
+          "forceAliasOverwrite",
+          "ajaxTimeout",
+          "animation"
+        ],
+        "line": 381
+      },
+      {
+        "name": "storage",
+        "members": [
+          "local",
+          "session",
+          "create",
+          "available"
+        ],
+        "line": 518
+      },
+      {
+        "name": "router",
+        "members": [
+          "start",
+          "navigate",
+          "replace",
+          "params"
+        ],
+        "line": 653
+      },
+      {
+        "name": "url",
+        "members": [
+          "parse",
+          "get",
+          "set",
+          "remove",
+          "query",
+          "hash"
+        ],
+        "line": 660
+      },
+      {
+        "name": "cookie",
+        "members": [
+          "set",
+          "get",
+          "has",
+          "remove"
+        ],
+        "line": 670
+      },
+      {
+        "name": "validate",
+        "members": [
+          "required",
+          "email",
+          "url",
+          "number",
+          "integer",
+          "date",
+          "phone",
+          "iban",
+          "bic",
+          "min",
+          "max",
+          "minLength",
+          "maxLength",
+          "test"
+        ],
+        "line": 678
+      },
+      {
+        "name": "format",
+        "members": [
+          "number",
+          "money",
+          "percent",
+          "date",
+          "bytes"
+        ],
+        "line": 685
+      },
+      {
+        "name": "clipboard",
+        "members": [
+          "copy",
+          "read"
+        ],
+        "line": 707
+      },
+      {
+        "name": "key",
+        "members": [
+          "on",
+          "enter",
+          "escape"
+        ],
+        "line": 708
+      },
+      {
+        "name": "device",
+        "members": [
+          "touch",
+          "mobile",
+          "tablet",
+          "desktop",
+          "online"
+        ],
+        "line": 709
+      },
+      {
+        "name": "color",
+        "members": [
+          "hexToRgb",
+          "rgbToHex",
+          "lighten",
+          "darken"
+        ],
+        "line": 712
+      },
+      {
+        "name": "date",
+        "members": [
+          "today",
+          "addDays",
+          "diff",
+          "format"
+        ],
+        "line": 717
+      },
+      {
+        "name": "random",
+        "members": [
+          "int",
+          "float",
+          "string",
+          "color",
+          "uuid"
+        ],
+        "line": 719
+      },
+      {
+        "name": "bus",
+        "members": [
+          "on",
+          "off",
+          "once",
+          "emit"
+        ],
+        "line": 723
+      },
+      {
+        "name": "core",
+        "members": [
+          "utilities"
+        ],
+        "line": 727
+      }
+    ],
+    "direct_static_count": 42,
+    "direct_statics": [
+      {
+        "name": "version",
+        "kind": "property",
+        "line": 378,
+        "expression": "'4.1.0';"
+      },
+      {
+        "name": "NJ",
+        "kind": "property",
+        "line": 379,
+        "expression": "NJ;"
+      },
+      {
+        "name": "ready",
+        "kind": "function",
+        "line": 530,
+        "expression": "callback => {"
+      },
+      {
+        "name": "create",
+        "kind": "function",
+        "line": 536,
+        "expression": "(tag, attributes = {}, children = []) => {"
+      },
+      {
+        "name": "extend",
+        "kind": "function",
+        "line": 554,
+        "expression": "(...objects) => Object.assign(...objects);"
+      },
+      {
+        "name": "deepEqual",
+        "kind": "function",
+        "line": 555,
+        "expression": "(a, b) => {"
+      },
+      {
+        "name": "isJSON",
+        "kind": "function",
+        "line": 559,
+        "expression": "value => {"
+      },
+      {
+        "name": "arrayRemove",
+        "kind": "function",
+        "line": 568,
+        "expression": "(array, value) => {"
+      },
+      {
+        "name": "filterObjectArray",
+        "kind": "function",
+        "line": 573,
+        "expression": "(array, field, value) => array.filter(item => item?.[field] === value);"
+      },
+      {
+        "name": "forEach",
+        "kind": "function",
+        "line": 574,
+        "expression": "(array, callback) => array.forEach(callback);"
+      },
+      {
+        "name": "cssVar",
+        "kind": "function",
+        "line": 575,
+        "expression": "(name, value) => {"
+      },
+      {
+        "name": "detectBrowser",
+        "kind": "function",
+        "line": 580,
+        "expression": "() => {"
+      },
+      {
+        "name": "request",
+        "kind": "function",
+        "line": 591,
+        "expression": "async (url, options = {}) => {"
+      },
+      {
+        "name": "upload",
+        "kind": "function",
+        "line": 616,
+        "expression": "(url, files, fields = {}, options = {}) => {"
+      },
+      {
+        "name": "cache",
+        "kind": "instance",
+        "line": 635,
+        "expression": "new CacheManager();"
+      },
+      {
+        "name": "CacheManager",
+        "kind": "property",
+        "line": 638,
+        "expression": "CacheManager;"
+      },
+      {
+        "name": "observe",
+        "kind": "function",
+        "line": 641,
+        "expression": "(target, callback, options={ childList:true, subtree:true }) => { const obs=new MutationObserver(callback); toArray(target instanceof NJ?target:nj(target)).forEach(el=>obs.observe("
+      },
+      {
+        "name": "visible",
+        "kind": "function",
+        "line": 642,
+        "expression": "(target, callback, options={}) => { const obs=new IntersectionObserver(entries=>entries.forEach(e=>callback(e.isIntersecting,e)),options); nj(target).each(function(){obs.observe(th"
+      },
+      {
+        "name": "resize",
+        "kind": "function",
+        "line": 643,
+        "expression": "(target, callback) => { const obs=new ResizeObserver(entries=>entries.forEach(e=>callback(e.contentRect,e))); nj(target).each(function(){obs.observe(this);}); return obs; };"
+      },
+      {
+        "name": "escapeHTML",
+        "kind": "function",
+        "line": 646,
+        "expression": "value => String(value ?? '').replace(/[&<>'\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',\"'\":'&#39;','\"':'&quot;'}[c]));"
+      },
+      {
+        "name": "template",
+        "kind": "function",
+        "line": 647,
+        "expression": "(template, data={}) => String(template).replace(/{{{\\s*([\\w.]+)\\s*}}}|{{\\s*([\\w.]+)\\s*}}/g, (_,raw,safe) => { const path=raw||safe; const val=path.split('.').reduce((o,k)=>o?.[k],d"
+      },
+      {
+        "name": "render",
+        "kind": "function",
+        "line": 648,
+        "expression": "(target, template, data={}, mode='html') => { const html=nj.template(template,data); const el=nj(target); return mode==='append' ? el.append(html) : el.html(html); };"
+      },
+      {
+        "name": "route",
+        "kind": "function",
+        "line": 652,
+        "expression": "(pattern, handler) => { routes.push({pattern,handler}); return nj; };"
+      },
+      {
+        "name": "navigate",
+        "kind": "function",
+        "line": 659,
+        "expression": "(...a)=>nj.router.navigate(...a);"
+      },
+      {
+        "name": "drag",
+        "kind": "function",
+        "line": 702,
+        "expression": "(target, options={}) => nj(target).each(function(){ this.draggable=options.enabled!==false; this.addEventListener('dragstart',e=>{e.dataTransfer?.setData('text/plain',options.data?"
+      },
+      {
+        "name": "drop",
+        "kind": "function",
+        "line": 703,
+        "expression": "(target, handler, options={}) => nj(target).each(function(){ this.addEventListener('dragover',e=>{e.preventDefault();options.over?.call(this,e);}); this.addEventListener('drop',e=>"
+      },
+      {
+        "name": "sortable",
+        "kind": "function",
+        "line": 704,
+        "expression": "(target, options={}) => nj(target).each(function(){ let dragged=null; Array.from(this.children).forEach(ch=>{ch.draggable=true;ch.addEventListener('dragstart',()=>dragged=ch);}); t"
+      },
+      {
+        "name": "uuid",
+        "kind": "function",
+        "line": 718,
+        "expression": "() => global.crypto?.randomUUID?.() || 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0,v=c==='x'?r:(r&3|8);return v.toString(16);});"
+      },
+      {
+        "name": "logger",
+        "kind": "function",
+        "line": 724,
+        "expression": "['log','info','warn','error','debug','table','group','groupEnd'].reduce((o,m)=>(o[m]=(...args)=>{if(nj.config.debug || ['warn','error'].includes(m)) console[m]?.('[nojquery]',...ar"
+      },
+      {
+        "name": "log",
+        "kind": "function",
+        "line": 725,
+        "expression": "(...args)=>nj.logger.log(...args);"
+      },
+      {
+        "name": "exposeAliases",
+        "kind": "function",
+        "line": 739,
+        "expression": "function (options = {}) {"
+      },
+      {
+        "name": "releaseAlias",
+        "kind": "function",
+        "line": 766,
+        "expression": "name => {"
+      },
+      {
+        "name": "hasAlias",
+        "kind": "function",
+        "line": 772,
+        "expression": "name => global[name] === nj;"
+      },
+      {
+        "name": "fEa",
+        "kind": "function",
+        "line": 815,
+        "expression": "(array, callback) => array.forEach((value, index) => callback(index, value));"
+      },
+      {
+        "name": "ddS",
+        "kind": "function",
+        "line": 816,
+        "expression": "(name, value) => nj.cssVar(name, value);"
+      },
+      {
+        "name": "ddG",
+        "kind": "function",
+        "line": 817,
+        "expression": "name => nj.cssVar(name);"
+      },
+      {
+        "name": "delete",
+        "kind": "dynamic_function",
+        "signature": "(url, options={})",
+        "source": "array.forEach assignment"
+      },
+      {
+        "name": "get",
+        "kind": "dynamic_function",
+        "signature": "(url, options={})",
+        "source": "array.forEach assignment"
+      },
+      {
+        "name": "head",
+        "kind": "dynamic_function",
+        "signature": "(url, options={})",
+        "source": "array.forEach assignment"
+      },
+      {
+        "name": "patch",
+        "kind": "dynamic_function",
+        "signature": "(url, data, options={})",
+        "source": "array.forEach assignment"
+      },
+      {
+        "name": "post",
+        "kind": "dynamic_function",
+        "signature": "(url, data, options={})",
+        "source": "array.forEach assignment"
+      },
+      {
+        "name": "put",
+        "kind": "dynamic_function",
+        "signature": "(url, data, options={})",
+        "source": "array.forEach assignment"
+      }
+    ],
+    "alias_count": 7,
+    "aliases": [
+      {
+        "name": "ajax",
+        "kind": "alias",
+        "line": 615,
+        "expression": "nj.request;"
+      },
+      {
+        "name": "oEx",
+        "kind": "alias",
+        "line": 810,
+        "expression": "nj.extend;"
+      },
+      {
+        "name": "cEq",
+        "kind": "alias",
+        "line": 811,
+        "expression": "nj.deepEqual;"
+      },
+      {
+        "name": "isJ",
+        "kind": "alias",
+        "line": 812,
+        "expression": "nj.isJSON;"
+      },
+      {
+        "name": "rAE",
+        "kind": "alias",
+        "line": 813,
+        "expression": "nj.arrayRemove;"
+      },
+      {
+        "name": "fOA",
+        "kind": "alias",
+        "line": 814,
+        "expression": "nj.filterObjectArray;"
+      },
+      {
+        "name": "gBr",
+        "kind": "alias",
+        "line": 818,
+        "expression": "nj.detectBrowser;"
+      }
+    ]
+  },
+  "structural_documentation_mapping": {
+    "core/dom.html": {
+      "wrapper": [
+        "find",
+        "closest",
+        "parent",
+        "children",
+        "next",
+        "prev",
+        "html",
+        "text",
+        "val",
+        "append",
+        "prepend",
+        "before",
+        "after",
+        "appendTo",
+        "empty",
+        "remove",
+        "attr",
+        "removeAttr",
+        "hasAttr",
+        "prop",
+        "data",
+        "removeData",
+        "addClass",
+        "removeClass",
+        "toggleClass",
+        "hasClass",
+        "css",
+        "removeCss",
+        "show",
+        "hide",
+        "toggle"
+      ]
+    },
+    "core/events.html": {
+      "wrapper": [
+        "on",
+        "one",
+        "off",
+        "trigger"
+      ]
+    },
+    "core/animation.html": {
+      "wrapper": [
+        "fadeIn",
+        "fadeOut",
+        "fadeToggle",
+        "slideDown",
+        "slideUp",
+        "animate",
+        "stop"
+      ]
+    },
+    "ajax/index.html": {
+      "static": [
+        "request",
+        "get",
+        "delete",
+        "head",
+        "post",
+        "put",
+        "patch",
+        "ajax",
+        "upload"
+      ]
+    },
+    "storage/index.html": {
+      "namespace": "storage"
+    },
+    "cache/index.html": {
+      "static": [
+        "cache",
+        "CacheManager"
+      ]
+    },
+    "templates/index.html": {
+      "static": [
+        "escapeHTML",
+        "template",
+        "render"
+      ]
+    },
+    "router/index.html": {
+      "static": [
+        "route",
+        "navigate"
+      ],
+      "namespace": "router"
+    },
+    "url/index.html": {
+      "namespace": "url"
+    },
+    "cookies/index.html": {
+      "namespace": "cookie"
+    },
+    "validation/index.html": {
+      "namespace": "validate"
+    },
+    "formatter/index.html": {
+      "namespace": "format"
+    },
+    "observer/index.html": {
+      "static": [
+        "observe",
+        "visible",
+        "resize"
+      ]
+    },
+    "clipboard/index.html": {
+      "namespace": "clipboard"
+    },
+    "keyboard/index.html": {
+      "namespace": "key"
+    },
+    "device/index.html": {
+      "namespace": "device"
+    },
+    "config/index.html": {
+      "namespace": "config"
+    }
+  },
+  "phase_1_notes": [
+    "Die Zuordnung dokumentierter Seiten zu APIs ist eine strukturelle Bestandsaufnahme, noch kein inhaltlicher Qualitätsaudit.",
+    "Der Ordner config ist im Core tatsächlich vorhanden.",
+    "Der Core verwendet nj.cookie (Singular), während die Dokumentationsseite im Ordner cookies liegt.",
+    "Der Ordner zip_content enthält eingebettete Altarchive und vergrößert den Gesamtstand stark."
+  ]
+}

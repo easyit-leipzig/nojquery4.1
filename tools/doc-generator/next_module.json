@@ -1,0 +1,10 @@
+{
+  "kind": "namespace",
+  "name": "date",
+  "members": [
+    "today",
+    "addDays",
+    "diff",
+    "format"
+  ]
+}

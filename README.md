@@ -1,14 +1,5 @@
-# nojquery 4.0.0
+# nojquery 4.1.0 – Phase 3
 
-Siehe [vollständige Dokumentation](docs/NOJQUERY_4_DOKUMENTATION.md).
+Öffentliche Dokumentation: `docs/`
 
-Schnellstart:
-
-```html
-<script src="build/nojquery.min.js"></script>
-<script>
-nj.ready(() => {
-  nj('#app').text('nojquery 4 ist bereit');
-});
-</script>
-```
+Interne Prüf- und Statusdateien: `tools/doc-generator/`
