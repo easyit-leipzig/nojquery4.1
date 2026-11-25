@@ -1,0 +1,18 @@
+{
+  "package_standard": "1.2",
+  "protocol": "easyit-license/1.0",
+  "product_code": "nojquery",
+  "name": "nojQuery",
+  "version": "4.1.0",
+  "type": "bibliothek",
+  "description": "Modulare JavaScript-Bibliothek für DOM, UI und Webentwicklung.",
+  "installer": "install/index.php",
+  "required_files": [
+    "build/nojquery.full.js",
+    "build/nojquery.min.js",
+    "index.html",
+    "package.json"
+  ],
+  "installation_note": "Bibliothek ist nach dem Entpacken einsatzbereit. Keine Datenbank erforderlich.",
+  "license": "MIT"
+}
