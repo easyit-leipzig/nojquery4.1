@@ -1,5 +1,5 @@
 /*!
- * nojquery 4.0.0 - Managers
+ * nojquery 4.1.0 - Managers
  * Requires nojquery.core.js
  */
 (function (global) {

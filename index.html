@@ -124,6 +124,7 @@
       <a href="#start">Start</a>
       <a href="#module">Module</a>
       <a href="#api">API</a>
+      <a href="package-manager/index.html">Paketmanager</a>
       <a href="#migration">Migration</a>
     </nav>
   </div>
@@ -136,6 +137,7 @@
     <p class="lead">Die zentrale API-Dokumentation für nojquery 4.1.0. Sie führt zu allen Kernbereichen: DOM, Events, AJAX, Storage, Cache, Router, Validierung, Formatierung und weitere Browser-Utilities.</p>
     <div class="hero-actions">
       <a class="button primary" href="#api">API entdecken</a>
+      <a class="button" href="package-manager/index.html">Paket konfigurieren &amp; herunterladen</a>
       <a class="button" href="#module">Module ansehen</a>
     </div>
   </div>
@@ -191,23 +193,23 @@
         </article>
         <article class="card searchable" data-search="ajax http fetch request get post put patch delete upload timeout abort">
           <h3>HTTP &amp; AJAX</h3><p>Fetch-basierte Requests, Datei-Uploads, Timeouts und Abbruchsteuerung.</p>
-          <div class="links"><a class="pill" href="ajax/index.html">Übersicht</a><a class="pill" href="ajax/request.html">request()</a></div>
+          <div class="links"><a class="pill" href="ajax/index.html">Übersicht</a><a class="pill" href="docs/ajax/index.html">request()</a></div>
         </article>
         <article class="card searchable" data-search="storage local session namespace json speichern cache ttl">
           <h3>Storage &amp; Cache</h3><p>Lokale und sitzungsbezogene Speicherung sowie Cache mit Ablaufzeit.</p>
-          <div class="links"><a class="pill" href="storage/index.html">Storage</a><a class="pill" href="cache/index.html">Cache</a></div>
+          <div class="links"><a class="pill" href="docs/storage/index.html">Storage</a><a class="pill" href="docs/cache/index.html">Cache</a></div>
         </article>
         <article class="card searchable" data-search="router route navigate history url query hash cookie">
           <h3>Navigation &amp; URL</h3><p>History-Router, Navigation, Query-Parameter, Hashes und Cookies.</p>
-          <div class="links"><a class="pill" href="router/index.html">Router</a><a class="pill" href="url/index.html">URL</a><a class="pill" href="cookies/index.html">Cookies</a></div>
+          <div class="links"><a class="pill" href="docs/router/index.html">Router</a><a class="pill" href="docs/url/index.html">URL</a><a class="pill" href="docs/cookies/index.html">Cookies</a></div>
         </article>
         <article class="card searchable" data-search="template render escape html validation form validator formatter money date bytes percent">
           <h3>Daten &amp; Darstellung</h3><p>Templates, sicheres HTML, Validierung und lokalisierte Formatierung.</p>
-          <div class="links"><a class="pill" href="templates/index.html">Templates</a><a class="pill" href="validation/index.html">Validation</a><a class="pill" href="formatter/index.html">Formatter</a></div>
+          <div class="links"><a class="pill" href="docs/templates/index.html">Templates</a><a class="pill" href="docs/validation/index.html">Validation</a><a class="pill" href="docs/formatter/index.html">Formatter</a></div>
         </article>
         <article class="card searchable" data-search="observer mutation intersection resize clipboard keyboard device color date uuid random eventbus logger drag drop sortable">
           <h3>Browser-Utilities</h3><p>Observer, Zwischenablage, Tastatur, Geräteerkennung, Farben, Datum und mehr.</p>
-          <div class="links"><a class="pill" href="utilities/index.html">Utilities</a><a class="pill" href="observer/index.html">Observer</a></div>
+          <div class="links"><a class="pill" href="docs/index.html">Utilities</a><a class="pill" href="docs/observer/index.html">Observer</a></div>
         </article>
       </div>
     </section>
@@ -250,13 +252,13 @@
     <section class="section searchable" id="konfiguration" data-search="config debug warn aliases ajax timeout animation duration easing">
       <h2>Konfiguration</h2>
       <p class="section-intro"><code>nj.config</code> steuert Debug-Ausgaben, Aliasfreigaben, AJAX-Timeouts und Standardwerte für Animationen. Die Detailseite beschreibt alle Optionen und sichere Produktionswerte.</p>
-      <a href="reference/configuration.html">Konfigurationsreferenz öffnen →</a>
+      <a href="docs/config/index.html">Konfigurationsreferenz öffnen →</a>
     </section>
 
     <section class="section searchable" id="aliases" data-search="alias backward compatibility dollar underscore jquery alte namen">
       <h2>Alias- und Rückwärtskompatibilität</h2>
       <p class="section-intro">Neben <code>nj</code> können optional <code>_</code> und <code>$</code> freigegeben werden. Zahlreiche ältere Kurzmethoden bleiben als Prototyp- und Utility-Aliasse erhalten.</p>
-      <a href="reference/aliases.html">Alle Aliasse anzeigen →</a>
+      <a href="docs/API_BEISPIELE.html">Alle Aliasse anzeigen →</a>
     </section>
 
     <section class="section searchable" id="migration" data-search="jquery migration dollar replacement vergleich">
@@ -266,17 +268,17 @@ $(".item").addClass("active").on("click", handler);
 
 // nojquery
 nj(".item").addClass("active").on("click", handler);</code></pre></div>
-      <p><a href="getting-started/migration-from-jquery.html">Vollständigen Migrationsleitfaden öffnen →</a></p>
+      <p><a href="MIGRATION_3_TO_4.md">Vollständigen Migrationsleitfaden öffnen →</a></p>
     </section>
 
     <section class="section" id="weiter">
       <h2>Geplante Dokumentationsseiten</h2>
       <p class="section-intro">Die Hauptseite bildet die Navigation für die vollständige Dokumentationsbibliothek. Die DOM-, Events-, Animations- und AJAX-Detailseiten sind jetzt verfügbar. Als nächste Seiten folgen Installation, Selektoren, Storage, Cache und die alphabetische API-Referenz.</p>
       <div class="links">
-        <a class="pill" href="getting-started/installation.html">Installation</a>
-        <a class="pill" href="core/selectors.html">Selektoren</a>
-        <a class="pill" href="api/index.html">API-Index</a>
-        <a class="pill" href="cookbook/index.html">Cookbook</a>
+        <a class="pill" href="README.md">Installation</a>
+        <a class="pill" href="core/dom.html">Selektoren</a>
+        <a class="pill" href="docs/API_BEISPIELE.html">API-Index</a>
+        <a class="pill" href="docs/API_BEISPIELE.html">Cookbook</a>
       </div>
     </section>
   </main>

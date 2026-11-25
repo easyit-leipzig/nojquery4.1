@@ -1,4 +1,4 @@
-# nojquery 4.0.0
+# nojquery 4.1.0
 
 ## Überblick
 

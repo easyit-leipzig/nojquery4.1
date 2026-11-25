@@ -779,7 +779,8 @@
   NJ.prototype.pCh = NJ.prototype.prepend;
   NJ.prototype.app = NJ.prototype.append;
   NJ.prototype.b = NJ.prototype.before;
-  NJ.prototype.a = NJ.prototype.after;
+  NJ.prototype.a = NJ.prototype.append;
+  NJ.prototype.aft = NJ.prototype.after;
   NJ.prototype.p = NJ.prototype.parent;
   NJ.prototype.rEl = NJ.prototype.remove;
   NJ.prototype.aCN = NJ.prototype.addClass;
@@ -806,6 +807,32 @@
     if (selector !== undefined) return nj(selector).e;
     return this.e;
   };
+
+  // Legacy core command shortcuts (case-sensitive, 1–3 characters).
+  // Explicit historical aliases take precedence; no automatic lowercasing.
+  const coreShortcuts = Object.freeze({
+    each:'ea', map:'mp', get:'g', first:'f', last:'l', eq:'eq',
+    find:'fd', closest:'cl', parent:'p', children:'ch', next:'n', prev:'pr',
+    html:'htm', text:'txt', val:'v', append:'a', prepend:'pp',
+    before:'b', after:'aft', appendTo:'aTo', empty:'emp', remove:'rm',
+    attr:'atr', removeAttr:'rAt', hasAttr:'hAt', prop:'pro',
+    data:'ds', removeData:'rDs', addClass:'aCl', removeClass:'rCl',
+    toggleClass:'tCl', hasClass:'hCl', css:'sty', removeCss:'rCs',
+    show:'sh', hide:'hd', toggle:'tog', on:'on', off:'off', once:'onc',
+    trigger:'tri', checked:'chk', serialize:'ser', rect:'gRe',
+    scrollIntoView:'sIV', animate:'ani', fadeIn:'fIn', fadeOut:'fOu',
+    is:'is', exists:'isE'
+  });
+  for (const [method, alias] of Object.entries(coreShortcuts)) {
+    if (alias.length > 3) throw new Error('Invalid nojquery shortcut: ' + alias);
+    if (typeof NJ.prototype[method] !== 'function') throw new Error('Missing core method: ' + method);
+    if (Object.prototype.hasOwnProperty.call(NJ.prototype, alias) && NJ.prototype[alias] !== NJ.prototype[method]) {
+      throw new Error('nojquery shortcut collision: ' + alias);
+    }
+    NJ.prototype[alias] = NJ.prototype[method];
+  }
+  nj.coreShortcuts = coreShortcuts;
+  nj.resolveCoreShortcut = alias => Object.keys(coreShortcuts).find(name => coreShortcuts[name] === alias) || null;
 
   nj.oEx = nj.extend;
   nj.cEq = nj.deepEqual;

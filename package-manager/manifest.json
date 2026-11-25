@@ -1,0 +1,105 @@
+{
+  "name": "nojquery",
+  "version": "4.1.0",
+  "required": [
+    "core"
+  ],
+  "modules": [
+    {
+      "id": "core",
+      "title": "Core",
+      "description": "DOM, Ereignisse, Kurzbefehle und Basis-API",
+      "required": true,
+      "dependencies": [],
+      "source": "src/core/nojquery.core.js"
+    },
+    {
+      "id": "storage",
+      "title": "Storage",
+      "description": "Persistente Browserdaten",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/storage.js"
+    },
+    {
+      "id": "ajax",
+      "title": "Ajax",
+      "description": "HTTP-Anfragen und Formulardaten",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/ajax.js"
+    },
+    {
+      "id": "cookie",
+      "title": "Cookie",
+      "description": "Cookies",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/cookie.js"
+    },
+    {
+      "id": "navigation",
+      "title": "Navigation",
+      "description": "Navigation und Status",
+      "required": false,
+      "dependencies": [
+        "storage"
+      ],
+      "source": "src/modules/navigation.js"
+    },
+    {
+      "id": "sidebar",
+      "title": "Sidebar",
+      "description": "Seitenleisten",
+      "required": false,
+      "dependencies": [
+        "storage"
+      ],
+      "source": "src/modules/sidebar.js"
+    },
+    {
+      "id": "accordion",
+      "title": "Accordion",
+      "description": "Akkordeon",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/accordion.js"
+    },
+    {
+      "id": "theme",
+      "title": "Theme",
+      "description": "Design und Themes",
+      "required": false,
+      "dependencies": [
+        "storage"
+      ],
+      "source": "src/modules/theme.js"
+    },
+    {
+      "id": "animation",
+      "title": "Animation",
+      "description": "Animationen",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/animation.js"
+    },
+    {
+      "id": "form",
+      "title": "Form",
+      "description": "Formulare und Versand",
+      "required": false,
+      "dependencies": [
+        "ajax"
+      ],
+      "source": "src/modules/form.js"
+    },
+    {
+      "id": "modal",
+      "title": "Modal",
+      "description": "Dialogfenster",
+      "required": false,
+      "dependencies": [],
+      "source": "src/modules/modal.js"
+    }
+  ]
+}
